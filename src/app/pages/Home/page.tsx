@@ -8,9 +8,9 @@ import { Carrousel } from '@/src/components/Carrousel';
 
 export default function Home() {
     return (
-        <>
+        <div style={{overflow: 'auto'}}>
             <NavBar />
             <Carrousel/>
-        </>
+        </div>
     )
 }
