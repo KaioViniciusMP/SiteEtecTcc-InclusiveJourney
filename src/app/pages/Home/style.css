@@ -1,0 +1,31 @@
+.carrousel {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carrousel img {
+    width: 100%;
+    height: auto;
+}
+
+.carrousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.carrousel-button.left {
+    left: 10px;
+}
+
+.carrousel-button.right {
+    right: 10px;
+}
