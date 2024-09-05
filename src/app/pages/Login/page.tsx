@@ -9,7 +9,7 @@ export default function Login() {
             <main style={{ height: '100%' }}>
                 <div className="container">
                     <section className="primeiro">
-                        <Image src={imagemLogin} height={726} alt="Imagem de Login" />
+                        <Image src={imagemLogin} alt="Imagem de Login" />
                     </section>
                     <section className="segunda">
                         <form className="form">
