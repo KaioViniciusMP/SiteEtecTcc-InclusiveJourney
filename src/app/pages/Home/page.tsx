@@ -1,4 +1,3 @@
-'use client'
 import { useState } from 'react';
 import './style.css';
 import Image from 'next/image';
@@ -8,10 +7,13 @@ import { HomeSectionTwo } from '@/src/components/HomeSectionTwo';
 
 export default function Home() {
     return (
-        <div style={{overflow: 'auto', height: '100%'}}>
-            {/* <NavBar />
-            <Carrousel/> */}
-            <HomeSectionTwo/>
+        <div style={{
+            overflowY: 'auto', 
+            height: '100vh', 
+        }}>
+            <NavBar />
+            <Carrousel />
+            <HomeSectionTwo />
         </div>
     )
 }
