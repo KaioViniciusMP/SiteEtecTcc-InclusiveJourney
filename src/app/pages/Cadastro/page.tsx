@@ -28,7 +28,14 @@ export default function Cadastro() {
         })
         .then(response => {
             console.log(response.data);
-            window.location.href = '../pages/Login'; // Redireciona para a página de login
+
+            localStorage.setItem('userData', JSON.stringify({
+                nome: nome,
+                usuario: usuario,
+                senha: senha
+            }));
+
+            window.location.href = '../pages/QuemEVoce'; // Redireciona para a página de login
         })
         .catch(error => {
             console.log(error);
