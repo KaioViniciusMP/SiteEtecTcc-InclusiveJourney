@@ -77,7 +77,7 @@ export default function Login() {
                                     <input type="checkbox" />
                                     <label>
                                         Lembre de mim
-                                        <a style={{ marginLeft: '250px' }} href=""> Esqueceu a senha?</a>
+                                        <a style={{ marginLeft: '250px' }} href="../pages/Cadastro"> Esqueceu a senha?</a>
                                     </label>
                                 </div>
                             </div>
