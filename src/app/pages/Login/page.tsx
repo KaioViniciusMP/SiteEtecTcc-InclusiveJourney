@@ -20,7 +20,7 @@ export default function Login() {
         })
             .then(function (response) {
                 console.log(response.data);
-                window.location.href = '../pages/Cadastro';
+                window.location.href = '../pages/Home';
             })
             .catch(function (error) {
                 console.log(error);
