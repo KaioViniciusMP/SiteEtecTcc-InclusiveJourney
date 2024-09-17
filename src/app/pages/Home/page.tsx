@@ -5,6 +5,7 @@ import { NavBar } from '@/src/components/NavBar';
 import { Carrousel } from '@/src/components/Carrousel';
 import { HomeSectionTwo } from '@/src/components/HomeSectionTwo';
 import SectionFounders from '@/src/components/SectionFounders';
+import FooterHome from '@/src/components/FooterHome';
 
 export default function Home() {
     return (
@@ -16,6 +17,7 @@ export default function Home() {
             <Carrousel />
             <HomeSectionTwo />
             <SectionFounders/>
+            <FooterHome/>
         </div>
     )
 }
