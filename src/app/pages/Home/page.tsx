@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { NavBar } from '@/src/components/NavBar';
 import { Carrousel } from '@/src/components/Carrousel';
 import { HomeSectionTwo } from '@/src/components/HomeSectionTwo';
+import SectionFounders from '@/src/components/SectionFounders';
 
 export default function Home() {
     return (
@@ -14,6 +15,7 @@ export default function Home() {
             <NavBar />
             <Carrousel />
             <HomeSectionTwo />
+            <SectionFounders/>
         </div>
     )
 }
