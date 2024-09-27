@@ -132,7 +132,7 @@ export default function CadastroInformacoesPessoais() {
                         </div>
                     </div>
                     <br />
-                    <Link href={'/pages/Cadastro-Perfil'}>
+                    <Link href={'/pages/Cadastro_Perfil'}>
                         <button type="button" className="button-submit">Continuar</button>
                     </Link>
                     <p>Já possui uma conta? Faça <Link href={'/pages/Login'}>login</Link></p>

@@ -1,9 +1,16 @@
+'use client';
 import './style.css';
 import Image from 'next/image';
 import frameImage from '../../../img/Frame231.png';
 import doneImage from '../../../img/Done.png';
 
 export default function Regras() {
+
+const navigationToLogin = () => {
+  window.location.href = '../pages/Login';
+}
+
+
   return (
     <main>
       <div className="container">
@@ -11,7 +18,7 @@ export default function Regras() {
           <Image src={frameImage} alt="Imagem do Frame" height={726}/>
         </section>
         <section className="segunda">
-          <form className="form">
+          <div className="form">
             <div className="title">
               <h1>Siga as regras abaixo</h1>
             </div>
@@ -62,8 +69,8 @@ export default function Regras() {
                 </p>
               </div>
             </div>
-            <button className="button">Continuar</button>
-          </form>
+            <button className="button" onClick={navigationToLogin}>Continuar</button>
+          </div>
         </section>
       </div>
     </main>

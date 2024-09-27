@@ -12,20 +12,24 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     //const router = useRouter();
 
-    const login = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        api.post('/Autenticacao', {
-            usuario: usuario,
-            senha: senha
-        })
-            .then(function (response) {
-                console.log(response.data);
-                window.location.href = '../pages/Home';
-            })
-            .catch(function (error) {
-                console.log(error);
-                setErrorMessage('Erro no login. Verifique suas credenciais.');
-            });
+    // const login = (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     api.post('/Autenticacao', {
+    //         usuario: usuario,
+    //         senha: senha
+    //     })
+    //         .then(function (response) {
+    //             console.log(response.data);
+    //             window.location.href = '../pages/Home';
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //             setErrorMessage('Erro no login. Verifique suas credenciais.');
+    //         });
+    // }
+
+    const login = () => {
+        window.location.href = '../pages/Home';
     }
 
     return (

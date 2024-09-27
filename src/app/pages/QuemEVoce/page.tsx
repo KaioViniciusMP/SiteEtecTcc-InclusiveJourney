@@ -34,6 +34,7 @@ export default function QuemEVoce() {
     };
 
     fetchData();
+    setQuemEvoce([{codigo: 1, deficiencia: `kaio`},{codigo: 2, deficiencia: `kaio2`},])
   }, []);
 
   const getImageByCode = (code: number) => {
@@ -60,7 +61,7 @@ export default function QuemEVoce() {
       //localStorage.setItem('selectedDeficienciaCodigo', selectedCode.toString());
       
       //window.location.href = '../pages/Cadastro_informacoesPessoais';
-      window.location.href = '../pages/Home';
+      window.location.href = '../pages/Cadastro_informacoesPessoais';
     } else {
       alert('Por favor, selecione uma opção.');
     }
@@ -73,7 +74,7 @@ export default function QuemEVoce() {
           <Image src={Frame231} alt="Imagem do Frame" height={726} />
         </section>
         <section className="segunda">
-          <form className="form">
+          <form className="form" onSubmit={handleContinuar}>
             <div className="title">
               <h1>Quem é você?</h1>
             </div>

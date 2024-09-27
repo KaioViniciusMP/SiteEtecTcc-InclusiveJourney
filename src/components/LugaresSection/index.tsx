@@ -14,12 +14,7 @@ import CardLugares from '../CardLugares';
 
 export function LugaresSection() {
     return (
-        <div style={{
-            overflowY: 'auto',
-            height: '100vh',    	
-        }}>
-            
-
+        <div>
             <h3 style={{ fontSize: 40, textAlign: 'center', margin: 0, marginTop: 40, color: 'red' }}>
                 Navegue pelos nossos links com recomendações
             </h3>
