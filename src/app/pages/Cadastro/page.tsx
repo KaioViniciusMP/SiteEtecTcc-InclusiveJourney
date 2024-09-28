@@ -13,38 +13,32 @@ export default function Cadastro() {
     const [confirmacaoSenha, setConfirmacaoSenha] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    // const cadastro = (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
+    const cadastro = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    //     if (senha !== confirmacaoSenha) {
-    //         setErrorMessage('As senhas não coincidem.');
-    //         return;
-    //     }
+        if (senha !== confirmacaoSenha) {
+            setErrorMessage('As senhas não coincidem.');
+            return;
+        }
 
-    //     api.post('/Usuario', {
-    //         nome: nome,
-    //         usuario: usuario,
-    //         senha: senha
-    //     })
-    //     .then(response => {
-    //         console.log(response.data);
-
-    //         localStorage.setItem('userData', JSON.stringify({
-    //             nome: nome,
-    //             usuario: usuario,
-    //             senha: senha
-    //         }));
-
-    //         window.location.href = '../pages/QuemEVoce'; // Redireciona para a página de login
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //         setErrorMessage('Erro ao cadastrar. Verifique suas informações.');
-    //     });
-    // }
-
-    const cadastro = () => {
-        window.location.href = '../pages/QuemEVoce'; 
+        try {
+            const response = await api.post('/Usuario', {
+                nome: nome,
+                usuario: usuario,
+                senha: senha
+            })
+                .then((response) => {
+                    localStorage.setItem('usuarioCodigo', JSON.stringify(response.data.usuarioCodigo));
+                    window.location.href = '../pages/QuemEVoce';
+                })
+                .catch((response) => {
+                    console.log(response)
+                });
+            
+        } catch (error) {
+            console.log(error);
+            setErrorMessage('Erro ao cadastrar. Verifique suas informações.');
+        }
     }
 
     return (

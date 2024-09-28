@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import './style.css';
 import Image from 'next/image';
@@ -8,7 +8,6 @@ import imgCoracaozin from '../../../img/imgCoracaozin.png';
 import imgEscritaLousa from '../../../img/imgEscritaLousa.png';
 import Frame231 from '../../../img/Frame231.png';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { api } from '@/src/services/api';
 import ButtonContinuar from '@/src/components/ButtonContinuar';
 
@@ -21,20 +20,17 @@ export default function QuemEVoce() {
   const [quemEvoce, setQuemEvoce] = useState<TipoDeficiencia[]>([]);
   const [selectedCode, setSelectedCode] = useState<number | null>(null); 
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const resposta = await api.get<TipoDeficiencia[]>('/BuscarDeficiencia');
         setQuemEvoce(resposta.data); 
-        console.log(resposta.data); 
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
     };
 
     fetchData();
-    setQuemEvoce([{codigo: 1, deficiencia: `kaio`},{codigo: 2, deficiencia: `kaio2`},])
   }, []);
 
   const getImageByCode = (code: number) => {
@@ -58,9 +54,7 @@ export default function QuemEVoce() {
 
   const handleContinuar = () => {
     if (selectedCode !== null) {
-      //localStorage.setItem('selectedDeficienciaCodigo', selectedCode.toString());
-      
-      //window.location.href = '../pages/Cadastro_informacoesPessoais';
+      localStorage.setItem('selectedDeficienciaCodigo', selectedCode.toString());
       window.location.href = '../pages/Cadastro_informacoesPessoais';
     } else {
       alert('Por favor, selecione uma opção.');
@@ -74,7 +68,7 @@ export default function QuemEVoce() {
           <Image src={Frame231} alt="Imagem do Frame" height={726} />
         </section>
         <section className="segunda">
-          <form className="form" onSubmit={handleContinuar}>
+          <div className="form">
             <div className="title">
               <h1>Quem é você?</h1>
             </div>
@@ -82,27 +76,27 @@ export default function QuemEVoce() {
             {quemEvoce.map((item) => (
               <div
                 key={item.codigo}
-                className="botao-personalizado"
-                onClick={() => handleSelect(item.codigo)} // Define o código selecionado
-                style={{ cursor: 'pointer' }} // Mostra que o item é clicável
+                className={`botao-personalizado ${selectedCode === item.codigo ? 'selected' : ''}`} // Adiciona a classe "selected" se o item estiver selecionado
+                onClick={() => handleSelect(item.codigo)}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="icones">
                   <Image
-                    src={getImageByCode(item.codigo)} // Usa a função para determinar a imagem com base no código
-                    alt={`Ícone de ${item.deficiencia}`} // Texto alternativo baseado na deficiência
+                    src={getImageByCode(item.codigo)}
+                    alt={`Ícone de ${item.deficiencia}`}
                     width={50}
                     height={50}
                   />
                 </div>
                 <div className="texto">
-                  <h3>{item.deficiencia}</h3> {/* Usa o nome da deficiência do item */}
-                  <p>{item.deficiencia}</p> {/* Descrição padrão ou personalizada */}
+                  <h3>{item.deficiencia}</h3>
+                  <p>{item.deficiencia}</p>
                 </div>
               </div>
             ))}
 
             <ButtonContinuar onClick={handleContinuar} />
-          </form>
+          </div>
         </section>
       </div>
     </main>
