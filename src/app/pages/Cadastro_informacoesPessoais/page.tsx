@@ -55,7 +55,12 @@ export default function CadastroInformacoesPessoais() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+    
+        if (!nome || !dataNascimento || !genero || !cep || !rua || !bairro || !cidade || !numero || !estado) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+    
         const dadosCadastro = {
             nome,
             dataNascimento,
@@ -69,13 +74,15 @@ export default function CadastroInformacoesPessoais() {
             numero,
             estado
         };
-
+    
         localStorage.setItem('dadosCadastro', JSON.stringify(dadosCadastro));
-
+    
         console.log({ nome, dataNascimento, genero, deficiencia, cep, rua, complemento, bairro, cidade, numero, estado });
-
-        window.location.href = '../pages/Cadastro_Perfil';
+    
+        //window.location.href = '../pages/Cadastro_Perfil';
+        window.location.href = '../pages/Login';
     };
+    
 
     return (
         <div className="container">
