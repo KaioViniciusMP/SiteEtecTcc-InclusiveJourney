@@ -69,7 +69,7 @@ export default function PaginaInicial() {
         </section>
         <div className='div-footer'>
           <p onClick={() => {window.location.href = '../pages/PoliticaDePrivacidade'}}>Política de privacidade</p>
-          <p>Termos de uso</p>
+          <p onClick={() => {window.location.href = '../pages/TermosDeUso'}}>Termos de uso</p>
           <p>2024</p>
         </div>
       </footer>
