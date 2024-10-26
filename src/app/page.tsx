@@ -1,11 +1,11 @@
 'use client'
 
-import Login from "./pages/Login/page";
+import PaginaInicial from "./pages/paginainicial/page";
 
 export default function HomeInitial() {
   return (
     <>
-    <Login/>
+      <PaginaInicial />
     </>
   );
 }
