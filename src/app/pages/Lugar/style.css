@@ -17,6 +17,12 @@
       font-size: 3.5rem;
       margin-bottom: 2vh;
     }
+
+    p{
+      span{
+        cursor: pointer;
+      }
+    }
   }
 
   .section1 {
@@ -49,17 +55,18 @@
     background-color: #FE4045;
     border: none;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
-    padding: 1.5vh 2vw;
+    padding: 1.5vh 1vw;
     position: fixed;
     bottom: 3vh;
     right: 2vw;
-    width: 110px;
+    width: 130px;
     flex-wrap: wrap;
+    cursor: pointer;
   }
 }

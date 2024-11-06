@@ -6,44 +6,79 @@ import CardBox from "@/src/components/CardBox"
 
 import logo3 from '../../../img/zona-oeste.jpg'
 
+import parques from '../../../img/parques.svg'
+import escolas from '../../../img/escolas.svg'
+import pontosTuristicos from '../../../img/pontos turisticos.svg'
+import hospedagem from '../../../img/hospedagem.svg'
+import restaurantes from '../../../img/restaurantes.svg'
+import saude from '../../../img/saude e bem estar.svg'
+
+import central from '../../../img/zona-central.svg'
+import sul from '../../../img/zona-sul.svg'
+import norte from '../../../img/zona-norte-new.jpg'
+import leste from '../../../img/zona-leste.svg'
+import oeste from '../../../img/zona-oeste.svg'
+
 export default function Lugares() {
-    return (
-        <div className="lugares" style={{ overflowY: 'auto', height: '100vh' }}>
-            <NavBar />
+  const lugaresPrincipais = [
+    { codigo: 1, nome: 'Parques', imagem: parques },
+    { codigo: 2, nome: 'Escolas', imagem: escolas },
+    { codigo: 3, nome: 'Pontos turísticos', imagem: pontosTuristicos },
+    { codigo: 4, nome: 'Hospedagem', imagem: hospedagem },
+    { codigo: 5, nome: 'Restaurantes', imagem: restaurantes },
+    { codigo: 6, nome: 'Saúde e bem-estar', imagem: saude }
+  ]
 
-            <section className='highlight'>
-                <h1>Lugares recomendados</h1>
-                <p>Nesta página você pode encontrar lugares mais acessíveis de São Paulo para a sua necessidade recomendados pelo nosso site!</p>
-            </section>
+  const lugaresPorRegiao = [
+    { codigo: 1, nome: 'Zona sul', imagem: sul },
+    { codigo: 2, nome: 'Zona oeste', imagem: oeste },
+    { codigo: 3, nome: 'Zona norte', imagem: norte },
+    { codigo: 4, nome: 'Zona central', imagem: central },
+    { codigo: 5, nome: 'Zona leste', imagem: leste },
+  ]
 
-            <section className='section1'>
-                <h1>Navegue pelo nossos links com recomendações</h1>
-                <p>Explore os melhores lugares acessíveis separados por categorias</p>
+  return (
+    <div className="lugares" style={{ overflowY: 'auto', height: '100vh' }}>
+      <NavBar />
 
-                <div className='cards'>
-                    <CardBox imageSrc={logo3} title='Parques' onButtonClick={() => { window.location.href = '../pages/Lugar' }}/>
-                    <CardBox imageSrc={logo3} title='Escolas' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Pontos turísticos' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Hospedagem' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Restaurantes' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Saúde e bem-estar' onButtonClick={() => {}}/>
-                </div>
-            </section>
+      <section className='highlight'>
+        <h1>Lugares recomendados</h1>
+        <p>Nesta página você pode encontrar lugares mais acessíveis de São Paulo para a sua necessidade recomendados pelo nosso site!</p>
+      </section>
 
-            <section className='section1' style={{paddingBottom: '8vh'}}>
-                <h1>Melhores lugares de cada região</h1>
-                <p>Explore os melhores lugares acessíveis em cada região de São Paulo</p>
+      <section className='section1'>
+        <h1>Navegue pelo nossos links com recomendações</h1>
+        <p>Explore os melhores lugares acessíveis separados por categorias</p>
 
-                <div className='cards'>
-                    <CardBox imageSrc={logo3} title='Zona central' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Zona sul' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Zona norte' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Zona leste' onButtonClick={() => {}}/>
-                    <CardBox imageSrc={logo3} title='Zona oeste' onButtonClick={() => {}}/>
-                </div>
-            </section>
+        <div className='cards'>
+          {lugaresPrincipais.map((lugar) => (
+            <CardBox
+              key={lugar.codigo}
+              imageSrc={lugar.imagem}
+              title={lugar.nome}
+              onButtonClick={() => { window.location.href = `../pages/Lugar?codigo=${lugar.codigo}` }}
+            />
+          ))}
+        </div>
+      </section>
 
-            <Footer />
-        </ div>
-    )
+      <section className='section1' style={{ paddingBottom: '8vh' }}>
+        <h1>Melhores lugares de cada região</h1>
+        <p>Explore os melhores lugares acessíveis em cada região de São Paulo</p>
+
+        <div className='cards'>
+          {lugaresPorRegiao.map((lugar) => (
+            <CardBox
+              key={lugar.codigo}
+              imageSrc={lugar.imagem}
+              title={lugar.nome}
+              onButtonClick={() => { window.location.href = `../pages/LugarZona?codigo=${lugar.codigo}` }}
+            />
+          ))}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  )
 }

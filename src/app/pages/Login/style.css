@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.main-login{
+.main-login {
   font-family: 'inter', sans-serif;
   background-color: #E7E6ED;
   display: flex;
@@ -17,12 +17,12 @@
     justify-content: center;
     margin-top: 5vh;
 
-    .imagem{
+    .imagem {
       border-radius: 10px 0px 0px 10px;
       height: 90vh;
       width: 35vw;
     }
-    
+
     .header {
       color: #002234;
 
@@ -30,18 +30,30 @@
         font-size: 40px;
         margin-bottom: 2vh;
       }
-      
+
       p {
         margin-bottom: 3vh;
       }
     }
 
-    .footer{
+    .footer {
       display: flex;
       justify-content: space-between;
       margin: 1vh 0 2vh 0;
+
+      p {
+        text-decoration: underline;
+        color: #551a8b;
+        cursor: pointer;
+      }
     }
-    
+
+    .p-voltar {
+      text-decoration: underline;
+      color: #551a8b;
+      cursor: pointer;
+    }
+
     .form {
       display: flex;
       flex-direction: column;
@@ -51,16 +63,16 @@
       width: 30vw;
       border-radius: 0px 10px 10px 0px;
     }
-    
+
     .form button {
       align-self: flex-end;
     }
-    
+
     .flex-column>label {
       color: #151717;
       font-weight: 600;
     }
-    
+
     .inputForm {
       border: 1.5px solid #ecedec;
       border-radius: 10px;
@@ -70,7 +82,7 @@
       padding-left: 10px;
       transition: 0.2s ease-in-out;
     }
-    
+
     .input {
       margin-left: 10px;
       border-radius: 10px;
@@ -79,15 +91,15 @@
       height: 100%;
       font-size: 1rem;
     }
-    
+
     .input:focus {
       outline: none;
     }
-    
+
     .inputForm:focus-within {
       border: 1.5px solid #02060c;
     }
-    
+
     .flex-row {
       display: flex;
       flex-direction: row;
@@ -95,13 +107,13 @@
       gap: 10px;
       justify-content: space-between;
     }
-    
+
     .flex-row>div>label {
       font-size: 14px;
       color: black;
       font-weight: 400;
     }
-    
+
     .span {
       font-size: 14px;
       margin-left: 5px;
@@ -109,7 +121,7 @@
       font-weight: 500;
       cursor: pointer;
     }
-    
+
     .button-submit {
       margin: 20px 0 10px 0;
       background-color: #FE4045;
@@ -123,18 +135,18 @@
       cursor: pointer;
       transition: 0.3s ease-in-out;
     }
-    
+
     .button-submit:hover {
       background-color: #002234;
     }
-    
+
     .p {
       text-align: center;
       color: black;
       font-size: 14px;
       margin: 5px 0;
     }
-    
+
     .btn {
       margin-top: 10px;
       width: 100%;
@@ -150,7 +162,7 @@
       cursor: pointer;
       transition: 0.2s ease-in-out;
     }
-    
+
     .btn:hover {
       border: 1px solid #FE4045;
     }

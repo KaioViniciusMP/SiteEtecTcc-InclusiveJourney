@@ -1,15 +1,70 @@
 'use client'
 import './style.css'
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBoxLugar from "@/src/components/CardBoxLugar"
 import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
+import { api } from '@/src/services/api'
 
 import logo3 from '../../../img/zona-oeste.jpg'
 
-export default function Lugar() {
+interface Local {
+  codigo: number
+  nameLocal: string
+  cep: string
+  street: string
+  complement: string
+  neighborhood: string
+  city: string
+  numberHome: string
+  state: string
+  openingHours: string
+  localAssessment: string
+  description: string
+  typeAcessibility: string
+  zoneCode: number
+  zoneCategorie: number
+  isFavorite: boolean
+}
+
+export default function Lugar({ searchParams }: { searchParams: { [key: string]: string } }) {
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [local, setLocal] = useState<Local[]>([])
+  const [noData, setNoData] = useState(false)
+  const codigo = searchParams.codigo
+
+  const lugaresPrincipais = [
+    { codigo: 1, nome: 'Parques' },
+    { codigo: 2, nome: 'Escolas' },
+    { codigo: 3, nome: 'Pontos turísticos' },
+    { codigo: 4, nome: 'Hospedagem' },
+    { codigo: 5, nome: 'Restaurantes' },
+    { codigo: 6, nome: 'Saúde e bem-estar' }
+  ]
+
+  useEffect(() => {
+    if (codigo) {
+      const fetchComentarios = async () => {
+        try {
+          const response = await api.get(`place/placesForCategories/${codigo}`)
+
+          if (response.status === 204) {
+            setNoData(true)
+          } else {
+            setLocal(response.data)
+            setNoData(false)
+          }
+
+        } catch (error) {
+          alert('Erro ao buscar lugar')
+          //alerta de nenhum lugar encontrado na tela
+        }
+      }
+
+      fetchComentarios()
+    }
+  }, [codigo])
 
   const handleCloseModal = () => {
     setIsOpenModal(false)
@@ -20,23 +75,40 @@ export default function Lugar() {
       <NavBar />
 
       <section className='highlight'>
-        <h1>Parques</h1>
-        <p>nome dos lugares / nome dos lugares / nome dos lugares / nome dos lugares</p>
+        <h1>{lugaresPrincipais.find(item => item.codigo === Number(codigo))?.nome}</h1>
+        <p>
+          {lugaresPrincipais.map((item, index) => (
+            <React.Fragment key={item.codigo}>
+              <span style={{ color: item.codigo === Number(codigo) ? 'red' : '#ffffff' }} onClick={() => window.location.href = `../pages/Lugar?codigo=${item.codigo}`}>
+                {item.nome}
+              </span>
+              {index < lugaresPrincipais.length - 1 && <span> / </span>}
+            </React.Fragment>
+          ))}
+        </p>
       </section>
 
       <section className='section1'>
         <div className='cards'>
-          <CardBoxLugar imageSrc={logo3} title='Hotel Ibirapuera' subtitle='Hospedagem acessível' endereco='Av. Sabiá, 825 - Indianópolis, São Paulo - SP, 04515-001' onButtonClick={() => { }} />
-          <CardBoxLugar imageSrc={logo3} title='Hotel Ibirapuera' subtitle='Hospedagem acessível' endereco='Av. Sabiá, 825 - Indianópolis, São Paulo - SP, 04515-001' onButtonClick={() => { }} />
-          <CardBoxLugar imageSrc={logo3} title='Hotel Ibirapuera' subtitle='Hospedagem acessível' endereco='Av. Sabiá, 825 - Indianópolis, São Paulo - SP, 04515-001' onButtonClick={() => { }} />
-          <CardBoxLugar imageSrc={logo3} title='Hotel Ibirapuera' subtitle='Hospedagem acessível' endereco='Av. Sabiá, 825 - Indianópolis, São Paulo - SP, 04515-001' onButtonClick={() => { }} />
-          <CardBoxLugar imageSrc={logo3} title='Hotel Ibirapuera' subtitle='Hospedagem acessível' endereco='Av. Sabiá, 825 - Indianópolis, São Paulo - SP, 04515-001' onButtonClick={() => { }} />
-          <CardBoxLugar imageSrc={logo3} title='Hotel Ibirapuera' subtitle='Hospedagem acessível' endereco='Av. Sabiá, 825 - Indianópolis, São Paulo - SP, 04515-001' onButtonClick={() => { }} />
+          {noData ? (
+            <p>Não há lugares disponíveis.</p>
+          ) : (
+            local.map((l) => (
+              <CardBoxLugar
+                key={l.codigo}
+                imageSrc={logo3}
+                title={l.nameLocal}
+                subtitle={l.localAssessment}
+                endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`} // Endereço formatado
+                onButtonClick={() => { }}
+              />
+            ))
+          )}
         </div>
       </section>
 
-      <button type='button' className='button-add' onClick={() => {setIsOpenModal(true)}}>Adicionar lugar</button>
-      <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1}/>
+      <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>Adicionar lugar</button>
+      <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1} />
 
       <Footer />
     </ div>

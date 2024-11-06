@@ -1,10 +1,11 @@
 'use client'
 import './style.css'
 import { NavBar } from '@/src/components/NavBar'
-import { Carrousel } from '@/src/components/Carrousel'
 import SectionFounders from '@/src/components/SectionFounders'
 import CardBox from '@/src/components/CardBox'
 import Footer from '@/src/components/Footer'
+import CarrosselComentarios from '@/src/components/CarrosselComentarios'
+import CarrosselPrincipal from '@/src/components/CarrosselPrincipal'
 import Image from 'next/image'
 
 import logo2 from '../../../img/Zona norte 2.svg'
@@ -19,7 +20,8 @@ export default function Home() {
     return (
         <div className='home' style={{ overflowY: 'auto', height: '100vh', }}>
             <NavBar />
-            <Carrousel />
+
+            <CarrosselPrincipal/>
 
             <section className='section1'>
                 <h1>Melhores lugares de cada região</h1>
@@ -59,6 +61,8 @@ export default function Home() {
 
             <section className='section4'>
                 <h1>O que dizem nossos usuários</h1>
+                
+                <CarrosselComentarios/>
             </section>
 
             <Footer />

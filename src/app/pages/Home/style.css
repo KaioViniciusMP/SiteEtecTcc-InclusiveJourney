@@ -116,12 +116,8 @@
   }
 
   .section4{
-    background-color: red;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 10vh 5vw;
-    height: 100vh;
+    height: 90vh;
     background: linear-gradient(rgba(51, 50, 68, 0.9), rgba(102, 70, 70, 0.9)), url(../../../img/nomeQualquer.jpg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -131,6 +127,8 @@
     h1{
       font-size: 2.5rem;
       color: #ffffff;
+      text-align: center;
+      margin-bottom: 5vh;
     }
   }
 }

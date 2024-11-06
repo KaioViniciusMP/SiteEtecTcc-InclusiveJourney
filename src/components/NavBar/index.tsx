@@ -1,6 +1,7 @@
 import './style.css';
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import logo from '../../img/logoHome.svg'
 
@@ -13,15 +14,28 @@ export function NavBar() {
     { codigo: 5, nome: 'Zona Leste' }
   ]
 
+  const pathname = usePathname()
+
+  const isActiveLink = (path: string) => {
+    return pathname?.includes(path) ? 'active' : ''; // Verifica se o caminho atual contém o nome da página
+  }
+
+  const handleZonaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const codigo = event.target.value;
+    if (codigo) {
+      window.location.href = `../pages/LugarZona?codigo=${codigo}`
+    }
+  }
+
   return (
     <div className='navbar'>
       <Image src={logo} className='navbar-logo' alt="Imagem" />
       <div>
-        <Link href={'../pages/Home'}>Home</Link>
-        <Link href={'../pages/Sobre'}>Sobre</Link>
-        <Link href={'../pages/Lugares'}>Lugares</Link>
+        <Link href={'../pages/Home'} className={isActiveLink('Home')}>Home</Link>
+        <Link href={'../pages/Sobre'} className={isActiveLink('Sobre')}>Sobre</Link>
+        <Link href={'../pages/Lugares'} className={isActiveLink('Lugares')}>Lugares</Link>
 
-        <select className='navbar-select'>
+        <select className='navbar-select' onChange={handleZonaChange}>
           <option value="">Zonas</option>
           {zonas.map((zona) => (
             <option key={zona.codigo} value={zona.codigo}>
@@ -30,7 +44,7 @@ export function NavBar() {
           ))}
         </select>
 
-        <Link href={'../pages/Perfil'}>Perfil</Link>
+        <Link href={'../pages/Perfil'} className={isActiveLink('Perfil')}>Perfil</Link>
       </div>
     </div>
   )
