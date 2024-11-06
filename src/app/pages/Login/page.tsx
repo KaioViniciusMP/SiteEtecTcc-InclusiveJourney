@@ -1,45 +1,45 @@
 "use client"
-import './style.css';
-import Image from 'next/image';
-import imagemLogin from '../../../img/imgInclusiveJourneyLogin.png';
-import { api } from '@/src/services/api';
-import { useState } from 'react';
+import './style.css'
+import Image from 'next/image'
+import imagemLogin from '../../../img/imgInclusiveJourneyLogin.png'
+import { api } from '@/src/services/api'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Login() {
-  const [usuario, setUsuario] = useState('');
-  const [senha, setSenha] = useState('');
-  const [loadingButton, setLoadingButton] = useState(false);
+  const [usuario, setUsuario] = useState('')
+  const [senha, setSenha] = useState('')
+  const [loadingButton, setLoadingButton] = useState(false)
 
-  async function handleLogin(e: React.FormEvent<HTMLFormElement>){
-    e.preventDefault();
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
     setLoadingButton(true)
 
-    if (usuario === '' || senha === ''){
+    if (usuario === '' || senha === '') {
       toast.warning("Por favor, preencha todos os campos.")
       setLoadingButton(false)
       return
     }
 
-    try{
+    try {
       const response = await api.post('/Autenticacao', {
         usuario: usuario,
         senha: senha
       })
 
-      localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo));
+      localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo))
 
       setUsuario('')
       setSenha('')
 
-      window.location.href = '../pages/Home';
+      window.location.href = '../pages/Home'
 
-    } catch(error){
+    } catch (error) {
       toast.error("Erro ao fazer login. Verifique suas credenciais.")
 
-    } finally{
+    } finally {
       setLoadingButton(false)
     }
   }
@@ -68,17 +68,17 @@ export default function Login() {
             <input type="password" style={{ color: 'black' }} className="input" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
           </div>
           <div className='footer'>
-            <label><input type="checkbox" size={200}/> Lembre-se de mim</label>
+            <label><input type="checkbox" size={200} /> Lembre-se de mim</label>
             <a href='#'>Esqueceu a senha?</a>
           </div>
 
           <button type="submit" className="button-submit" disabled={loadingButton}>{loadingButton ? "Carregando..." : "Continuar"}</button>
           <a href='../pages/Cadastro'>Ainda não possui uma conta? Cadastre-se</a>
 
-          <p style={{marginTop: '5vh', textAlign: 'center'}}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
+          <p style={{ marginTop: '5vh', textAlign: 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
         </form>
       </div>
-      <ToastContainer autoClose={3000}/>
+      <ToastContainer autoClose={3000} />
     </main>
-  );
+  )
 }

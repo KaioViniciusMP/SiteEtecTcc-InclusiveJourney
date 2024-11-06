@@ -1,109 +1,291 @@
 "use client"
-import './style.css';
-import Image from 'next/image';
-import imageCadastro from '../../../img/imgInclusiveJourneyCadastro.png';
-import Link from 'next/link';
-import { api } from '@/src/services/api';
-import { useState } from 'react';
-import { toast } from 'react-toastify'
-import { ToastContainer } from "react-toastify"
+import { useState } from 'react'
+import './style.css'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+import Image from 'next/image'
+import imageCadastro from '../../../img/imgInclusiveJourneyCadastro.png'
+import iconPcd from '../../../img/imgCadeirante.png'
+import iconOlho from '../../../img/imgOlhinhos.png'
+import iconCoracao from '../../../img/imgCoracaozin.png'
+import iconTutor from '../../../img/imgEscritaLousa.png'
+import iconDone from '../../../img/Done.png'
+
 export default function Cadastro() {
-    const [nome, setNome] = useState('');
-    const [usuario, setUsuario] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confirmacaoSenha, setConfirmacaoSenha] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const [loadingButton, setLoadingButton] = useState(false);
+  const [userName, setUserName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [pessoaTipoCodigo, setPessoaTipoCodigo] = useState(0)
+  const [nomeCompleto, setNomeCompleto] = useState('')
+  const [dataNascimento, setDataNascimento] = useState('')
+  const [genero, setGenero] = useState('')
+  const [tipoDeficiencia, setTipoDeficiencia] = useState('')
+  const [cep, setCep] = useState('')
+  const [cidade, setCidade] = useState('')
+  const [rua, setRua] = useState('')
+  const [complemento, setComplemento] = useState('')
+  const [numero, setNumero] = useState('')
+  const [bairro, setBairro] = useState('')
+  const [uf, setUf] = useState('')
+  const [bio, setBio] = useState('')
 
-    async function handleCadastro(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
+  const [isFirstStepComplete, setIsFirstStepComplete] = useState(false)
+  const [isSecondStepComplete, setIsSecondStepComplete] = useState(false)
+  const [isThirdStepComplete, setIsThirdStepComplete] = useState(false)
+  const [isFourthStepComplete, setIsFourthStepComplete] = useState(false)
 
-        if (senha !== confirmacaoSenha) {
-            setErrorMessage('As senhas não coincidem.');
-            return;
-        }
+  const handleFirstStepSubmit = () => {
+    // if (userName === '' && email === '' && password === '' && passwordConfirmation === '') {
+    //   toast.error('Por favor, preencha todos os campos.')
+    //   return
+    // } 
 
-        window.location.href = '../pages/QuemEVoce';
-    }
+    // if (password !== passwordConfirmation) {
+    //   toast.info("As senhas não são iguais!")
+    //   return
+    // }
 
-    return (
-        <main className='main-cadastro'>
-            <div className="container">
-                <Image className='imagem' src={imageCadastro} alt="Imagem" />
-                <form className="form" onSubmit={handleCadastro}>
-                    <div className="header">
-                        <h1>Cadastro</h1>
-                        <p>Cadastre-se agora e faça parte da nossa comunidade inclusiva</p>
-                    </div>
-                    <br />
-                    <div className="inputForm">
-                        <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg">
-                            <g id="Layer_3" data-name="Layer 3">
-                                <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
-                            </g>
-                        </svg>
-                        <input
-                            type="text"
-                            className="input"
-                            placeholder="Nome"
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                        />
-                    </div>
+    setIsFirstStepComplete(true)
+  }
 
-                    <div className="inputForm">
-                        <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg">
-                            <g id="Layer_3" data-name="Layer 3">
-                                <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
-                            </g>
-                        </svg>
-                        <input
-                            type="text"
-                            className="input"
-                            placeholder="Email"
-                            value={usuario}
-                            onChange={(e) => setUsuario(e.target.value)}
-                        />
-                    </div>
+  const handleSecondStepSubmit = (item: number) => {
+    setPessoaTipoCodigo(item)
+    // if (!pessoaTipoCodigo) {
+    //   toast.error('Selecione uma opção para continuar.')
+    //   return
+    // }
 
-                    <div className="inputForm">
-                        <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M336 512H48c-26.453 0-48-21.523-48-48V240c0-26.476 21.547-48 48-48h288c26.453 0 48 21.524 48 48v224c0 26.477-21.547 48-48 48zM48 224c-8.813 0-16 7.168-16 16v224c0 8.832 7.187 16 16 16h288c8.813 0 16-7.168 16-16V240c0-8.832-7.187-16-16-16zM304 224c-8.832 0-16-7.168-16-16v-80c0-52.93-43.07-96-96-96s-96 43.07-96 96v80c0 8.832-7.168 16-16 16s-16-7.168-16-16v-80c0-70.594 57.406-128 128-128s128 57.406 128 128v80c0 8.832-7.168 16-16 16z"></path>
-                        </svg>
-                        <input
-                            type="password"
-                            className="input"
-                            placeholder="Senha"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                        />
-                    </div>
+    setIsSecondStepComplete(true)
+  }
 
-                    <div className="inputForm">
-                        <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M336 512H48c-26.453 0-48-21.523-48-48V240c0-26.476 21.547-48 48-48h288c26.453 0 48 21.524 48 48v224c0 26.477-21.547 48-48 48zM48 224c-8.813 0-16 7.168-16 16v224c0 8.832 7.187 16 16 16h288c8.813 0 16-7.168 16-16V240c0-8.832-7.187-16-16-16zM304 224c-8.832 0-16-7.168-16-16v-80c0-52.93-43.07-96-96-96s-96 43.07-96 96v80c0 8.832-7.168 16-16 16s-16-7.168-16-16v-80c0-70.594 57.406-128 128-128s128 57.406 128 128v80c0 8.832-7.168 16-16 16z"></path>
-                        </svg>
-                        <input
-                            type="password"
-                            className="input"
-                            placeholder="Confirmação de senha"
-                            value={confirmacaoSenha}
-                            onChange={(e) => setConfirmacaoSenha(e.target.value)}
-                        />
-                    </div>
+  const handleThirdStepSubmit = () => {
+    setIsThirdStepComplete(true)
+  }
 
-                    <div className='footer'>
-                        <label><input type="checkbox" size={200} /> Lembre-se de mim</label>
-                    </div>
+  const handleFourthStepSubmit = () => {
+    setIsFourthStepComplete(true)
+  }
 
-                    <button className="button-submit" type="submit">Cadastrar</button>
-                    <a href='../pages/Login'>Já possui uma conta? Faça login</a>
-                </form>
+  const quemEvoce = [
+    { codigo: 1, tipo: 'Pessoa não deficiente', descricao: 'Seja parte da mudança, promovendo inclusão e acessibilidade para todos.', src: iconCoracao },
+    { codigo: 2, tipo: 'PcD', descricao: 'Junte-se a nós e faça sua voz ser ouvida na busca por um mundo mais acessível.', src: iconPcd },
+    { codigo: 3, tipo: 'Curioso', descricao: 'Explore e aprenda sobre acessibilidade, expandindo seus horizontes e compreensão.', src: iconOlho },
+    { codigo: 4, tipo: 'Tutor', descricao: 'Compartilhe seu conhecimento e experiência, capacitando outros a promoverem a inclusão.', src: iconTutor },
+  ]
+
+  const regras = [
+    { codigo: 1, tipo: 'Seja você mesmo', descricao: 'Aqui, cada voz importa. Celebre sua autenticidade enquanto contribui para um mundo mais inclusivo.', src: iconDone },
+    { codigo: 2, tipo: 'Respeite os usuarios', descricao: 'Valorizamos a diversidade e o respeito mútuo. Juntos, construímos uma comunidade inclusiva e acolhedora.', src: iconDone },
+    { codigo: 3, tipo: 'Esteja seguro', descricao: 'Sua segurança é nossa prioridade. Navegue com confiança em nosso ambiente protegido.', src: iconDone },
+    { codigo: 4, tipo: 'Seja empático', descricao: 'Reconheça as diferentes experiências e desafios enfrentados por pessoas com deficiência, demonstrando empatia e solidariedade.', src: iconDone },
+  ]
+
+  const generos = [
+    { codigo: 1, nome: 'Masculino' },
+    { codigo: 2, nome: 'Feminino' },
+    { codigo: 3, nome: 'Outro' },
+    { codigo: 4, nome: 'Prefiro não dizer' },
+  ]
+
+  async function handleCadastro(){
+    window.location.href = '../pages/Home'
+  }
+
+  return (
+    <main className='main-cadastro'>
+      <div className="container">
+        <Image className='imagem' src={imageCadastro} alt="Imagem" />
+
+        {!isFirstStepComplete ? (
+          <div className="form">
+            <div className="header">
+              <h1>Cadastro</h1>
+              <p>Cadastre-se agora e faça parte da nossa comunidade inclusiva</p>
+            </div>
+            <div className="inputForm">
+              <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg">
+                <g id="Layer_3" data-name="Layer 3">
+                  <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.144 2.144 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
+                </g>
+              </svg>
+              <input type="text" className="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="inputForm">
+              <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M336 512H44c-26.453 0-44-21.523-44-44V240c0-26.476 21.547-44 44-44h288c26.453 0 44 21.524 44 44v224c0 26.477-21.547 44-44 44zM44 224c-8.813 0-16 7.168-16 16v224c0 8.832 7.187 16 16 16h288c8.813 0 16-7.168 16-16V240c0-8.832-7.187-16-16-16zM304 224c-8.832 0-16-7.168-16-16v-80c0-52.93-43.07-96-96-96s-96 43.07-96 96v80c0 8.832-7.168 16-16 16s-16-7.168-16-16v-80c0-70.594 57.406-128 128-128s128 57.406 128 128v80c0 8.832-7.168 16-16 16z"></path>
+              </svg>
+              <input type="password" className="input" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <div className="inputForm">
+              <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M336 512H44c-26.453 0-44-21.523-44-44V240c0-26.476 21.547-44 44-44h288c26.453 0 44 21.524 44 44v224c0 26.477-21.547 44-44 44zM44 224c-8.813 0-16 7.168-16 16v224c0 8.832 7.187 16 16 16h288c8.813 0 16-7.168 16-16V240c0-8.832-7.187-16-16-16zM304 224c-8.832 0-16-7.168-16-16v-80c0-52.93-43.07-96-96-96s-96 43.07-96 96v80c0 8.832-7.168 16-16 16s-16-7.168-16-16v-80c0-70.594 57.406-128 128-128s128 57.406 128 128v80c0 8.832-7.168 16-16 16z"></path>
+              </svg>
+              <input type="password" className="input" placeholder="Confirmação de senha" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
             </div>
 
-            <ToastContainer autoClose={3000} />
-        </main>
-    )
+            <div className='footer'>
+              <label><input type="checkbox" /> Lembre-se de mim</label>
+            </div>
+
+            <button className="button-submit" onClick={handleFirstStepSubmit}>Avançar</button>
+            <a href='../pages/Login'>Já possui uma conta? Faça login</a>
+
+            <p style={{ marginTop: '5vh', textAlign: 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
+          </div>
+        ) : !isSecondStepComplete ? (
+          <div className="form">
+            <div className="header">
+              <h1>Quem é você?</h1>
+            </div>
+
+            {quemEvoce.map((item) => (
+              <div key={item.codigo} className={`botao-personalizado ${pessoaTipoCodigo === item.codigo ? 'selected' : ''}`} onClick={() => handleSecondStepSubmit(item.codigo)}
+              >
+                <div className="icones">
+                  <Image src={item.src} alt={`Ícone de ${item.tipo}`} />
+                </div>
+                <div className="conteudo-quem">
+                  <h4>{item.tipo}</h4>
+                  <p>{item.descricao}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : !isThirdStepComplete ? (
+          <div className="form">
+            <div className="header">
+              <h1>Informações pessoais</h1>
+            </div>
+
+            <section className='inputs'>
+              <div className="inputForm" style={{ width: '100%' }}>
+                <input type="text" className="input" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '40%' }}>
+                <input type="date" className="input" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '50%' }}>
+                <select className="input" value={genero} onChange={(e) => setGenero(e.target.value)}>
+                  <option value="" disabled>Selecione um gênero</option>
+                  {generos.map((genero) => (
+                    <option key={genero.nome} value={genero.nome}>
+                      {genero.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="inputForm" style={{ width: '48%' }}>
+                <input type="text" className="input" placeholder="Deficiência (se houver)" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '42%' }}>
+                <input type="text" className="input" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '60%' }}>
+                <input type="text" className="input" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '30%' }}>
+                <input type="number" className="input" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '45%' }}>
+                <input type="text" className="input" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '45%' }}>
+                <input type="text" className="input" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '50%' }}>
+                <input type="text" className="input" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
+              </div>
+              <div className="inputForm" style={{ width: '40%' }}>
+                <input type="text" className="input" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
+              </div>
+            </section>
+
+            <button className="button-submit" onClick={handleThirdStepSubmit}>Avançar</button>
+          </div>
+        ) : !isFourthStepComplete ? (
+          <div className="form">
+            <div className="header">
+              <h1>Perfil</h1>
+            </div>
+
+            <div className="inputForm">
+              <input type="text" className="input" placeholder="Nome do usuário" value={userName} onChange={(e) => setUserName(e.target.value)} />
+            </div>
+            <div className="inputForm">
+              <input type="text" className="input" placeholder="Descrição (bio)" value={bio} onChange={(e) => setBio(e.target.value)} />
+            </div>
+
+            <section>
+              <div className="header">
+                <h2>Escolha seu avatar</h2>
+              </div>
+
+              <div className="inputForm">
+                <select name="gender" className="input" id="gender">
+                  <option value="">Avatares - Cadeirantes</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                  <option value="other">Outros</option>
+                  <option value="preferNotToSay">Prefiro não dizer</option>
+                </select>
+              </div>
+              <div className="inputForm">
+                <select name="gender" className="input" id="gender">
+                  <option value="">Avatares - Pcd auditivo</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                  <option value="other">Outros</option>
+                  <option value="preferNotToSay">Prefiro não dizer</option>
+                </select>
+              </div>
+              <div className="inputForm">
+                <select name="gender" className="input" id="gender">
+                  <option value="">Avatares - Pcd Visual</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                  <option value="other">Outros</option>
+                  <option value="preferNotToSay">Prefiro não dizer</option>
+                </select>
+              </div>
+              <div className="inputForm">
+                <select name="gender" className="input" id="gender">
+                  <option value="">Avatares - Pessoa não deficiente</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                  <option value="other">Outros</option>
+                  <option value="preferNotToSay">Prefiro não dizer</option>
+                </select>
+              </div>
+            </section>
+
+            <button className="button-submit" onClick={handleFourthStepSubmit}>Avançar</button>
+          </div>
+        ) : (
+          <div className="form">
+            <div className="header">
+              <h1>Siga as regras abaixo</h1>
+            </div>
+
+            {regras.map((item) => (
+              <div key={item.codigo} style={{padding: '1.5%'}} className={`botao-personalizado ${pessoaTipoCodigo === item.codigo ? 'selected' : ''}`} onClick={() => handleSecondStepSubmit(item.codigo)}>
+                <div className="icones">
+                  <Image src={item.src} alt={`Ícone de ${item.tipo}`} />
+                </div>
+                <div className="conteudo-quem">
+                  <h4>{item.tipo}</h4>
+                  <p>{item.descricao}</p>
+                </div>
+              </div>
+            ))}
+
+            <button className="button-submit" onClick={handleCadastro}>Avançar</button>
+          </div>
+        )}
+      </div>
+
+      <ToastContainer autoClose={3000} />
+    </main>
+  )
 }

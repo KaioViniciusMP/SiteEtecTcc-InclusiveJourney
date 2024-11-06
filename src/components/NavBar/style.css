@@ -1,14 +1,42 @@
-.linhasLi {
-    color: black;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 19px;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
+.navbar {
+  background-color: #ffffff;
+  height: 10vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.linhasLi:hover {
-    color: rgb(255, 140, 0);
-    text-decoration: underline;
-    text-underline-offset: 40px; 
-    text-decoration-thickness: 2px;
+  .navbar-logo {
+    height: 7vh;
+    width: auto;
+    object-fit: cover;
+    margin-left: 5vw;
+  }
+
+  div {
+    margin-right: 5vw;
+    display: flex;
+    gap: 2vw;
+
+    a {
+      color: #002234;
+      text-decoration: none;
+      padding-bottom: 4px;
+    }
+
+    a.active {
+      border-bottom: 2px solid red;
+    }
+  }
+
+  .navbar-select {
+    width: 6vw;
+    color: #000;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
 }

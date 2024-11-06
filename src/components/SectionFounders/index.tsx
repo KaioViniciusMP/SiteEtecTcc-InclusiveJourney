@@ -1,10 +1,10 @@
-import './style.css';
+import './style.css'
 import Person1 from '../../img/Person1.png'
 import Person2 from '../../img/Person2.png'
 import Person3 from '../../img/Person3.png'
 import Person4 from '../../img/Person4.png'
 import Person5 from '../../img/Person5.png'
-import Image from 'next/image';
+import Image from 'next/image'
 
 export default function SectionFounders() {
     const founders = [
@@ -33,7 +33,7 @@ export default function SectionFounders() {
             description: "Yasmin Duarte também é aluna da Etec, onde está desenvolvendo seu TCC. Com uma carreira acadêmica marcada por projetos inovadores, Yasmin traz para o projeto sua expertise em desenvolvimento de produtos digitais. Ela acredita que a tecnologia deve ser uma aliada na promoção da inclusão e acessibilidade.",
             imgUrl: Person5
         }
-    ];
+    ]
 
     return (
         <div className="section-founders">
@@ -41,12 +41,12 @@ export default function SectionFounders() {
             <div className="founders-container">
                 {founders.map((founder, index) => (
                     <div key={index} className="founder-card">
-                        <Image src={founder.imgUrl} width={100} height={100} alt={founder.name} className="founder-image" />
+                        <Image src={founder.imgUrl} alt={founder.name} className="founder-image" />
                         <h4 className="founder-name">{founder.name}</h4>
                         <p className="founder-description">{founder.description}</p>
                     </div>
                 ))}
             </div>
         </div>
-    );
+    )
 }

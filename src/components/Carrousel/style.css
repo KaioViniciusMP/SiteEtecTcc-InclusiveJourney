@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .carrousel {
     position: relative;
     width: 100%;
@@ -7,7 +13,8 @@
 
 .carrousel img {
     width: 100%;
-    height: auto;
+    height: 100vh;
+    object-fit: cover;
 }
 
 .carrousel-button {

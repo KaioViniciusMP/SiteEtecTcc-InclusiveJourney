@@ -1,13 +1,13 @@
 'use client'
-import './style.css';
-import Image from 'next/image';
+import './style.css'
+import Image from 'next/image'
 
-import logo from '../../../img/2_2-removebg-preview.png';
-import cachorroAcenando from '../../../img/Acenando.png';
-import instagram from '../../../img/instagram.png';
-import siganos from '../../../img/sina-nos.png';
-import email from '../../../img/email.png';
-import location from '../../../img/maps-and-flags.png';
+import logo from '../../../img/2_2-removebg-preview.png'
+import cachorroAcenando from '../../../img/Acenando.png'
+import instagram from '../../../img/instagram.png'
+import siganos from '../../../img/sina-nos.png'
+import email from '../../../img/email.png'
+import location from '../../../img/maps-and-flags.png'
 
 export default function PaginaInicial() {
   return (
@@ -74,5 +74,5 @@ export default function PaginaInicial() {
         </div>
       </footer>
     </main>
-  );
+  )
 }

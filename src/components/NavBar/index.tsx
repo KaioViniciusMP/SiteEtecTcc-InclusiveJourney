@@ -1,19 +1,37 @@
 import './style.css';
 import Image from 'next/image'
+import Link from 'next/link'
+
 import logo from '../../img/logoHome.svg'
-import Link from 'next/link';
 
 export function NavBar() {
-    return (
-        <div style={{ display: "flex", backgroundColor: "white", margin: 0, justifyContent: 'space-between' }} className="h-10 w-full flex items-center">
-            <Image src={logo} alt="logo" height={60} style={{marginLeft: 40, marginTop: 10,  marginBottom: 10}}/>
-            <ul className="flex space-x-4 list-none" style={{ listStyleType: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 18, paddingRight:40 }}>
-                <Link href={'../pages/Home'} className='text-5xl linhasLi' style={{ fontWeight: 500, fontSize: 19 }}>Home</Link>
-                <Link href={'../pages/Sobre'} className='text-5xl linhasLi' style={{ fontWeight: 500, fontSize: 19 }}>Sobre</Link>
-                <Link href={'#'} className='text-5xl linhasLi' style={{ fontWeight: 500, fontSize: 19 }}>Lugares</Link>
-                <Link href={'#'} className='text-5xl linhasLi' style={{ fontWeight: 500, fontSize: 19 }}>Zonas</Link>
-                <Link href={'#'} className='text-5xl linhasLi' style={{ fontWeight: 500, fontSize: 19 }}>Perfil</Link>
-            </ul>
-        </div>
-    )
+  const zonas = [
+    { codigo: 1, nome: 'Zona Sul' },
+    { codigo: 2, nome: 'Zona Oeste' },
+    { codigo: 3, nome: 'Zona Norte' },
+    { codigo: 4, nome: 'Zona Central' },
+    { codigo: 5, nome: 'Zona Leste' }
+  ]
+
+  return (
+    <div className='navbar'>
+      <Image src={logo} className='navbar-logo' alt="Imagem" />
+      <div>
+        <Link href={'../pages/Home'}>Home</Link>
+        <Link href={'../pages/Sobre'}>Sobre</Link>
+        <Link href={'../pages/Lugares'}>Lugares</Link>
+
+        <select className='navbar-select'>
+          <option value="">Zonas</option>
+          {zonas.map((zona) => (
+            <option key={zona.codigo} value={zona.codigo}>
+              {zona.nome}
+            </option>
+          ))}
+        </select>
+
+        <Link href={'../pages/Perfil'}>Perfil</Link>
+      </div>
+    </div>
+  )
 }
