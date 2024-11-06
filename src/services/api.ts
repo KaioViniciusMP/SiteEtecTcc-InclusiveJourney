@@ -1,5 +1,5 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL: 'http://localhost:11742',
+  baseURL: 'https://api-faisca.online/project342/',
 })

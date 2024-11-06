@@ -6,6 +6,7 @@ import Footer from '@/src/components/Footer'
 import { NavBar } from '@/src/components/NavBar'
 
 import avatar from '../../../img/avatar.svg'
+import logout from '../../../img/logout.png'
 import iconEdit from '../../../img/edit.png'
 
 export default function Perfil() {
@@ -32,6 +33,8 @@ export default function Perfil() {
       <section className='container'>
         <div className='left'>
           <Image className='avatar' src={avatar} alt='Imagem' />
+          
+          <button type='button'>Sair <Image className='logout' src={logout} alt='Imagem' /></button>
         </div>
         <div className='content'>
           <div className='header'>

@@ -9,7 +9,7 @@ import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
 import logo3 from '../../../img/zona-oeste.jpg'
 
 export default function Lugar() {
-  const [isOpenModal, setIsOpenModal] = useState(true)
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
   const handleCloseModal = () => {
     setIsOpenModal(false)
@@ -35,7 +35,7 @@ export default function Lugar() {
         </div>
       </section>
 
-      <button type='button' onClick={() => {setIsOpenModal(true)}}>adicionar lugar!</button>
+      <button type='button' className='button-add' onClick={() => {setIsOpenModal(true)}}>Adicionar lugar</button>
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1}/>
 
       <Footer />

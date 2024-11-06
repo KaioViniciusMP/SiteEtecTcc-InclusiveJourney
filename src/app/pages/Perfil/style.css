@@ -12,8 +12,9 @@
       background-color: #002234;
       width: 20vw;
       display: flex;
-      align-items: start;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
 
@@ -22,6 +23,27 @@
         height: auto;
         object-fit: cover;
         margin-top: 2vh;
+      }
+
+      button{
+        margin-bottom: 2vh;
+        outline: none;
+        border: 1px #ff0000 solid;
+        color: #ff0000;
+        display: flex;
+        align-items: center;
+        gap: 0.5vw;
+        padding: 0.8vh 1.5vw;
+        border-radius: 5px;
+        background-color: transparent;
+        margin-right: -9vw;
+        cursor: pointer;
+
+        .logout{
+          width: 14px;
+          height: auto;
+          object-fit: cover;
+        }
       }
     }
 
