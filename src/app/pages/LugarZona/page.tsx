@@ -57,7 +57,7 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
           }
 
         } catch (error) {
-          toast.error('Erro ao buscar lugar')
+          alert('Erro ao buscar lugar')
           setNoData(true)
         }
       }

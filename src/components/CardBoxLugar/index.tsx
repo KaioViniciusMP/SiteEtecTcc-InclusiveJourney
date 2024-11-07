@@ -1,6 +1,6 @@
 'use client'
 import './style.css'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 
 import star from '../../img/star.png'
 

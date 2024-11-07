@@ -29,9 +29,18 @@ export default function Perfil() {
   const [uf, setUf] = useState('')
 
   const [editable, setEditable] = useState(false)
+  const [loadingButton, setLoadingButton] = useState(false)
 
   useEffect(() => {
     const userJourney = localStorage.getItem('u-inclusive-journey')
+
+    const formatDate = (dateString: any) => {
+      const date = new Date(dateString)
+      const day = String(date.getDate()).padStart(2, '0')
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const year = date.getFullYear()
+      return `${day}/${month}/${year}`
+    }
 
     if (userJourney && !isNaN(Number(userJourney))) {
       api.get(`person/${userJourney}`)
@@ -52,6 +61,10 @@ export default function Perfil() {
           setUf(data.state || '')
           setBio(data.userDescription || '')
           setPessoaTipo(data.role || '')
+
+          if (data.dateOfBirth) {
+            setDataNascimento(formatDate(data.dateOfBirth))
+          }
         })
         .catch(error => {
           alert('Erro ao carregar dados')
@@ -59,22 +72,51 @@ export default function Perfil() {
     }
   }, [])
 
-  const formatDate = (dateString: any) => {
-    const date = new Date(dateString)
-    const day = String(date.getDate()).padStart(2, '0')
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const year = date.getFullYear()
-    return `${day}/${month}/${year}`
-  }
+  async function handleUpdateProfile() {
+    setLoadingButton(true)
+    const userJourney = localStorage.getItem('u-inclusive-journey')
+    const pJourney = localStorage.getItem('p-inclusive-journey')
 
-  useEffect(() => {
-    if (dataNascimento) {
-      setDataNascimento(formatDate(dataNascimento))
+    const [day, month, year] = dataNascimento.split('/')
+    const isoDate = `${year}-${month}-${day}T00:00:00`
+
+    try {
+      const response = await api.put(`person/updateperson/${userJourney}`, {
+        name: nomeCompleto,
+        email: email,
+        password: pJourney,
+        role: pessoaTipo,
+        fullName: nomeCompleto,
+        dateOfBirth: isoDate,
+        gender: genero,
+        disabilityType: tipoDeficiencia,
+        postalCode: cep,
+        street: rua,
+        additionalInfo: complemento,
+        neighborhood: bairro,
+        city: cidade,
+        number: numero,
+        state: uf,
+        username: userName,
+        userDescription: bio,
+        avatar: ""
+      })
+
+      console.log(response.data)
+
+      if (response.status === 200) {
+        alert("Perfil atualizado com sucesso!")
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
+      }
+
+    } catch (error) {
+      alert("Erro ao fazer login. Verifique suas credenciais.")
+
+    } finally {
+      setLoadingButton(false)
     }
-  }, [dataNascimento])
-
-  const handleUpdateProfile = () => {
-    console.log("Perfil atualizado!")
   }
 
   return (
@@ -91,7 +133,7 @@ export default function Perfil() {
           <div className='header'>
             <div>
               <h3>Informações pessoais</h3>
-              <Image className='edit' src={iconEdit} onClick={() => { setEditable(false) }} alt='Icon' />
+              <Image className='edit' src={iconEdit} onClick={() => { setEditable(true) }} alt='Icon' />
             </div>
             <p>{pessoaTipo || ''}</p>
           </div>
@@ -125,8 +167,9 @@ export default function Perfil() {
               type="button"
               className="updateButton"
               onClick={handleUpdateProfile}
+              disabled={loadingButton}
             >
-              Atualizar Perfil
+              {loadingButton ? "Carregando..." : "Atualizar Perfil"}
             </button>
           )}
         </div>

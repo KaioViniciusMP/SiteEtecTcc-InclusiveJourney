@@ -34,6 +34,7 @@ export default function Login() {
 
       if (response.status === 200) {
         localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.userCode))
+        localStorage.setItem('p-inclusive-journey', JSON.stringify(senha))
         setUsuario('')
         setSenha('')
   
