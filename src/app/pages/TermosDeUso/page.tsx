@@ -34,7 +34,7 @@ export default function TermosDeUso() {
         <h4>6. Propriedade Intelectual</h4>
         <p>Todo o conteúdo do Inclusive Journey, incluindo textos, gráficos, logotipos, ícones, imagens, clipes de áudio, downloads digitais e compilações de dados, é de propriedade do Inclusive Journey ou de seus licenciadores e é protegido por leis de direitos autorais e outras leis de propriedade intelectual.</p>
         <h4>7. Limitação de Responsabilidade</h4>
-        <p>O Inclusive Journey não garante que o site estará disponível ininterruptamente ou livre de erros. O site e todos os conteúdos nele disponíveis são fornecidos "como estão" e "conforme disponíveis". Na máxima extensão permitida por lei, o Inclusive Journey não se responsabiliza por quaisquer danos diretos, indiretos, incidentais, consequenciais ou punitivos resultantes do uso ou da incapacidade de usar o site.</p>
+        <p>O Inclusive Journey não garante que o site estará disponível ininterruptamente ou livre de erros. O site e todos os conteúdos nele disponíveis são fornecidos como estão e conforme disponíveis. Na máxima extensão permitida por lei, o Inclusive Journey não se responsabiliza por quaisquer danos diretos, indiretos, incidentais, consequenciais ou punitivos resultantes do uso ou da incapacidade de usar o site.</p>
         <h4>8. Alterações nos Termos</h4>
         <p>O Inclusive Journey pode alterar estes Termos de Uso a qualquer momento. Quaisquer alterações serão publicadas nesta página e, se as alterações forem significativas, notificaremos você por e-mail ou por meio de um aviso em destaque no site. Seu uso continuado do site após a publicação das alterações constitui sua aceitação dos novos Termos de Uso.</p>
         <h4>9. Rescisão</h4>
