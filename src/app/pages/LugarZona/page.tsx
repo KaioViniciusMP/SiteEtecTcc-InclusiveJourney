@@ -8,9 +8,6 @@ import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
 import { api } from '@/src/services/api'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
-import Image, { StaticImageData } from 'next/image'
-
-import logo3 from '../../../img/zona-oeste.jpg'
 
 interface Local {
   codigo: number
