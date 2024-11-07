@@ -10,6 +10,9 @@ import avatar from '../../../img/avatar.svg'
 import logout from '../../../img/logout.png'
 import iconEdit from '../../../img/edit.png'
 import user from '../../../img/user.png'
+import { toast } from 'react-toastify'
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Perfil() {
   const [userName, setUserName] = useState('')
@@ -102,17 +105,15 @@ export default function Perfil() {
         avatar: ""
       })
 
-      console.log(response.data)
-
       if (response.status === 200) {
-        alert("Perfil atualizado com sucesso!")
+        toast.success("Perfil atualizado com sucesso!")
         setTimeout(() => {
           window.location.reload()
         }, 1000)
       }
 
     } catch (error) {
-      alert("Erro ao fazer login. Verifique suas credenciais.")
+      toast.error("Erro ao atualizar o perfil. Tente novamente.")
 
     } finally {
       setLoadingButton(false)
@@ -174,6 +175,8 @@ export default function Perfil() {
           )}
         </div>
       </section>
+
+      <ToastContainer autoClose={3000} />
 
       <Footer />
     </div>
