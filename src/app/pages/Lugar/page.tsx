@@ -6,6 +6,8 @@ import { NavBar } from "@/src/components/NavBar"
 import CardBoxLugar from "@/src/components/CardBoxLugar"
 import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
 import { api } from '@/src/services/api'
+import { toast } from 'react-toastify'
+import { ToastContainer } from "react-toastify"
 
 import logo3 from '../../../img/zona-oeste.jpg'
 
@@ -57,8 +59,8 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
           }
 
         } catch (error) {
-          alert('Erro ao buscar lugar')
-          //alerta de nenhum lugar encontrado na tela
+          toast.error('Erro ao buscar lugar')
+          setNoData(true)
         }
       }
 
@@ -99,7 +101,7 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
                 imageSrc={logo3}
                 title={l.nameLocal}
                 subtitle={l.localAssessment}
-                endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`} // Endereço formatado
+                endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
                 onButtonClick={() => { }}
               />
             ))
@@ -107,7 +109,10 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
         </div>
       </section>
 
-      <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>Adicionar lugar</button>
+      <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>
+        Adicionar lugar em {lugaresPrincipais.find(item => item.codigo === Number(codigo))?.nome}
+      </button>
+      
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1} />
 
       <Footer />

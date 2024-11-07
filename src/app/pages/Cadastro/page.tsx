@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './style.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { api } from '@/src/services/api'
 
 import Image from 'next/image'
 import imageCadastro from '../../../img/imgInclusiveJourneyCadastro.png'
@@ -12,7 +13,7 @@ import iconCoracao from '../../../img/imgCoracaozin.png'
 import iconTutor from '../../../img/imgEscritaLousa.png'
 import iconDone from '../../../img/Done.png'
 
-import aaaa from '../../../../public/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.png'
+// import aaaa from '../../../../public/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.png'
 
 export default function Cadastro() {
   const [userName, setUserName] = useState('')
@@ -42,19 +43,17 @@ export default function Cadastro() {
   const [loadingButton, setLoadingButton] = useState(false)
   const [openIndex, setOpenIndex] = useState(null)
 
-  const avataresCadeirantes = [
-    { id: 1, src: aaaa },
-    { id: 2, src: '/img/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.PNG' },
-    { id: 3, src: '/img/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.PNG' },
-  ]
+  // const avataresCadeirantes = [
+  //   { id: 1, src: aaaa }
+  // ]
 
-  const toggleAccordion = (index: any) => {
-    if (openIndex === index) {
-      setOpenIndex(null);
-    } else {
-      setOpenIndex(index)
-    }
-  }
+  // const toggleAccordion = (index: any) => {
+  //   if (openIndex === index) {
+  //     setOpenIndex(null);
+  //   } else {
+  //     setOpenIndex(index)
+  //   }
+  // }
 
   async function fetchCep(cep: any) {
     try {
@@ -177,7 +176,45 @@ export default function Cadastro() {
   async function handleCadastro() {
     setLoadingButton(true)
 
-    window.location.href = '../pages/Home'
+    try {
+      const response = await api.post('person/register', {
+        name: nomeCompleto,
+        email: email,
+        password: password,
+        role: pessoaTipo, 
+        fullName: nomeCompleto,
+        birthDate: dataNascimento,
+        gender: genero,
+        disabilityType: tipoDeficiencia,
+        postalCode: cep,
+        street: rua,
+        additionalInfo: complemento,
+        neighborhood: bairro,
+        city: cidade,
+        number: numero,
+        state: uf,
+        username: userName,
+        userDescription: bio,
+        avatar: ""
+      }) 
+      
+      console.log(response.data.status)
+
+      if (response.status === 200) {
+        localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo))
+        toast.success("Cadastro realizado com sucesso!")
+        window.location.href = '../pages/Home'
+      }
+
+    } catch (error) {
+      toast.error("Ocorreu um erro ao realizar o cadastro. Verifique os dados e tente novamente.")
+      setTimeout(() => {
+        window.location.reload()
+      }, 5000)
+
+    } finally {
+      setLoadingButton(false)
+    }
   }
 
   return (
@@ -185,7 +222,7 @@ export default function Cadastro() {
       <div className="container">
         <Image className='imagem' src={imageCadastro} alt="Imagem" />
 
-        {isFirstStepComplete ? (
+        {!isFirstStepComplete ? (
           <div className="form">
             <div className="header">
               <h1>Cadastro</h1>
@@ -221,7 +258,7 @@ export default function Cadastro() {
 
             <p style={{ marginTop: '5vh', textAlign: 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
           </div>
-        ) : isSecondStepComplete ? (
+        ) : !isSecondStepComplete ? (
           <div className="form">
             <div className="header">
               <h1>Quem é você?</h1>
@@ -240,7 +277,7 @@ export default function Cadastro() {
               </div>
             ))}
           </div>
-        ) : isThirdStepComplete ? (
+        ) : !isThirdStepComplete ? (
           <div className="form">
             <div className="header">
               <h1>Informações pessoais</h1>
@@ -309,53 +346,37 @@ export default function Cadastro() {
                 <h2>Escolha seu avatar</h2>
               </div>
 
-              {avataresCadeirantes.map((avatar, index) => (
+              {/* {avataresCadeirantes.map((avatar, index) => (
                 <div key={avatar.id} className="accordion-item">
                   <div className="accordion-header" onClick={() => toggleAccordion(index)}>
-                    <h3>Avatar {avatar.id}</h3>
+                    <h3>Avatares - Cadeirantes</h3>
                   </div>
                   {openIndex === index && (
                     <div className="accordion-content">
-                      <Image width={100} height={100} className='imagem' src={avatar.src} alt="Imagem" />
+                      <Image style={{width: '100px', height: '100px', backgroundColor: 'red'}} className='imagem' src={avatar.src} alt="Imagem" />
                     </div>
                   )}
                 </div>
-              ))}
+              ))} */}
 
-              <div className="inputForm">
+              <div className="inputForm" style={{marginBottom: '10px'}}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Cadeirantes</option>
-                  <option value="male">Masculino</option>
-                  <option value="female">Feminino</option>
-                  <option value="other">Outros</option>
-                  <option value="preferNotToSay">Prefiro não dizer</option>
                 </select>
               </div>
-              <div className="inputForm">
+              <div className="inputForm" style={{marginBottom: '10px'}}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pcd auditivo</option>
-                  <option value="male">Masculino</option>
-                  <option value="female">Feminino</option>
-                  <option value="other">Outros</option>
-                  <option value="preferNotToSay">Prefiro não dizer</option>
                 </select>
               </div>
-              <div className="inputForm">
+              <div className="inputForm" style={{marginBottom: '10px'}}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pcd Visual</option>
-                  <option value="male">Masculino</option>
-                  <option value="female">Feminino</option>
-                  <option value="other">Outros</option>
-                  <option value="preferNotToSay">Prefiro não dizer</option>
                 </select>
               </div>
-              <div className="inputForm">
+              <div className="inputForm" style={{marginBottom: '10px'}}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pessoa não deficiente</option>
-                  <option value="male">Masculino</option>
-                  <option value="female">Feminino</option>
-                  <option value="other">Outros</option>
-                  <option value="preferNotToSay">Prefiro não dizer</option>
                 </select>
               </div>
             </section>

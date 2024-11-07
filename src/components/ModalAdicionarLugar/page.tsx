@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import './style.css'
 import Modal from 'react-modal'
 import Image from 'next/image'
+import { api } from "@/src/services/api"
 
 import start from '../../img/star.png'
 import startgray from '../../img/star-gray.png'
@@ -20,6 +21,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
   const [horarioFuncionamento, setHorarioFuncionamento] = useState('')
   const [descricao, setDescricao] = useState('')
   const [acessibilidade, setAcessibilidade] = useState<any>({})
+  const [loadingButton, setLoadingButton] = useState(false)
 
   const customStyles = {
     content: {
@@ -51,10 +53,39 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
     }))
   }
 
+  async function handleAdd() {
+    setLoadingButton(true)
+
+    try {
+      const response = await api.post('place/registerPlace', {
+        NameLocal: "Local de Teste",
+        Cep: "12345-678",
+        Street: "Rua Exemplo",
+        Complement: "Apto 101",
+        Neighborhood: "Centro",
+        City: "São Paulo",
+        NumberHome: "100",
+        State: "SP",
+        OpeningHours: "08:00 - 18:00",
+        LocalAssessment: "Avaliação positiva",
+        Description: "Descrição do local de teste.",
+        TypeAcessibility: "Acessível",
+        ZoneCode: 1,
+        ZoneCategorie: 2,
+        ImageName: "imagemTeste",
+      })
+
+    } catch (error) {
+
+    } finally {
+      setLoadingButton(false)
+    }
+  }
+
   return (
     <Modal style={customStyles} isOpen={isOpen} onRequestClose={closeModal}>
       <div className="modal-adicionar-lugar">
-        <Image className='close' src={close} alt='Imagem' onClick={closeModal}/>
+        <Image className='close' src={close} alt='Imagem' onClick={closeModal} />
 
         <h1>Adicionar um parque acessível</h1>
         <div className="form">
@@ -98,7 +129,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
             </div>
             <div className="buttons">
               <button type="button" className="button-foto"><Image className='camera' src={camera} alt='Imagem' /> Adicionar foto</button>
-              <button type="button" className="button-submit">Adicionar lugar</button>
+              <button type="button" className="button-submit" disabled={loadingButton}>{loadingButton ? "Carregando..." : "Adicionar lugar"}</button>
             </div>
           </div>
         </div>

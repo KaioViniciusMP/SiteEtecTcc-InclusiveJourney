@@ -6,6 +6,8 @@ import { NavBar } from "@/src/components/NavBar"
 import CardBoxLugar from "@/src/components/CardBoxLugar"
 import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
 import { api } from '@/src/services/api'
+import { toast } from 'react-toastify'
+import { ToastContainer } from "react-toastify"
 
 import logo3 from '../../../img/zona-oeste.jpg'
 
@@ -56,8 +58,8 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
           }
 
         } catch (error) {
-          alert('Erro ao buscar lugar')
-          //alerta de nenhum lugar encontrado na tela
+          toast.error('Erro ao buscar lugar')
+          setNoData(true)
         }
       }
 

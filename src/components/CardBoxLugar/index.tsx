@@ -19,7 +19,7 @@ export default function CardBoxLugar({ title, subtitle, endereco, imageSrc, onBu
       <h6>{subtitle}</h6>
       <h5>{endereco}</h5>
       {/* <p>estrelas</p> */}
-      <span onClick={onButtonClick}>Ver mais</span>
+      {/* <span onClick={onButtonClick}>Ver mais</span> */}
     </div>
   )
 }
