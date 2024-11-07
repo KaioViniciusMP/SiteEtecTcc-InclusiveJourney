@@ -27,17 +27,18 @@ export default function Login() {
     }
 
     try {
-      // const response = await api.post('/Autenticacao', {
-      //   usuario: usuario,
-      //   senha: senha
-      // })
+      const response = await api.post('/auth/login', {
+        email: usuario,
+        password: senha
+      })
 
-      // localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo))
-
-      setUsuario('')
-      setSenha('')
-
-      window.location.href = '../pages/Home'
+      if (response.status === 200) {
+        localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo));
+        setUsuario('')
+        setSenha('')
+  
+        window.location.href = '../pages/Home'
+      }
 
     } catch (error) {
       toast.error("Erro ao fazer login. Verifique suas credenciais.")
@@ -47,15 +48,41 @@ export default function Login() {
     }
   }
 
-  const handleEsqueciSenha = () => {
-    try {
+  async function handleEsqueciSenha(e: React.FormEvent<HTMLFormElement>){
+    e.preventDefault()
+    setLoadingButton(true)
 
-      setEsqueciSenha(false)
-      setUsuario('')
-      setSenha('')
+    if (usuario === '' || senha === '' || confirmarSenha === '' ) {
+      toast.warning("Por favor, preencha todos os campos.")
+      setLoadingButton(false)
+      return
+    }
+
+    if (senha !== confirmarSenha) {
+      toast.warning("As senhas não coincidem. Verifique e tente novamente.")
+      setLoadingButton(false)
+      return
+    }
+
+    try {
+      const response = await api.post('/auth/forgot-password', {
+        email: usuario,
+        newPassword: confirmarSenha
+      })
+
+      if (response.status === 200) {
+        toast.success("Senha alterada com sucesso!")
+        setUsuario('')
+        setSenha('')
+        setConfirmarSenha('')
+        setEsqueciSenha(false)
+      }
 
     } catch (error) {
-      alert('error')
+      toast.error("Erro ao redefinir a senha. Tente novamente.")
+
+    } finally{
+      setLoadingButton(false)
     }
   }
 

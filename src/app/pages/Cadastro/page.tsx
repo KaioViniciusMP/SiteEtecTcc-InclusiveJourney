@@ -12,12 +12,14 @@ import iconCoracao from '../../../img/imgCoracaozin.png'
 import iconTutor from '../../../img/imgEscritaLousa.png'
 import iconDone from '../../../img/Done.png'
 
+import aaaa from '../../../../public/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.png'
+
 export default function Cadastro() {
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const [pessoaTipoCodigo, setPessoaTipoCodigo] = useState(0)
+  const [pessoaTipo, setPessoaTipo] = useState('')
   const [nomeCompleto, setNomeCompleto] = useState('')
   const [dataNascimento, setDataNascimento] = useState('')
   const [genero, setGenero] = useState('')
@@ -36,35 +38,118 @@ export default function Cadastro() {
   const [isThirdStepComplete, setIsThirdStepComplete] = useState(false)
   const [isFourthStepComplete, setIsFourthStepComplete] = useState(false)
 
-  const handleFirstStepSubmit = () => {
-    // if (userName === '' && email === '' && password === '' && passwordConfirmation === '') {
-    //   toast.error('Por favor, preencha todos os campos.')
-    //   return
-    // } 
+  const [lembrar, setLembrar] = useState(true)
+  const [loadingButton, setLoadingButton] = useState(false)
+  const [openIndex, setOpenIndex] = useState(null)
 
-    // if (password !== passwordConfirmation) {
-    //   toast.info("As senhas não são iguais!")
-    //   return
-    // }
+  const avataresCadeirantes = [
+    { id: 1, src: aaaa },
+    { id: 2, src: '/img/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.PNG' },
+    { id: 3, src: '/img/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.PNG' },
+  ]
+
+  const toggleAccordion = (index: any) => {
+    if (openIndex === index) {
+      setOpenIndex(null);
+    } else {
+      setOpenIndex(index)
+    }
+  }
+
+  async function fetchCep(cep: any) {
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      const data = await response.json()
+      if (!data.erro) {
+        return data
+      } else {
+        toast.error('CEP não encontrado.')
+        return null
+      }
+    } catch (error) {
+      toast.error('Erro ao buscar CEP.')
+      return null
+    }
+  }
+
+  const handleCepChange = async (e: any) => {
+    const cepValue = e.target.value
+    setCep(cepValue)
+
+    if (cepValue.length === 8) {
+      const data = await fetchCep(cepValue)
+      if (data) {
+        setCidade(data.localidade)
+        setRua(data.logradouro)
+        setBairro(data.bairro)
+        setUf(data.uf)
+      }
+    }
+  }
+
+  const handleFirstStepSubmit = () => {
+    if (email === '' && password === '' && passwordConfirmation === '') {
+      toast.warning('Por favor, preencha todos os campos.')
+      return
+    }
+
+    if (password !== passwordConfirmation) {
+      toast.warning("As senhas não coincidem. Verifique e tente novamente.")
+      return
+    }
 
     setIsFirstStepComplete(true)
   }
 
-  const handleSecondStepSubmit = (item: number) => {
-    setPessoaTipoCodigo(item)
-    // if (!pessoaTipoCodigo) {
-    //   toast.error('Selecione uma opção para continuar.')
-    //   return
-    // }
+  const handleSecondStepSubmit = (item: string) => {
+    setPessoaTipo(item)
 
     setIsSecondStepComplete(true)
   }
 
   const handleThirdStepSubmit = () => {
-    setIsThirdStepComplete(true)
+    const allFieldsFilled =
+      nomeCompleto !== '' &&
+      dataNascimento !== '' &&
+      genero !== '' &&
+      cep !== '' &&
+      rua !== '' &&
+      numero !== '' &&
+      bairro !== '' &&
+      cidade !== '' &&
+      uf !== ''
+
+    const calculateAge = (birthDate: any) => {
+      const birthDateObj = new Date(birthDate)
+      const today = new Date()
+      let age = today.getFullYear() - birthDateObj.getFullYear()
+      const month = today.getMonth()
+      if (month < birthDateObj.getMonth() || (month === birthDateObj.getMonth() && today.getDate() < birthDateObj.getDate())) {
+        age--
+      }
+      return age
+    }
+
+    const age = calculateAge(dataNascimento)
+
+    if (allFieldsFilled && age > 13) {
+      setIsThirdStepComplete(true)
+
+    } else {
+      if (!allFieldsFilled) {
+        toast.warning('Por favor, preencha todos os campos obrigatórios.')
+      } else {
+        toast.warning('Você deve ser maior de 13 anos para continuar.')
+      }
+    }
   }
 
   const handleFourthStepSubmit = () => {
+    if (userName === '' && bio === '') {
+      toast.warning('Por favor, preencha todos os campos.')
+      return
+    }
+
     setIsFourthStepComplete(true)
   }
 
@@ -89,7 +174,9 @@ export default function Cadastro() {
     { codigo: 4, nome: 'Prefiro não dizer' },
   ]
 
-  async function handleCadastro(){
+  async function handleCadastro() {
+    setLoadingButton(true)
+
     window.location.href = '../pages/Home'
   }
 
@@ -98,7 +185,7 @@ export default function Cadastro() {
       <div className="container">
         <Image className='imagem' src={imageCadastro} alt="Imagem" />
 
-        {!isFirstStepComplete ? (
+        {isFirstStepComplete ? (
           <div className="form">
             <div className="header">
               <h1>Cadastro</h1>
@@ -126,7 +213,7 @@ export default function Cadastro() {
             </div>
 
             <div className='footer'>
-              <label><input type="checkbox" /> Lembre-se de mim</label>
+              <label><input type="checkbox" size={200} checked={lembrar} onChange={(e) => { setLembrar(e.target.checked) }} /> Lembre-se de mim</label>
             </div>
 
             <button className="button-submit" onClick={handleFirstStepSubmit}>Avançar</button>
@@ -134,14 +221,14 @@ export default function Cadastro() {
 
             <p style={{ marginTop: '5vh', textAlign: 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
           </div>
-        ) : !isSecondStepComplete ? (
+        ) : isSecondStepComplete ? (
           <div className="form">
             <div className="header">
               <h1>Quem é você?</h1>
             </div>
 
             {quemEvoce.map((item) => (
-              <div key={item.codigo} className={`botao-personalizado ${pessoaTipoCodigo === item.codigo ? 'selected' : ''}`} onClick={() => handleSecondStepSubmit(item.codigo)}
+              <div key={item.codigo} className={`botao-personalizado ${pessoaTipo === item.tipo ? 'selected' : ''}`} onClick={() => handleSecondStepSubmit(item.tipo)}
               >
                 <div className="icones">
                   <Image src={item.src} alt={`Ícone de ${item.tipo}`} />
@@ -153,7 +240,7 @@ export default function Cadastro() {
               </div>
             ))}
           </div>
-        ) : !isThirdStepComplete ? (
+        ) : isThirdStepComplete ? (
           <div className="form">
             <div className="header">
               <h1>Informações pessoais</h1>
@@ -180,7 +267,7 @@ export default function Cadastro() {
                 <input type="text" className="input" placeholder="Deficiência (se houver)" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />
               </div>
               <div className="inputForm" style={{ width: '42%' }}>
-                <input type="text" className="input" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
+                <input type="text" className="input" placeholder="CEP" value={cep} onChange={handleCepChange} />
               </div>
               <div className="inputForm" style={{ width: '60%' }}>
                 <input type="text" className="input" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
@@ -189,7 +276,7 @@ export default function Cadastro() {
                 <input type="number" className="input" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
               </div>
               <div className="inputForm" style={{ width: '45%' }}>
-                <input type="text" className="input" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+                <input type="text" className="input" placeholder="Complemento (se houver)" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
               </div>
               <div className="inputForm" style={{ width: '45%' }}>
                 <input type="text" className="input" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
@@ -221,6 +308,19 @@ export default function Cadastro() {
               <div className="header">
                 <h2>Escolha seu avatar</h2>
               </div>
+
+              {avataresCadeirantes.map((avatar, index) => (
+                <div key={avatar.id} className="accordion-item">
+                  <div className="accordion-header" onClick={() => toggleAccordion(index)}>
+                    <h3>Avatar {avatar.id}</h3>
+                  </div>
+                  {openIndex === index && (
+                    <div className="accordion-content">
+                      <Image width={100} height={100} className='imagem' src={avatar.src} alt="Imagem" />
+                    </div>
+                  )}
+                </div>
+              ))}
 
               <div className="inputForm">
                 <select name="gender" className="input" id="gender">
@@ -269,7 +369,7 @@ export default function Cadastro() {
             </div>
 
             {regras.map((item) => (
-              <div key={item.codigo} style={{padding: '1.5%'}} className={`botao-personalizado ${pessoaTipoCodigo === item.codigo ? 'selected' : ''}`} onClick={() => handleSecondStepSubmit(item.codigo)}>
+              <div key={item.codigo} style={{ padding: '1.5%' }} className={`botao-personalizado ${pessoaTipo === item.tipo ? 'selected' : ''}`}>
                 <div className="icones">
                   <Image src={item.src} alt={`Ícone de ${item.tipo}`} />
                 </div>
@@ -280,7 +380,7 @@ export default function Cadastro() {
               </div>
             ))}
 
-            <button className="button-submit" onClick={handleCadastro}>Avançar</button>
+            <button className="button-submit" onClick={handleCadastro} disabled={loadingButton}>{loadingButton ? "Carregando..." : "Cadastrar"}</button>
           </div>
         )}
       </div>

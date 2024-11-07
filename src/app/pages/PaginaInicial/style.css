@@ -75,12 +75,14 @@
       
       h2{
         color: #002234;
-        font-size: 2.4rem;
+        font-size: 2.6rem;
         width: 80%;
       }
   
       p{
         margin: 2vh 0;
+        width: 95%;
+        color: #000;
       }
   
       button {

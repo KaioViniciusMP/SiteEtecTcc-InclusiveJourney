@@ -1,6 +1,8 @@
 'use client'
 import './style.css'
 import Image from 'next/image'
+import CarrosselPaginaInicial from '@/src/components/CarrosselPaginaInicial'
+import CarrosselComentariosPrincipal from '@/src/components/CarrosselComentariosPrincipal'
 
 import logo from '../../../img/2_2-removebg-preview.png'
 import cachorroAcenando from '../../../img/Acenando.png'
@@ -20,9 +22,7 @@ export default function PaginaInicial() {
         </div>
       </header>
       <section className='section-1'>
-        <div className='carrossel'>
-
-        </div>
+        <CarrosselPaginaInicial/>
       </section>
       <section className='section-2'>
         <Image className='cachorroAcenando' src={cachorroAcenando} alt="Imagem" />
@@ -45,9 +45,7 @@ export default function PaginaInicial() {
       </section>
       <section className='section-4'>
         <h2>O que dizem nossos usuários</h2>
-        <div>
-
-        </div>
+        <CarrosselComentariosPrincipal/>
       </section>
       <footer>
         <section>
