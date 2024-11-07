@@ -8,6 +8,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { api } from "@/src/services/api"
 import Image from 'next/image'
+import { toast } from 'react-toastify'
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 import user from '../../img/user.png'
 
@@ -27,7 +30,7 @@ export default function CarrosselComentarios() {
         setComentarios(response.data)
 
       } catch (error) {
-        alert('Erro ao carregar comentários')
+        toast.error('Erro ao carregar comentários')
       }
     }
 
@@ -45,6 +48,8 @@ export default function CarrosselComentarios() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <ToastContainer autoClose={3000} />
     </div>
   )
 }

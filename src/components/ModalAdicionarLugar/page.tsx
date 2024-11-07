@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { api } from "@/src/services/api"
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 import start from '../../img/star.png'
 import startgray from '../../img/star-gray.png'
@@ -153,13 +154,13 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
       !selectedZone ||
       !selectedPlace
     ) {
-      alert("Por favor, preencha todos os campos.")
+      toast.warning("Por favor, preencha todos os campos.")
       setLoadingButton(false)
       return
     }
 
     if (!imageBase64) {
-      alert("Por favor, adicione uma foto.")
+      toast.warning("Por favor, adicione uma foto.")
       setLoadingButton(false)
       return
     }
@@ -191,12 +192,12 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
       console.log(imageBase64)
 
       if (response.status === 200) {
-        alert("Lugar adicionado com sucesso!")
+        toast.success("Lugar adicionado com sucesso!")
         closeModal()
       }
 
     } catch (error) {
-      alert("Erro ao adicionar o lugar. Verifique as informações e tente novamente.")
+      toast.error("Erro ao adicionar o lugar. Verifique as informações e tente novamente.")
 
     } finally {
       setLoadingButton(false)
@@ -300,6 +301,8 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
         </div>
 
       </div>
+
+      <ToastContainer autoClose={3000} />
     </Modal>
   )
 }

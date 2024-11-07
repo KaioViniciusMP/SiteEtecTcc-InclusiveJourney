@@ -70,7 +70,7 @@ export default function Perfil() {
           }
         })
         .catch(error => {
-          alert('Erro ao carregar dados')
+          toast.error('Erro ao carregar dados do perfil.')
         })
     }
   }, [])

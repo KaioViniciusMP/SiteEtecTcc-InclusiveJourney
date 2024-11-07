@@ -8,6 +8,7 @@ import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
 import { api } from '@/src/services/api'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 interface Local {
   codigo: number
@@ -57,7 +58,7 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
           }
 
         } catch (error) {
-          alert('Erro ao buscar lugar')
+          toast.error('Erro ao buscar lugar.')
           setNoData(true)
         }
       }
@@ -110,6 +111,8 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
       <button type='button' className='button-add'>Adicionar lugar</button>
 
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1} />
+
+      <ToastContainer autoClose={3000} />
 
       <Footer />
     </ div>
