@@ -4,8 +4,6 @@ import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBox from "@/src/components/CardBox"
 
-import logo3 from '../../../img/zona-oeste.jpg'
-
 import parques from '../../../img/parques.svg'
 import escolas from '../../../img/escolas.svg'
 import pontosTuristicos from '../../../img/pontos turisticos.svg'

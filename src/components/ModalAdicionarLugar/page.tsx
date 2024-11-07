@@ -20,8 +20,29 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
   const [uf, setUf] = useState('')
   const [horarioFuncionamento, setHorarioFuncionamento] = useState('')
   const [descricao, setDescricao] = useState('')
+  const [rating, setRating] = useState(0)
   const [acessibilidade, setAcessibilidade] = useState<any>({})
+  const [selectedAccessibility, setSelectedAccessibility] = useState<string>("")
   const [loadingButton, setLoadingButton] = useState(false)
+  const [selectedZone, setSelectedZone] = useState<number | null>(null)
+  const [selectedPlace, setSelectedPlace] = useState<number | null>(null)
+
+  const zonas = [
+    { codigo: 1, nome: 'Zona Sul' },
+    { codigo: 2, nome: 'Zona Oeste' },
+    { codigo: 3, nome: 'Zona Norte' },
+    { codigo: 4, nome: 'Zona Central' },
+    { codigo: 5, nome: 'Zona Leste' }
+  ]
+
+  const lugaresPrincipais = [
+    { codigo: 1, nome: 'Parques' },
+    { codigo: 2, nome: 'Escolas' },
+    { codigo: 3, nome: 'Pontos turísticos' },
+    { codigo: 4, nome: 'Hospedagem' },
+    { codigo: 5, nome: 'Restaurantes' },
+    { codigo: 6, nome: 'Saúde e bem-estar' }
+  ]
 
   const customStyles = {
     content: {
@@ -51,6 +72,14 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
       ...prevState,
       [name]: checked
     }))
+
+    setSelectedAccessibility((prevSelected) => {
+      const updatedSelected = checked
+        ? [...prevSelected.split(", "), name].filter(Boolean)
+        : prevSelected.split(", ").filter((item) => item !== name)
+
+      return updatedSelected.join(", ")
+    })
   }
 
   async function handleAdd() {
@@ -58,21 +87,21 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
 
     try {
       const response = await api.post('place/registerPlace', {
-        NameLocal: "Local de Teste",
-        Cep: "12345-678",
-        Street: "Rua Exemplo",
-        Complement: "Apto 101",
-        Neighborhood: "Centro",
-        City: "São Paulo",
-        NumberHome: "100",
-        State: "SP",
-        OpeningHours: "08:00 - 18:00",
-        LocalAssessment: "Avaliação positiva",
-        Description: "Descrição do local de teste.",
-        TypeAcessibility: "Acessível",
-        ZoneCode: 1,
-        ZoneCategorie: 2,
-        ImageName: "imagemTeste",
+        NameLocal: nomeLocal,
+        Cep: cep,
+        Street: rua,
+        Complement: complemento,
+        Neighborhood: bairro,
+        City: cidade,
+        NumberHome: numero,
+        State: uf,
+        OpeningHours: horarioFuncionamento,
+        LocalAssessment: String(rating),
+        Description: descricao,
+        TypeAcessibility: selectedAccessibility,
+        ZoneCode: selectedZone,
+        ZoneCategorie: selectedPlace,
+        ImageName: "",
       })
 
     } catch (error) {
@@ -103,7 +132,33 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
               <input style={{ width: '25%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
               <input style={{ width: '25%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
               <input style={{ width: '43%' }} type="text" placeholder="Horario de funcionamento" value={horarioFuncionamento} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
-              <input style={{ width: '43%' }} type="text" placeholder="Descrição do local" value={descricao} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
+              <input style={{ width: '97%' }} type="text" placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+            </div>
+            <div className="selects">
+              <div className="select-group">
+                <select value={selectedZone ?? ''} onChange={(e) => setSelectedZone(Number(e.target.value))}>
+                  <option value="" disabled>Escolha uma zona</option>
+                  {zonas.map((zona) => (
+                    <option key={zona.codigo} value={zona.codigo}>
+                      {zona.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="select-group">
+                <select
+                  value={selectedPlace ?? ''}
+                  onChange={(e) => setSelectedPlace(Number(e.target.value))}
+                >
+                  <option value="" disabled>Escolha um lugar principal</option>
+                  {lugaresPrincipais.map((lugar) => (
+                    <option key={lugar.codigo} value={lugar.codigo}>
+                      {lugar.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <h4>Acessibilidade do local</h4>
             <div className="checkboxs">
@@ -121,11 +176,16 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
             </div>
             <div className="stars">
               <h4>Avaliação do local</h4>
-              <Image className='star' src={startgray} alt='Imagem' />
-              <Image className='star' src={startgray} alt='Imagem' />
-              <Image className='star' src={startgray} alt='Imagem' />
-              <Image className='star' src={startgray} alt='Imagem' />
-              <Image className='star' src={startgray} alt='Imagem' />
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Image
+                  key={star}
+                  id={`star-${star}`}
+                  className="star"
+                  src={star <= rating ? start : startgray}
+                  alt="Estrela de avaliação"
+                  onClick={() => setRating(star)}
+                />
+              ))}
             </div>
             <div className="buttons">
               <button type="button" className="button-foto"><Image className='camera' src={camera} alt='Imagem' /> Adicionar foto</button>

@@ -8,6 +8,7 @@ import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
 import { api } from '@/src/services/api'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
+import Image, { StaticImageData } from 'next/image'
 
 import logo3 from '../../../img/zona-oeste.jpg'
 
@@ -28,6 +29,7 @@ interface Local {
   zoneCode: number
   zoneCategorie: number
   isFavorite: boolean
+  imageUrl: string
 }
 
 export default function LugarZona({ searchParams }: { searchParams: { [key: string]: string } }) {
@@ -97,7 +99,7 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
             local.map((l) => (
               <CardBoxLugar
                 key={l.codigo}
-                imageSrc={logo3}
+                imageSrc={l.imageUrl}
                 title={l.nameLocal}
                 subtitle={l.localAssessment}
                 endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
@@ -108,9 +110,7 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
         </div>
       </section>
 
-      <button type='button' className='button-add'>
-        Adicionar lugar na {zonas.find(zona => zona.codigo === Number(codigo))?.nome}
-      </button>
+      <button type='button' className='button-add'>Adicionar lugar</button>
 
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1} />
 

@@ -109,9 +109,7 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
         </div>
       </section>
 
-      <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>
-        Adicionar lugar em {lugaresPrincipais.find(item => item.codigo === Number(codigo))?.nome}
-      </button>
+      <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>Adicionar lugar</button>
       
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1} />
 
