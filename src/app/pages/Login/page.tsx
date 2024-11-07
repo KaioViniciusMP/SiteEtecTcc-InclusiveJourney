@@ -33,7 +33,7 @@ export default function Login() {
       })
 
       if (response.status === 200) {
-        localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo));
+        localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.userCode))
         setUsuario('')
         setSenha('')
   

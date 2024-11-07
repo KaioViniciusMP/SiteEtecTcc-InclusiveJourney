@@ -201,7 +201,7 @@ export default function Cadastro() {
       console.log(response.data.status)
 
       if (response.status === 200) {
-        localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.usuarioCodigo))
+        localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.userCode))
         toast.success("Cadastro realizado com sucesso!")
         window.location.href = '../pages/Home'
       }

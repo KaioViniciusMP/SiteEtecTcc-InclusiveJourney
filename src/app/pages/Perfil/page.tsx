@@ -1,9 +1,10 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './style.css'
 import Image from 'next/image'
 import Footer from '@/src/components/Footer'
 import { NavBar } from '@/src/components/NavBar'
+import { api } from '@/src/services/api'
 
 import avatar from '../../../img/avatar.svg'
 import logout from '../../../img/logout.png'
@@ -25,6 +26,33 @@ export default function Perfil() {
   const [numero, setNumero] = useState('')
   const [bairro, setBairro] = useState('')
   const [uf, setUf] = useState('')
+
+  useEffect(() => {
+    const userJourney = localStorage.getItem('u-inclusive-journey')
+    
+    if (userJourney && !isNaN(Number(userJourney))) {
+      api.get(`person/${userJourney}`)
+        .then(response => {
+          const { data } = response
+          setUserName(data.username || '')
+          setEmail(data.email || '')
+          setNomeCompleto(data.fullName || '')
+          setDataNascimento(data.dateOfBirth || '')
+          setGenero(data.gender || '')
+          setTipoDeficiencia(data.disabilityType || '')
+          setCep(data.postalCode || '')
+          setCidade(data.city || '')
+          setRua(data.street || '')
+          setComplemento(data.additionalInfo || '')
+          setNumero(data.number || '')
+          setBairro(data.neighborhood || '')
+          setUf(data.state || '')
+        })
+        .catch(error => {
+          console.error('Erro ao carregar dados do usuário:', error)
+        })
+    }
+  }, [])
 
   return (
     <div className='perfil' style={{ overflowY: 'auto', height: '100vh' }}>
