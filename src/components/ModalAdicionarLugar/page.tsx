@@ -3,6 +3,8 @@ import './style.css'
 import Modal from 'react-modal'
 import Image from 'next/image'
 import { api } from "@/src/services/api"
+import { toast } from 'react-toastify'
+import { ToastContainer } from "react-toastify"
 
 import start from '../../img/star.png'
 import startgray from '../../img/star-gray.png'
@@ -26,6 +28,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
   const [loadingButton, setLoadingButton] = useState(false)
   const [selectedZone, setSelectedZone] = useState<number | null>(null)
   const [selectedPlace, setSelectedPlace] = useState<number | null>(null)
+  const [imageBase64, setImageBase64] = useState<string | null>(null)
 
   const zonas = [
     { codigo: 1, nome: 'Zona Sul' },
@@ -82,8 +85,57 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
     })
   }
 
+
+  const handleImagePick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        
+        const cleanedBase64String = base64String.replace(/^data:image\/\w+;base64,/, '')
+        
+        setImageBase64(cleanedBase64String)
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  };
+  
+
+
   async function handleAdd() {
     setLoadingButton(true)
+
+    if (
+      !nomeLocal ||
+      !cep ||
+      !rua ||
+      !complemento ||
+      !bairro ||
+      !cidade ||
+      !numero ||
+      !uf ||
+      !horarioFuncionamento ||
+      !descricao ||
+      !rating ||
+      !selectedZone ||
+      !selectedPlace
+    ) {
+      alert("Por favor, preencha todos os campos.")
+      setLoadingButton(false)
+      return
+    }
+
+    if (!imageBase64) {
+      alert("Por favor, adicione uma foto.")
+      setLoadingButton(false)
+      return
+    }
+
+    console.log(imageBase64)
 
     try {
       const response = await api.post('place/registerPlace', {
@@ -101,10 +153,21 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
         TypeAcessibility: selectedAccessibility,
         ZoneCode: selectedZone,
         ZoneCategorie: selectedPlace,
-        ImageName: "",
+        ImageName: 'nome teste',
+        ImageStream: imageBase64
       })
 
+      console.log(response.data.status)
+
+      console.log(imageBase64)
+
+      if (response.status === 200) {
+        alert("Lugar adicionado com sucesso!")
+        closeModal()
+      }
+
     } catch (error) {
+      alert("Erro ao adicionar o lugar. Verifique as informações e tente novamente.")
 
     } finally {
       setLoadingButton(false)
@@ -188,11 +251,21 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
               ))}
             </div>
             <div className="buttons">
-              <button type="button" className="button-foto"><Image className='camera' src={camera} alt='Imagem' /> Adicionar foto</button>
-              <button type="button" className="button-submit" disabled={loadingButton}>{loadingButton ? "Carregando..." : "Adicionar lugar"}</button>
+              <button type="button" className="button-submit" disabled={loadingButton} onClick={handleAdd}>{loadingButton ? "Carregando..." : "Adicionar lugar"}</button>
+            </div>
+            <div className="buttons">
+              <input type="file" accept="image/*" onChange={handleImagePick} style={{ display: 'none' }} id="fileInput" />
+              <button
+                type="button"
+                className="button-foto"
+                onClick={() => document.getElementById('fileInput')?.click()}
+              >
+                <Image className='camera' src={camera} alt='Imagem' /> Adicionar foto
+              </button>
             </div>
           </div>
         </div>
+        
       </div>
     </Modal>
   )
