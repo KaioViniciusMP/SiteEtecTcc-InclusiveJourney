@@ -28,6 +28,7 @@ interface Local {
   zoneCode: number
   zoneCategorie: number
   isFavorite: boolean
+  imageUrl: string
 }
 
 export default function Lugar({ searchParams }: { searchParams: { [key: string]: string } }) {
@@ -98,7 +99,7 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
             local.map((l) => (
               <CardBoxLugar
                 key={l.codigo}
-                imageSrc={logo3}
+                imageSrc={l.imageUrl}
                 title={l.nameLocal}
                 subtitle={l.localAssessment}
                 endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
