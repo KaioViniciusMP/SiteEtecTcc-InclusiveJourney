@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import './style.css'
 import Modal from 'react-modal'
 import Image from 'next/image'
@@ -29,6 +29,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
   const [selectedZone, setSelectedZone] = useState<number | null>(null)
   const [selectedPlace, setSelectedPlace] = useState<number | null>(null)
   const [imageBase64, setImageBase64] = useState<string | null>(null)
+  const [fotoNome, setFotoNome] = useState<string | null>(null)
 
   const zonas = [
     { codigo: 1, nome: 'Zona Sul' },
@@ -85,26 +86,54 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
     })
   }
 
+  const handleFotoSelecionada = (foto: string) => {
+    setFotoNome(foto);
+  };
 
   const handleImagePick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    
+
     if (file) {
       const reader = new FileReader();
-      
+
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        
+
         const cleanedBase64String = base64String.replace(/^data:image\/\w+;base64,/, '')
-        
+
         setImageBase64(cleanedBase64String)
       };
-      
+
       reader.readAsDataURL(file);
+      setFotoNome(file.name)
     }
   };
-  
 
+  async function fetchCepData(cep: string) {
+    if (cep.length === 8) {
+      try {
+        const response = await api.get(`https://viacep.com.br/ws/${cep}/json/`);
+        const { logradouro, bairro, localidade, uf } = response.data;
+        setRua(logradouro || '');
+        setBairro(bairro || '');
+        setCidade(localidade || '');
+        setUf(uf || '');
+      } catch (error) {
+        toast.error("Erro ao buscar dados do CEP.");
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (cep.length === 8) {
+      fetchCepData(cep);
+    } else {
+      setRua('');
+      setBairro('');
+      setCidade('');
+      setUf('');
+    }
+  }, [cep]);
 
   async function handleAdd() {
     setLoadingButton(true)
@@ -153,7 +182,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
         TypeAcessibility: selectedAccessibility,
         ZoneCode: selectedZone,
         ZoneCategorie: selectedPlace,
-        ImageName: 'nome teste',
+        ImageName: fotoNome,
         ImageStream: imageBase64
       })
 
@@ -179,7 +208,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
       <div className="modal-adicionar-lugar">
         <Image className='close' src={close} alt='Imagem' onClick={closeModal} />
 
-        <h1>Adicionar um parque acessível</h1>
+        <h1>Adicionar um lugar</h1>
         <div className="form">
           <div className="mapa">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d328683.16568752046!2d-47.25699180520779!3d-23.64546584917338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce448183a461d1%3A0x9ba94b08ff335bae!2zU8OjbyBQYXVsbywgU1A!5e0!3m2!1spt-BR!2sbr!4v1727104814981!5m2!1spt-BR!2sbr" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
@@ -250,9 +279,11 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
                 />
               ))}
             </div>
-            <div className="buttons">
-              <button type="button" className="button-submit" disabled={loadingButton} onClick={handleAdd}>{loadingButton ? "Carregando..." : "Adicionar lugar"}</button>
-            </div>
+            {fotoNome && (
+              <p style={{ fontSize: '12px', color: 'green', marginTop: '3vh', textDecoration: 'underline' }}>
+                {fotoNome}
+              </p>
+            )}
             <div className="buttons">
               <input type="file" accept="image/*" onChange={handleImagePick} style={{ display: 'none' }} id="fileInput" />
               <button
@@ -262,10 +293,12 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
               >
                 <Image className='camera' src={camera} alt='Imagem' /> Adicionar foto
               </button>
+              <button type="button" className="button-submit" disabled={loadingButton} onClick={handleAdd}>{loadingButton ? "Carregando..." : "Adicionar lugar"}</button>
             </div>
+            
           </div>
         </div>
-        
+
       </div>
     </Modal>
   )

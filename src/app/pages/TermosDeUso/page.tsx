@@ -10,13 +10,6 @@ import location from '../../../img/maps-and-flags.png';
 export default function TermosDeUso() {
   return (
     <main className='main-termos-uso' style={{ overflowY: 'auto', height: '100vh', overflowX: 'hidden' }}>
-      <header>
-        <Image className='logo' src={logo} alt="Imagem" />
-        <div className='buttons'>
-          <button onClick={() => {window.location.href = '../pages/Login'}}>Login</button>
-          <button onClick={() => {window.location.href = '../pages/Cadastro'}}>Cadastrar</button>
-        </div>
-      </header>
       <section>
         <h1>Termos de Uso</h1>
         <p>Bem-vindo ao Inclusive Journey! Estes Termos de Uso descrevem as regras e condições que regem o uso do nosso site e serviços. Ao acessar ou utilizar o Inclusive Journey, você concorda com estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não deve utilizar nosso site.</p>

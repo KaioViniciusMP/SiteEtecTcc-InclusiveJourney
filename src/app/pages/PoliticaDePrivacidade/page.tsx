@@ -10,13 +10,6 @@ import location from '../../../img/maps-and-flags.png';
 export default function PoliticaDePrivacidade() {
   return (
     <main className='main-politica-privacidade' style={{ overflowY: 'auto', height: '100vh', overflowX: 'hidden' }}>
-      <header>
-        <Image className='logo' src={logo} alt="Imagem" />
-        <div className='buttons'>
-          <button onClick={() => {window.location.href = '../pages/Login'}}>Login</button>
-          <button onClick={() => {window.location.href = '../pages/Cadastro'}}>Cadastrar</button>
-        </div>
-      </header>
       <section>
         <h1>Política de Privacidade</h1>
         <h5>POLÍTICA DE PRIVACIDADE E POLÍTICA DE COOKIES DO INCLUSIVE JOURNEY.</h5>
