@@ -1,12 +1,12 @@
 "use client"
-import { useState, useEffect } from 'react'
 import './style.css'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Footer from '@/src/components/Footer'
 import { NavBar } from '@/src/components/NavBar'
 import { api } from '@/src/services/api'
 
-import avatar from '../../../img/avatar.svg'
 import logout from '../../../img/logout.png'
 import iconEdit from '../../../img/edit.png'
 import user from '../../../img/user.png'
@@ -14,7 +14,11 @@ import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
+import load from '../../../img/loading.png'
+
 export default function Perfil() {
+  const router = useRouter()
+
   const [userName, setUserName] = useState('')
   const [bio, setBio] = useState('')
   const [email, setEmail] = useState('')
@@ -33,6 +37,7 @@ export default function Perfil() {
 
   const [editable, setEditable] = useState(false)
   const [loadingButton, setLoadingButton] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const userJourney = localStorage.getItem('u-inclusive-journey')
@@ -45,14 +50,16 @@ export default function Perfil() {
       return `${day}/${month}/${year}`
     }
 
-    if (userJourney && !isNaN(Number(userJourney))) {
-      api.get(`person/${userJourney}`)
-        .then(response => {
-          const { data } = response
+    async function fetchUserData(){
+      if (userJourney && !isNaN(Number(userJourney))) {
+        try {
+          const response = await api.get(`person/${userJourney}`)
+  
+          const data = response.data
           setUserName(data.username || '')
           setEmail(data.email || '')
           setNomeCompleto(data.fullName || '')
-          setDataNascimento(data.dateOfBirth || '')
+          setDataNascimento(data.dateOfBirth ? formatDate(data.dateOfBirth) : '')
           setGenero(data.gender || '')
           setTipoDeficiencia(data.disabilityType || '')
           setCep(data.postalCode || '')
@@ -64,15 +71,21 @@ export default function Perfil() {
           setUf(data.state || '')
           setBio(data.userDescription || '')
           setPessoaTipo(data.role || '')
-
-          if (data.dateOfBirth) {
-            setDataNascimento(formatDate(data.dateOfBirth))
-          }
-        })
-        .catch(error => {
+  
+        } catch (error) {
           toast.error('Erro ao carregar dados do perfil.')
-        })
+  
+        } finally {
+          setLoading(false)
+        }
+      }
     }
+
+    fetchUserData()
+  }, [])
+
+  useEffect(() => {
+    document.title = 'Sua Conta | Inclusive Journey'
   }, [])
 
   async function handleUpdateProfile() {
@@ -127,51 +140,54 @@ export default function Perfil() {
       <section className='container'>
         <div className='left'>
           <Image className='avatar' src={user} alt='Imagem' />
-
-          <button type='button' onClick={() => { window.location.href = '../' }}>Sair <Image className='logout' src={logout} alt='Imagem' /></button>
+          <button type='button' onClick={() => { router.push('../') }}>Sair <Image className='logout' src={logout} alt='Imagem' /></button>
         </div>
+
         <div className='content'>
           <div className='header'>
             <div>
               <h3>Informações pessoais</h3>
-              <Image className='edit' src={iconEdit} onClick={() => { setEditable(true) }} alt='Icon' />
+              {!loading && (<Image className='edit' src={iconEdit} onClick={() => { setEditable(true) }} alt='Icon' />)}
             </div>
-            <p>{pessoaTipo || ''}</p>
+            {!loading && (<p>{pessoaTipo || ''}</p>)}
           </div>
 
-          <div className="inputForm">
-            <input disabled={!editable} style={{ width: '30%' }} type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
-            <input disabled={!editable} style={{ width: '68%' }} type="text" placeholder="Bio" value={bio} onChange={(e) => setBio(e.target.value)} />
-          </div>
+          {loading ? (
+            <div className='container-loading'>
+              <Image className='loading' src={load} alt='Imagem' />
+            </div>
+          ) : (
+            <>
+              <div className="inputForm">
+                <input disabled={!editable} style={{ width: '30%' }} type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                <input disabled={!editable} style={{ width: '64%' }} type="text" placeholder="Bio" value={bio} onChange={(e) => setBio(e.target.value)} />
+              </div>
 
-          <h4>Dados Pessoais</h4>
-          <div className="inputForm">
-            <input disabled={!editable} style={{ width: '49%' }} type="text" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
-            <input disabled style={{ width: '49%' }} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input disabled={!editable} style={{ width: '30%' }} type="text" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
-            <input disabled={!editable} style={{ width: '31%' }} type="text" placeholder="Gênero" value={genero} onChange={(e) => setGenero(e.target.value)} />
-            <input disabled={!editable} style={{ width: '35%' }} type="text" placeholder="Tipo de Deficiência" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />
-          </div>
+              <h4>Dados Pessoais</h4>
+              <div className="inputForm">
+                <input disabled={!editable} style={{ width: '47%' }} type="text" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
+                <input disabled style={{ width: '47%' }} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input disabled={!editable} style={{ width: '29%' }} type="text" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+                <input disabled={!editable} style={{ width: '30%' }} type="text" placeholder="Gênero" value={genero} onChange={(e) => setGenero(e.target.value)} />
+                <input disabled={!editable} style={{ width: '32%' }} type="text" placeholder="Tipo de Deficiência" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />
+              </div>
 
-          <h4>Endereço</h4>
-          <div className="inputForm">
-            <input disabled={!editable} style={{ width: '26%' }} type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
-            <input disabled={!editable} style={{ width: '30%' }} type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
-            <input disabled={!editable} style={{ width: '40%' }} type="text" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
-            <input disabled={!editable} style={{ width: '15%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
-            <input disabled={!editable} style={{ width: '32%' }} type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
-            <input disabled={!editable} style={{ width: '32%' }} type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
-            <input disabled={!editable} style={{ width: '15%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
-          </div>
-          {editable && (
-            <button
-              type="button"
-              className="updateButton"
-              onClick={handleUpdateProfile}
-              disabled={loadingButton}
-            >
-              {loadingButton ? "Carregando..." : "Atualizar Perfil"}
-            </button>
+              <h4>Endereço</h4>
+              <div className="inputForm">
+                <input disabled={!editable} style={{ width: '23%' }} type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
+                <input disabled={!editable} style={{ width: '27%' }} type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
+                <input disabled={!editable} style={{ width: '41%' }} type="text" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
+                <input disabled={!editable} style={{ width: '10%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
+                <input disabled={!editable} style={{ width: '31%' }} type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+                <input disabled={!editable} style={{ width: '33%' }} type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
+                <input disabled={!editable} style={{ width: '13%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
+              </div>
+              {editable && (
+                <button type="button" className="updateButton" onClick={handleUpdateProfile} disabled={loadingButton}>
+                  {loadingButton ? "Carregando..." : "Atualizar Perfil"}
+                </button>
+              )}
+            </>
           )}
         </div>
       </section>

@@ -1,13 +1,21 @@
 'use client'
-import './style.css';
-import Image from 'next/image';
+import './style.css'
+import Image from 'next/image'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
-import logo from '../../../img/2_2-removebg-preview.png';
-import instagram from '../../../img/instagram.png';
-import email from '../../../img/email.png';
-import location from '../../../img/maps-and-flags.png';
+import logo from '../../../img/2_2-removebg-preview.png'
+import instagram from '../../../img/instagram.png'
+import email from '../../../img/email.png'
+import location from '../../../img/maps-and-flags.png'
 
 export default function PoliticaDePrivacidade() {
+  const router = useRouter()
+
+  useEffect(() => {
+    document.title = 'Política de Privacidade | Inclusive Journey'
+  }, [])
+
   return (
     <main className='main-politica-privacidade' style={{ overflowY: 'auto', height: '100vh', overflowX: 'hidden' }}>
       <section>
@@ -60,8 +68,8 @@ export default function PoliticaDePrivacidade() {
           </div>
         </section>
         <div className='div-footer'>
-          <p onClick={() => {window.location.href = '../pages/PoliticaDePrivacidade'}}>Política de privacidade</p>
-          <p onClick={() => {window.location.href = '../pages/TermosDeUso'}}>Termos de uso</p>
+          <p onClick={() => {router.push('../pages/PoliticaDePrivacidade')}}>Política de privacidade</p>
+          <p onClick={() => {router.push('../pages/TermosDeUso')}}>Termos de uso</p>
           <p>2024</p>
         </div>
       </footer>

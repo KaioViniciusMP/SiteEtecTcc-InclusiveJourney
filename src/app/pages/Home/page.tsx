@@ -1,5 +1,7 @@
 'use client'
 import './style.css'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { NavBar } from '@/src/components/NavBar'
 import SectionFounders from '@/src/components/SectionFounders'
 import CardBox from '@/src/components/CardBox'
@@ -18,6 +20,12 @@ import leste from '../../../img/zona-leste.svg'
 import oeste from '../../../img/zona-oeste.svg'
 
 export default function Home() {
+  const router = useRouter()
+
+  useEffect(() => {
+    document.title = 'Início | Inclusive Journey'
+  }, [])
+
   const lugaresPorRegiao = [
     { codigo: 1, nome: 'Zona sul', imagem: sul },
     { codigo: 2, nome: 'Zona oeste', imagem: oeste },
@@ -27,7 +35,7 @@ export default function Home() {
   ]
 
   return (
-    <div className='home' style={{ overflowY: 'auto', height: '100vh', }}>
+    <div className='home' style={{ overflowY: 'auto', height: '100vh' }}>
       <NavBar />
 
       <CarrosselPrincipal />
@@ -42,7 +50,7 @@ export default function Home() {
               key={lugar.codigo}
               imageSrc={lugar.imagem}
               title={lugar.nome}
-              onButtonClick={() => { window.location.href = `../pages/LugarZona?codigo=${lugar.codigo}` }}
+              onButtonClick={() => {router.push(`../pages/LugarZona?codigo=${lugar.codigo}`)}}
             />
           ))}
         </div>

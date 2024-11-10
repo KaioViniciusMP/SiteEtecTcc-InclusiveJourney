@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper/modules'
+import { Pagination } from 'swiper/modules'
 import { api } from "@/src/services/api"
 import Image from 'next/image'
 import { toast } from 'react-toastify'

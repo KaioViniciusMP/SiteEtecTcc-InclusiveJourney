@@ -1,5 +1,7 @@
 'use client'
 import './style.css'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBox from "@/src/components/CardBox"
@@ -18,6 +20,8 @@ import leste from '../../../img/zona-leste.svg'
 import oeste from '../../../img/zona-oeste.svg'
 
 export default function Lugares() {
+  const router = useRouter()
+
   const lugaresPrincipais = [
     { codigo: 1, nome: 'Parques', imagem: parques },
     { codigo: 2, nome: 'Escolas', imagem: escolas },
@@ -34,6 +38,10 @@ export default function Lugares() {
     { codigo: 4, nome: 'Zona central', imagem: central },
     { codigo: 5, nome: 'Zona leste', imagem: leste },
   ]
+
+  useEffect(() => {
+    document.title = 'Lugares Acessíveis | Inclusive Journey'
+  }, [])
 
   return (
     <div className="lugares" style={{ overflowY: 'auto', height: '100vh' }}>
@@ -54,7 +62,7 @@ export default function Lugares() {
               key={lugar.codigo}
               imageSrc={lugar.imagem}
               title={lugar.nome}
-              onButtonClick={() => { window.location.href = `../pages/Lugar?codigo=${lugar.codigo}` }}
+              onButtonClick={() => {router.push(`../pages/Lugar?codigo=${lugar.codigo}`)}}
             />
           ))}
         </div>
@@ -70,7 +78,7 @@ export default function Lugares() {
               key={lugar.codigo}
               imageSrc={lugar.imagem}
               title={lugar.nome}
-              onButtonClick={() => { window.location.href = `../pages/LugarZona?codigo=${lugar.codigo}` }}
+              onButtonClick={() => {router.push(`../pages/LugarZona?codigo=${lugar.codigo}`)}}
             />
           ))}
         </div>

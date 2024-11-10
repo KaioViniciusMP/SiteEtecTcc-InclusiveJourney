@@ -3,10 +3,13 @@ import './style.css'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
+import { useRouter } from 'next/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 
 export default function CarrosselPaginaInicial() {
+  const router = useRouter()
+
   const data = [
     {id: 1 , title: 'Seja Bem vindo(a) ao Inclusive journey!' , subtitle: 'Bem-vindo ao Inclusive Journey! Aqui, nós valorizamos a acessibilidade e a inclusão. Explore conosco lugares adaptados para todos.', buttonName: 'Login', src: '../pages/Login'},
     {id: 2 , title: 'Conecte-se com a Acessibilidade' , subtitle: 'Junte-se a uma comunidade engajada! No Inclusive Journey, compartilhamos, recomendações e experiências sobre lugares acessíveis. Faça parte!', buttonName: 'Cadastrar', src: '../pages/Cadastro'},
@@ -20,7 +23,7 @@ export default function CarrosselPaginaInicial() {
           <SwiperSlide className="item" key={item.id}>
             <h1>{item.title}</h1>
             <p>{item.subtitle}</p>
-            <button type="button" onClick={() => { window.location.href = item.src }}>{item.buttonName}</button>
+            <button type="button" onClick={() => {router.push(item.src)}}>{item.buttonName}</button>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -4,8 +4,8 @@
   .container {
     background-color: #E7E6ED;
     margin-top: 10vh;
-    padding: 5vh 10vw 5vh 12vw;
-    height: 90vh;
+    padding: 5vh 8vw 5vh 10vw;
+    height: 80vh;
     display: flex;
 
     .left {
@@ -25,7 +25,7 @@
         margin-top: 4vh;
       }
 
-      button{
+      button {
         margin-bottom: 3vh;
         outline: none;
         border: 1px #ff0000 solid;
@@ -38,12 +38,31 @@
         background-color: transparent;
         margin-right: -9vw;
         cursor: pointer;
+        transition: 0.3s ease-in-out;
 
-        .logout{
+        &:hover {
+          box-shadow: 0px 0px 6px #ff0000;
+        }
+
+        .logout {
           width: 14px;
           height: auto;
           object-fit: cover;
         }
+      }
+    }
+
+    .container-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60vh;
+
+      .loading {
+        width: 35px;
+        height: auto;
+        object-fit: cover;
+        animation: spin 0.8s linear infinite;
       }
     }
 
@@ -108,15 +127,25 @@
         color: #fff;
         border-radius: 8px;
         cursor: pointer;
-        opacity: 0.9;
         transition: 0.4s ease-in-out;
         font-size: 1rem;
         right: 0;
-  
-        &:hover{
-          opacity: 1;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          filter: brightness(1.6);
         }
       }
     }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

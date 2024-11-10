@@ -9,8 +9,13 @@
     align-items: center;
     justify-content: flex-start;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
 
+    &:hover {
+        transform: scale(1.01);
+        box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    
     .cardBoxImg {
         max-width: 100%;
         max-height: 70%;
@@ -20,13 +25,13 @@
         border-top-right-radius: 10px;
     }
 
-    h3{
+    h3 {
         color: #002234;
     }
 
     .cardBoxButton {
         color: #ffffff;
-        background-color: red;
+        background-color: #FE4045;
         border: 1px white solid;
         padding: 10px 30px;
         font-size: 16px;
@@ -34,5 +39,10 @@
         margin-top: 10px;
         border-radius: 25px;
         margin-bottom: 3vh;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          filter: brightness(1.6);
+        }
     }
 }

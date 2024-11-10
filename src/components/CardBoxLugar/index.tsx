@@ -3,6 +3,8 @@ import './style.css'
 import Image from 'next/image'
 
 import star from '../../img/star.png'
+import whiteHeart from '../../img/white-heart.png'
+import redHeart from '../../img/red-heart.png'
 
 interface CardBoxProps {
   title: string
@@ -10,18 +12,22 @@ interface CardBoxProps {
   endereco: string
   imageSrc: string
   onButtonClick: () => void
+  isfavorite: boolean
 }
 
-export default function CardBoxLugar({ title, subtitle, endereco, imageSrc, onButtonClick }: CardBoxProps) {
+export default function CardBoxLugar({ title, subtitle, endereco, imageSrc, onButtonClick, isfavorite }: CardBoxProps) {
+  async function handleFavorite(){
+    
+  }
+  
   return (
     <div className="cardBoxLugar">
       <Image className='cardBoxImg' src={imageSrc} alt='Imagem' width={500} height={300} />
-      {/* <p>icon coração</p> */}
+      <Image className='heart' src={isfavorite ? redHeart : whiteHeart} alt='Imagem' onClick={handleFavorite}/>
       <h3>{title}</h3>
       <h6>{subtitle} <Image className='star' src={star} alt='Imagem' /></h6>
       <h5>{endereco}</h5>
-      {/* <p>estrelas</p> */}
-      {/* <span onClick={onButtonClick}>Ver mais</span> */}
+      <span onClick={onButtonClick}>Ver mais informações</span>
     </div>
   )
 }

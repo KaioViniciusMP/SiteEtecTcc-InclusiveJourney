@@ -12,7 +12,7 @@ import startgray from '../../img/star-gray.png'
 import camera from '../../img/camera.png'
 import close from '../../img/close.png'
 
-export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
+export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
   const [nomeLocal, setNomeLocal] = useState('')
   const [cep, setCep] = useState('')
   const [rua, setRua] = useState('')
@@ -72,7 +72,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
   ]
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
+    const { name, checked } = event.target
     setAcessibilidade((prevState: Record<string, boolean>) => ({
       ...prevState,
       [name]: checked
@@ -87,54 +87,50 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
     })
   }
 
-  const handleFotoSelecionada = (foto: string) => {
-    setFotoNome(foto);
-  };
-
   const handleImagePick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]
 
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
 
       reader.onloadend = () => {
-        const base64String = reader.result as string;
+        const base64String = reader.result as string
 
-        const cleanedBase64String = base64String.replace(/^data:image\/\w+;base64,/, '')
+        const cleanedBase64String = base64String.replace(/^data:image\/\w+base64,/, '')
 
         setImageBase64(cleanedBase64String)
-      };
+      }
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
       setFotoNome(file.name)
     }
-  };
+  }
 
   async function fetchCepData(cep: string) {
     if (cep.length === 8) {
       try {
-        const response = await api.get(`https://viacep.com.br/ws/${cep}/json/`);
-        const { logradouro, bairro, localidade, uf } = response.data;
-        setRua(logradouro || '');
-        setBairro(bairro || '');
-        setCidade(localidade || '');
-        setUf(uf || '');
+        const response = await api.get(`https://viacep.com.br/ws/${cep}/json/`)
+        const { logradouro, bairro, localidade, uf } = response.data
+        setRua(logradouro || '')
+        setBairro(bairro || '')
+        setCidade(localidade || '')
+        setUf(uf || '')
       } catch (error) {
-        toast.error("Erro ao buscar dados do CEP.");
+        toast.error("Erro ao buscar dados do CEP.")
       }
     }
   }
 
   useEffect(() => {
     if (cep.length === 8) {
-      fetchCepData(cep);
+      fetchCepData(cep)
     } else {
-      setRua('');
-      setBairro('');
-      setCidade('');
-      setUf('');
+      setRua('')
+      setBairro('')
+      setCidade('')
+      setUf('')
     }
-  }, [cep]);
+  }, [cep])
 
   async function handleAdd() {
     setLoadingButton(true)
@@ -165,8 +161,6 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
       return
     }
 
-    console.log(imageBase64)
-
     try {
       const response = await api.post('place/registerPlace', {
         NameLocal: nomeLocal,
@@ -186,10 +180,6 @@ export default function ModalAdicionarLugar({ isOpen, closeModal, id }: any) {
         ImageName: fotoNome,
         ImageStream: imageBase64
       })
-
-      console.log(response.data.status)
-
-      console.log(imageBase64)
 
       if (response.status === 200) {
         toast.success("Lugar adicionado com sucesso!")

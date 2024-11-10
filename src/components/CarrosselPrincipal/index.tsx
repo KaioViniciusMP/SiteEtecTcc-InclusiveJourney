@@ -2,14 +2,16 @@ import React from "react"
 import './style.css'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
+import { useRouter } from 'next/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectFade } from 'swiper/modules'
-import Image from 'next/image'
 
 import fundo1 from '../../img/teste.jpg'
 import fundo2 from '../../img/fundo2.jpg'
 
 export default function CarrosselPrincipal() {
+  const router = useRouter()
+
   const data = [
     {
       id: 1,
@@ -37,7 +39,7 @@ export default function CarrosselPrincipal() {
             }}>
             <h1>{item.title}</h1>
             <p>{item.subtitle}</p>
-            <button type="button" onClick={() => {window.location.href = '../pages/Lugares'}}>Saiba mais</button>
+            <button type="button" onClick={() => {router.push('../pages/Lugares')}}>Saiba mais</button>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -1,5 +1,7 @@
 "use client"
 import './style.css'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import imagemLogin from '../../../img/imgInclusiveJourneyLogin.png'
 import { api } from '@/src/services/api'
@@ -9,12 +11,18 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Login() {
+  const router = useRouter()
+
   const [usuario, setUsuario] = useState('')
   const [senha, setSenha] = useState('')
   const [confirmarSenha, setConfirmarSenha] = useState('')
   const [lembrar, setLembrar] = useState(true)
   const [loadingButton, setLoadingButton] = useState(false)
   const [esqueciSenha, setEsqueciSenha] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Acesse Sua Conta | Inclusive Journey'
+  }, [])
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -38,7 +46,7 @@ export default function Login() {
         setUsuario('')
         setSenha('')
   
-        window.location.href = '../pages/Home'
+        router.push('../pages/Home')
       }
 
     } catch (error) {

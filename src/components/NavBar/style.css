@@ -28,16 +28,18 @@
     }
 
     a.active {
-      color: red;
-      border-bottom: 2px solid red;
+      color: #ff0000;
+      border-bottom: 2px solid #ff0000;
     }
   }
 
   .navbar-select {
     width: 6vw;
-    color: #000;
+    color: #002234;
     border: none;
     font-size: 16px;
     cursor: pointer;
+    font-weight: 500;
+    margin-top: -1vh;
   }
 }

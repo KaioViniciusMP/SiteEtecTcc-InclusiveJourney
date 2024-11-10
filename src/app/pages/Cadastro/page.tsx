@@ -1,6 +1,7 @@
 "use client"
-import { useState } from 'react'
 import './style.css'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { api } from '@/src/services/api'
@@ -16,6 +17,8 @@ import iconDone from '../../../img/Done.png'
 // import aaaa from '../../../../public/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.png'
 
 export default function Cadastro() {
+  const router = useRouter()
+
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -42,6 +45,10 @@ export default function Cadastro() {
   const [lembrar, setLembrar] = useState(true)
   const [loadingButton, setLoadingButton] = useState(false)
   const [openIndex, setOpenIndex] = useState(null)
+
+  useEffect(() => {
+    document.title = 'Junte-se a Nós | Inclusive Journey'
+  }, [])
 
   // const avataresCadeirantes = [
   //   { id: 1, src: aaaa }
@@ -197,14 +204,12 @@ export default function Cadastro() {
         userDescription: bio,
         avatar: ""
       }) 
-      
-      console.log(response.data.status)
 
       if (response.status === 200) {
         localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.userCode))
         localStorage.setItem('p-inclusive-journey', JSON.stringify(password))
         toast.success("Cadastro realizado com sucesso!")
-        window.location.href = '../pages/Home'
+        router.push('../pages/Home')
       }
 
     } catch (error) {

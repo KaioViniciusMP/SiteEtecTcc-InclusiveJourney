@@ -1,5 +1,7 @@
 'use client'
 import './style.css'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import CarrosselPaginaInicial from '@/src/components/CarrosselPaginaInicial'
 import CarrosselComentariosPrincipal from '@/src/components/CarrosselComentariosPrincipal'
@@ -10,15 +12,31 @@ import instagram from '../../../img/instagram.png'
 import siganos from '../../../img/sina-nos.png'
 import email from '../../../img/email.png'
 import location from '../../../img/maps-and-flags.png'
+// import top from '../../../img/back-to-top.png'
 
 export default function PaginaInicial() {
+  const router = useRouter()
+
+  useEffect(() => {
+    document.title = 'Inclusive Journey | Sua Plataforma de Acessibilidade e Inclusão'
+  }, [])
+
+  // const scrollToTop = () => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: 'smooth',
+  //   })
+  // }
+
   return (
     <main className='main-pagina-principal' style={{ overflowY: 'auto', height: '100vh', overflowX: 'hidden' }}>
+      {/* <Image className='back-to-top' src={top} alt="Icon" onClick={scrollToTop}/> */}
+      
       <header>
         <Image className='logo' src={logo} alt="Imagem" />
         <div className='buttons'>
-          <button onClick={() => {window.location.href = '../pages/Login'}}>Login</button>
-          <button onClick={() => {window.location.href = '../pages/Cadastro'}}>Cadastrar</button>
+          <button onClick={() => {router.push('/pages/Login')}}>Login</button>
+          <button onClick={() => {router.push('../pages/Cadastro')}}>Cadastrar</button>
         </div>
       </header>
       <section className='section-1'>
@@ -29,7 +47,7 @@ export default function PaginaInicial() {
         <div>
           <h2>Conheça o Inclusive Journey!</h2>
           <p>Explore o Inclusive Journey e descubra como estamos empenhados em criar um mundo mais acessível e inclusivo para todos. Nossa plataforma é dedicada para facilitar a vida das pessoas com deficiência, ajudando-as a encontrar lugares acessíveis e promovendo a inclusão em todos os aspectos da sociedade. Explore o Inclusive Journey e descubra um universo de acessibilidade e inclusão.</p>
-          <button onClick={() => {window.location.href = '../pages/Cadastro'}}>Cadastrar</button>
+          <button onClick={() => {router.push('../pages/Cadastro')}}>Cadastrar</button>
         </div>
       </section>
       <section className='section-3'>
@@ -66,8 +84,8 @@ export default function PaginaInicial() {
           </div>
         </section>
         <div className='div-footer'>
-          <p onClick={() => {window.location.href = '../pages/PoliticaDePrivacidade'}}>Política de privacidade</p>
-          <p onClick={() => {window.location.href = '../pages/TermosDeUso'}}>Termos de uso</p>
+          <p onClick={() => {router.push('../pages/PoliticaDePrivacidade')}}>Política de privacidade</p>
+          <p onClick={() => {router.push('../pages/TermosDeUso')}}>Termos de uso</p>
           <p>2024</p>
         </div>
       </footer>

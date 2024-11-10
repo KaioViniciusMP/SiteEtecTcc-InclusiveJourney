@@ -1,6 +1,8 @@
 'use client'
 import './style.css'
 import React, { useState, useEffect } from "react"
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBoxLugar from "@/src/components/CardBoxLugar"
@@ -9,7 +11,7 @@ import { api } from '@/src/services/api'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
 
-import logo3 from '../../../img/zona-oeste.jpg'
+import load from '../../../img/loading.png'
 
 interface Local {
   codigo: number
@@ -32,10 +34,13 @@ interface Local {
 }
 
 export default function Lugar({ searchParams }: { searchParams: { [key: string]: string } }) {
+  const router = useRouter()
+
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [local, setLocal] = useState<Local[]>([])
   const [noData, setNoData] = useState(false)
   const codigo = searchParams.codigo
+  const [loading, setLoading] = useState(true)
 
   const lugaresPrincipais = [
     { codigo: 1, nome: 'Parques' },
@@ -62,12 +67,19 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
         } catch (error) {
           toast.error('Erro ao buscar lugar')
           setNoData(true)
+          
+        } finally{
+          setLoading(false)
         }
       }
 
       fetchComentarios()
     }
   }, [codigo])
+
+  useEffect(() => {
+    document.title = 'Lugares Por Categoria | Inclusive Journey'
+  }, [])
 
   const handleCloseModal = () => {
     setIsOpenModal(false)
@@ -82,7 +94,7 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
         <p>
           {lugaresPrincipais.map((item, index) => (
             <React.Fragment key={item.codigo}>
-              <span style={{ color: item.codigo === Number(codigo) ? 'red' : '#ffffff' }} onClick={() => window.location.href = `../pages/Lugar?codigo=${item.codigo}`}>
+              <span style={{ color: item.codigo === Number(codigo) ? 'red' : '#ffffff' }} onClick={() => { router.push(`../pages/Lugar?codigo=${item.codigo}`) }}>
                 {item.nome}
               </span>
               {index < lugaresPrincipais.length - 1 && <span> / </span>}
@@ -91,30 +103,39 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
         </p>
       </section>
 
-      <section className='section1'>
-        <div className='cards'>
-          {noData ? (
-            <p>Não há lugares disponíveis.</p>
-          ) : (
-            local.map((l) => (
-              <CardBoxLugar
-                key={l.codigo}
-                imageSrc={l.imageUrl}
-                title={l.nameLocal}
-                subtitle={l.localAssessment}
-                endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
-                onButtonClick={() => { }}
-              />
-            ))
-          )}
+      {loading ? (
+        <div className='container-loading'>
+          <Image className='loading' src={load} alt='Imagem' />
         </div>
-      </section>
+      ) : (
+        <section className='section1'>
+          <div className='cards'>
+            {noData ? (
+              <p>Não há lugares disponíveis.</p>
+            ) : (
+              local.map((l) => (
+                <CardBoxLugar
+                  key={l.codigo}
+                  imageSrc={l.imageUrl}
+                  title={l.nameLocal}
+                  subtitle={l.localAssessment}
+                  endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
+                  onButtonClick={() => { }}
+                  isfavorite={l.isFavorite}
+                />
+              ))
+            )}
+          </div>
+        </section>
+      )}
 
       <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>Adicionar lugar</button>
-      
-      <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} id={1} />
+
+      <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} />
 
       <Footer />
+
+      <ToastContainer autoClose={3000} />
     </ div>
   )
 }
