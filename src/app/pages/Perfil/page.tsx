@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
 import load from '../../../img/loading.png'
+import support from '../../../img/customer-service.png'
 
 export default function Perfil() {
   const router = useRouter()
@@ -140,7 +141,8 @@ export default function Perfil() {
       <section className='container'>
         <div className='left'>
           <Image className='avatar' src={user} alt='Imagem' />
-          <button type='button' onClick={() => { router.push('../') }}>Sair <Image className='logout' src={logout} alt='Imagem' /></button>
+          <button className='btn-suporte' type='button' onClick={() => { router.push('../pages/Suporte') }}><Image className='support' src={support} alt='Imagem' /> Ajuda e suporte</button>
+          <button className='btn-logout' type='button' onClick={() => { router.push('../') }}>Sair <Image className='logout' src={logout} alt='Imagem' /></button>
         </div>
 
         <div className='content'>
