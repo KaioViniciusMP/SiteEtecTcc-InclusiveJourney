@@ -43,10 +43,9 @@ export default function Login() {
       if (response.status === 200) {
         localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.userCode))
         localStorage.setItem('p-inclusive-journey', JSON.stringify(senha))
+        router.push('../pages/Home')
         setUsuario('')
         setSenha('')
-  
-        router.push('../pages/Home')
       }
 
     } catch (error) {
@@ -132,8 +131,6 @@ export default function Login() {
 
             <button type="submit" className="button-submit" disabled={loadingButton}>{loadingButton ? "Carregando..." : "Continuar"}</button>
             <a href='../pages/Cadastro'>Ainda não possui uma conta? Cadastre-se</a>
-
-            <p style={{ marginTop: '5vh', textAlign: 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
           </form>
         ) : (
           <form className="form" onSubmit={handleEsqueciSenha}>

@@ -7,6 +7,7 @@ import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBoxLugar from "@/src/components/CardBoxLugar"
 import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
+import ModalDetalhesLugar from '@/src/components/ModalDetalhesLugar/page'
 import { api } from '@/src/services/api'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
@@ -38,6 +39,8 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
   const router = useRouter()
 
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModalDetalhes, setIsOpenModalDetalhes] = useState(false)
+  const [selectedLocal, setSelectedLocal] = useState<Local | null>(null)
   const [local, setLocal] = useState<Local[]>([])
   const [noData, setNoData] = useState(false)
   const codigo = searchParams.codigo
@@ -85,6 +88,10 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
     setIsOpenModal(false)
   }
 
+  const handleCloseModalDetalhes = () => {
+    setIsOpenModalDetalhes(false)
+  }
+
   return (
     <div className="lugar" style={{ overflowY: 'auto', height: '100vh' }}>
       <NavBar />
@@ -119,8 +126,8 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
                   imageSrc={l.imageUrl}
                   title={l.nameLocal}
                   subtitle={l.localAssessment}
-                  endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
-                  onButtonClick={() => { }}
+                  endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}`}
+                  onButtonClick={() => { setSelectedLocal(l); setIsOpenModalDetalhes(true) }}
                   isfavorite={l.isFavorite}
                 />
               ))
@@ -130,6 +137,22 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
       )}
 
       <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>Adicionar lugar</button>
+
+      <ModalDetalhesLugar isOpen={isOpenModalDetalhes} closeModal={handleCloseModalDetalhes}
+        nameLocal={selectedLocal?.nameLocal}
+        imageUrl={selectedLocal?.imageUrl}
+        isFavorite={selectedLocal?.isFavorite}
+        description={selectedLocal?.description}
+        street={selectedLocal?.street}
+        numberHome={selectedLocal?.numberHome}
+        neighborhood={selectedLocal?.neighborhood}
+        city={selectedLocal?.city}
+        state={selectedLocal?.state}
+        cep={selectedLocal?.cep}
+        localAssessment={selectedLocal?.localAssessment}
+        typeAcessibility={selectedLocal?.typeAcessibility}
+        openingHours={selectedLocal?.openingHours}
+      />
 
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal}/>
 

@@ -1,6 +1,6 @@
 .modal-adicionar-lugar {
   color: var(--white);
-  background-color: #ffffff;
+  background-color: #fefdff;
   border-radius: 10px;
   padding: 3vh 4vw;
   height: 78vh;
@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 10vh;
+  border: 1px solid rgb(204, 204, 204);
 
   .close{
     width: 18px;
@@ -29,7 +30,8 @@
   .form {
     display: flex;
     justify-content: space-between;
-    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     .mapa {
       width: 35%;
@@ -37,6 +39,7 @@
 
     .content {
       width: 63%;
+      overflow-x: hidden;
 
       .inputs {
         display: flex;
@@ -84,6 +87,7 @@
         flex-wrap: wrap;
         gap: 1vw;
         margin-bottom: 1vh;
+        width: 95%;
 
         label {
           display: flex;

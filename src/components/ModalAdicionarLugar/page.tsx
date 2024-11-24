@@ -57,7 +57,8 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
       right: 'auto',
       padding: '0',
       backgroundColor: 'transparent',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      border: 'none'
     }
   }
 
@@ -147,6 +148,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
       !horarioFuncionamento ||
       !descricao ||
       !rating ||
+      !selectedAccessibility ||
       !selectedZone ||
       !selectedPlace
     ) {
@@ -206,20 +208,20 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
           </div>
           <div className="content">
             <div className="inputs">
-              <input style={{ width: '60%' }} type="text" placeholder="Nome do local" value={nomeLocal} onChange={(e) => setNomeLocal(e.target.value)} />
-              <input style={{ width: '35%' }} type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
-              <input style={{ width: '50%' }} type="text" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
-              <input style={{ width: '45%' }} type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
-              <input style={{ width: '50%' }} type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
-              <input style={{ width: '45%' }} type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
-              <input style={{ width: '25%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
-              <input style={{ width: '25%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
-              <input style={{ width: '43%' }} type="text" placeholder="Horario de funcionamento" value={horarioFuncionamento} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
-              <input style={{ width: '97%' }} type="text" placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+              <input style={{ width: '58%' }} type="text" placeholder="Nome do local" value={nomeLocal} onChange={(e) => setNomeLocal(e.target.value)} />
+              <input style={{ width: '33%' }} type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
+              <input style={{ width: '48%' }} type="text" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
+              <input style={{ width: '43%' }} type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+              <input style={{ width: '48%' }} type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
+              <input style={{ width: '43%' }} type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
+              <input style={{ width: '20%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
+              <input style={{ width: '20%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
+              <input style={{ width: '47%' }} type="text" placeholder="Horario de funcionamento" value={horarioFuncionamento} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
+              <input style={{ width: '95%' }} type="text" placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
             </div>
             <div className="selects">
-              <div className="select-group">
-                <select value={selectedZone ?? ''} onChange={(e) => setSelectedZone(Number(e.target.value))}>
+              <div className="select-group" style={{ width: '30%' }}>
+                <select style={{ width: '100%' }} value={selectedZone ?? ''} onChange={(e) => setSelectedZone(Number(e.target.value))}>
                   <option value="" disabled>Escolha uma zona</option>
                   {zonas.map((zona) => (
                     <option key={zona.codigo} value={zona.codigo}>
@@ -229,11 +231,8 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
                 </select>
               </div>
 
-              <div className="select-group">
-                <select
-                  value={selectedPlace ?? ''}
-                  onChange={(e) => setSelectedPlace(Number(e.target.value))}
-                >
+              <div className="select-group" style={{ width: '35%' }}>
+                <select style={{ width: '100%' }} value={selectedPlace ?? ''} onChange={(e) => setSelectedPlace(Number(e.target.value))}>
                   <option value="" disabled>Escolha um lugar principal</option>
                   {lugaresPrincipais.map((lugar) => (
                     <option key={lugar.codigo} value={lugar.codigo}>
@@ -277,11 +276,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
             )}
             <div className="buttons">
               <input type="file" accept="image/*" onChange={handleImagePick} style={{ display: 'none' }} id="fileInput" />
-              <button
-                type="button"
-                className="button-foto"
-                onClick={() => document.getElementById('fileInput')?.click()}
-              >
+              <button type="button" className="button-foto" onClick={() => document.getElementById('fileInput')?.click()}>
                 <Image className='camera' src={camera} alt='Imagem' /> Adicionar foto
               </button>
               <button type="button" className="button-submit" disabled={loadingButton} onClick={handleAdd}>{loadingButton ? "Carregando..." : "Adicionar lugar"}</button>
@@ -292,7 +287,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
 
       </div>
 
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={3000} style={{ marginTop: '10vh'}}/>
     </Modal>
   )
 }

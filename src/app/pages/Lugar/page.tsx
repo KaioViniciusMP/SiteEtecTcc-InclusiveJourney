@@ -7,6 +7,7 @@ import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBoxLugar from "@/src/components/CardBoxLugar"
 import ModalAdicionarLugar from '@/src/components/ModalAdicionarLugar/page'
+import ModalDetalhesLugar from '@/src/components/ModalDetalhesLugar/page'
 import { api } from '@/src/services/api'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
@@ -37,6 +38,8 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
   const router = useRouter()
 
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModalDetalhes, setIsOpenModalDetalhes] = useState(false)
+  const [selectedLocal, setSelectedLocal] = useState<Local | null>(null)
   const [local, setLocal] = useState<Local[]>([])
   const [noData, setNoData] = useState(false)
   const codigo = searchParams.codigo
@@ -85,6 +88,10 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
     setIsOpenModal(false)
   }
 
+  const handleCloseModalDetalhes = () => {
+    setIsOpenModalDetalhes(false)
+  }
+
   return (
     <div className="lugar" style={{ overflowY: 'auto', height: '100vh' }}>
       <NavBar />
@@ -130,6 +137,22 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
       )}
 
       <button type='button' className='button-add' onClick={() => { setIsOpenModal(true) }}>Adicionar lugar</button>
+
+      <ModalDetalhesLugar isOpen={isOpenModalDetalhes} closeModal={handleCloseModalDetalhes}
+        nameLocal={selectedLocal?.nameLocal}
+        imageUrl={selectedLocal?.imageUrl}
+        isFavorite={selectedLocal?.isFavorite}
+        description={selectedLocal?.description}
+        street={selectedLocal?.street}
+        numberHome={selectedLocal?.numberHome}
+        neighborhood={selectedLocal?.neighborhood}
+        city={selectedLocal?.city}
+        state={selectedLocal?.state}
+        cep={selectedLocal?.cep}
+        localAssessment={selectedLocal?.localAssessment}
+        typeAcessibility={selectedLocal?.typeAcessibility}
+        openingHours={selectedLocal?.openingHours}
+      />
 
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} />
 

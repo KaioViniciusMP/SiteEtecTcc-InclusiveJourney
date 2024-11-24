@@ -16,16 +16,25 @@ interface CardBoxProps {
 }
 
 export default function CardBoxLugar({ title, subtitle, endereco, imageSrc, onButtonClick, isfavorite }: CardBoxProps) {
-  async function handleFavorite(){
-    
+  async function handleFavorite() {
+
   }
-  
+
   return (
     <div className="cardBoxLugar">
       <Image className='cardBoxImg' src={imageSrc} alt='Imagem' width={500} height={300} />
-      <Image className='heart' src={isfavorite ? redHeart : whiteHeart} alt='Imagem' onClick={handleFavorite}/>
+      <Image className='heart' src={isfavorite ? redHeart : whiteHeart} alt='Imagem' onClick={handleFavorite} />
       <h3>{title}</h3>
-      <h6>{subtitle} <Image className='star' src={star} alt='Imagem' /></h6>
+      <h6 className="stars">
+        {subtitle}
+        {subtitle && !isNaN(parseInt(subtitle, 10)) ? (
+          [...Array(parseInt(subtitle, 10))].map((_, index) => (
+            <Image key={index} className="star" src={star} alt="Imagem" />
+          ))
+        ) : (
+          <h6>Nenhuma avaliação</h6>
+        )}
+      </h6>
       <h5>{endereco}</h5>
       <span onClick={onButtonClick}>Ver mais informações</span>
     </div>
