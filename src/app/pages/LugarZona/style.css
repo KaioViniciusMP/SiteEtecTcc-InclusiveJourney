@@ -62,6 +62,10 @@
       justify-content: center;
       flex-wrap: wrap;
       width: 90%;
+
+      p{
+        margin: 8vh 0;
+      }
     }
   }
 

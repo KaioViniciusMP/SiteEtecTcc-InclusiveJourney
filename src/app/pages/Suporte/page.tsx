@@ -60,7 +60,7 @@ export default function Suporte() {
   }
 
   return (
-    <div className='perfil' style={{ overflowY: 'auto', height: '100vh' }}>
+    <div className='ajuda-suporte' style={{ overflowY: 'auto', height: '100vh' }}>
       <NavBar />
 
       <section className='container'>

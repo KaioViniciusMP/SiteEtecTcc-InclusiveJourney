@@ -37,6 +37,21 @@
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 1vh;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ig{
+    width: 18px;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.18);
+    }
 }
 
 .founder-description {

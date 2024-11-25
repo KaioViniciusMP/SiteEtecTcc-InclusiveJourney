@@ -55,7 +55,7 @@ export default function PoliticaDePrivacidade() {
             <h3>Entre em contato</h3>
             <p><Image className='icon' src={location} alt="Imagem" /> Barueri - SP</p>
             <p><Image className='icon' src={email} alt="Imagem" /> Inclusivejourney@gmail.com</p>
-            <p><Image className='icon' src={instagram} alt="Imagem" /><a href='https://www.instagram.com/inclusive.journey/'>Siga-nos no Instagram</a></p>
+            <p><Image className='icon' src={instagram} alt="Imagem" /><a href='https://www.instagram.com/inclusive.journey/' target="_blank" rel="noopener noreferrer">Siga-nos no Instagram</a></p>
           </div>
           <div className='div-2'>
             <Image className='logo' src={logo} alt="Imagem" />

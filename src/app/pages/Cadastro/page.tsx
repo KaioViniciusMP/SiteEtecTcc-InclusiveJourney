@@ -36,6 +36,7 @@ export default function Cadastro() {
   const [bairro, setBairro] = useState('')
   const [uf, setUf] = useState('')
   const [bio, setBio] = useState('')
+  const [relacaoTutelado, setRelacaoTutelado] = useState('')
 
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false)
   const [isSecondStepComplete, setIsSecondStepComplete] = useState(false)
@@ -99,6 +100,12 @@ export default function Cadastro() {
       return
     }
 
+    // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // if (!emailRegex.test(email)) {
+    //   toast.warning('Por favor, insira um e-mail válido.')
+    //   return
+    // }
+
     if (password !== passwordConfirmation) {
       toast.warning("As senhas não coincidem. Verifique e tente novamente.")
       return
@@ -109,6 +116,12 @@ export default function Cadastro() {
 
   const handleSecondStepSubmit = (item: string) => {
     setPessoaTipo(item)
+
+    if (item === 'Tutor') {
+      setTipoDeficiencia('')
+    } else {
+      setRelacaoTutelado('')
+    }
 
     setIsSecondStepComplete(true)
   }
@@ -123,7 +136,8 @@ export default function Cadastro() {
       numero !== '' &&
       bairro !== '' &&
       cidade !== '' &&
-      uf !== ''
+      uf !== '' &&
+      (pessoaTipo === 'Tutor' ? relacaoTutelado !== '' : pessoaTipo !== '')
 
     const calculateAge = (birthDate: any) => {
       const birthDateObj = new Date(birthDate)
@@ -188,7 +202,7 @@ export default function Cadastro() {
         name: nomeCompleto,
         email: email,
         password: password,
-        role: pessoaTipo, 
+        role: pessoaTipo,
         fullName: nomeCompleto,
         birthDate: dataNascimento,
         gender: genero,
@@ -203,7 +217,7 @@ export default function Cadastro() {
         username: userName,
         userDescription: bio,
         avatar: ""
-      }) 
+      })
 
       if (response.status === 200) {
         localStorage.setItem('u-inclusive-journey', JSON.stringify(response.data.userCode))
@@ -293,10 +307,10 @@ export default function Cadastro() {
               <div className="inputForm" style={{ width: '100%' }}>
                 <input type="text" className="input" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '40%' }}>
+              <div className="inputForm" style={{ width: '43%' }}>
                 <input type="date" className="input" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '50%' }}>
+              <div className="inputForm" style={{ width: '53%' }}>
                 <select className="input" value={genero} onChange={(e) => setGenero(e.target.value)}>
                   <option value="" disabled>Selecione um gênero</option>
                   {generos.map((genero) => (
@@ -306,28 +320,32 @@ export default function Cadastro() {
                   ))}
                 </select>
               </div>
-              <div className="inputForm" style={{ width: '48%' }}>
-                <input type="text" className="input" placeholder="Deficiência (se houver)" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />
+              <div className="inputForm" style={{ width: '100%' }}>
+                {pessoaTipo === 'Tutor' ? (
+                  <input type="text" className="input" placeholder="Relação com o tutelado (ex: pai, mãe)" value={relacaoTutelado} onChange={(e) => setRelacaoTutelado(e.target.value)}/>
+                ) : (
+                  <input type="text" className="input" placeholder="Deficiência (se houver)" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)}/>
+                )}
               </div>
-              <div className="inputForm" style={{ width: '42%' }}>
+              <div className="inputForm" style={{ width: '43%' }}>
                 <input type="text" className="input" placeholder="CEP" value={cep} onChange={handleCepChange} />
               </div>
-              <div className="inputForm" style={{ width: '60%' }}>
+              <div className="inputForm" style={{ width: '53%' }}>
                 <input type="text" className="input" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '30%' }}>
+              <div className="inputForm" style={{ width: '35%' }}>
                 <input type="number" className="input" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '45%' }}>
+              <div className="inputForm" style={{ width: '61%' }}>
                 <input type="text" className="input" placeholder="Complemento (se houver)" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '45%' }}>
+              <div className="inputForm" style={{ width: '46%' }}>
                 <input type="text" className="input" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
               </div>
               <div className="inputForm" style={{ width: '50%' }}>
                 <input type="text" className="input" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '40%' }}>
+              <div className="inputForm" style={{ width: '30%' }}>
                 <input type="text" className="input" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
               </div>
             </section>
@@ -365,22 +383,22 @@ export default function Cadastro() {
                 </div>
               ))} */}
 
-              <div className="inputForm" style={{marginBottom: '10px'}}>
+              <div className="inputForm" style={{ marginBottom: '10px' }}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Cadeirantes</option>
                 </select>
               </div>
-              <div className="inputForm" style={{marginBottom: '10px'}}>
+              <div className="inputForm" style={{ marginBottom: '10px' }}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pcd auditivo</option>
                 </select>
               </div>
-              <div className="inputForm" style={{marginBottom: '10px'}}>
+              <div className="inputForm" style={{ marginBottom: '10px' }}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pcd Visual</option>
                 </select>
               </div>
-              <div className="inputForm" style={{marginBottom: '10px'}}>
+              <div className="inputForm" style={{ marginBottom: '10px' }}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pessoa não deficiente</option>
                 </select>

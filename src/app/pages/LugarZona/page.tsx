@@ -118,7 +118,7 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
         <section className='section1'>
           <div className='cards'>
             {noData ? (
-              <p>Não há lugares disponíveis para esta zona.</p>
+              <p>Não há lugares disponíveis.</p>
             ) : (
               local.map((l) => (
                 <CardBoxLugar

@@ -5,7 +5,7 @@
     background-color: #E7E6ED;
     margin-top: 10vh;
     padding: 5vh 8vw 5vh 10vw;
-    height: 90vh;
+    height: 80vh;
     display: flex;
 
     .left {
@@ -34,7 +34,7 @@
         padding: 1vh 1.5vw;
         background-color: transparent;
         transition: 0.3s ease-in-out;
-        margin-top: -22vh;
+        margin-top: -30vh;
         margin-left: -4vw;
         display: flex;
         align-items: center;
@@ -160,6 +160,49 @@
 
         &:hover {
           filter: brightness(1.6);
+        }
+      }
+    }
+  }
+
+  .favoritos{
+    background-color: #E7E6ED;
+    display: flex;
+    justify-content: center;
+
+    .container-card{
+      width: 81vw;
+      height: min-content;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10vh;
+
+      h1{
+        margin-bottom: 3vh;
+        font-size: 1.4rem;
+        margin-left: 1vw;
+      }
+
+      .container-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        .loading {
+          width: 35px;
+          height: auto;
+          object-fit: cover;
+          animation: spin 0.8s linear infinite;
+        }
+      }
+
+      .cards{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        p{
+          margin-left: 1vw;
         }
       }
     }

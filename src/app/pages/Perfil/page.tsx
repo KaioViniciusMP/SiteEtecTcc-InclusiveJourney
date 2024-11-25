@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Footer from '@/src/components/Footer'
 import { NavBar } from '@/src/components/NavBar'
+import CardBoxLugar from '@/src/components/CardBoxLugar'
+import ModalDetalhesLugar from '@/src/components/ModalDetalhesLugar/page'
 import { api } from '@/src/services/api'
 
 import logout from '../../../img/logout.png'
@@ -17,8 +19,32 @@ import 'react-toastify/dist/ReactToastify.css'
 import load from '../../../img/loading.png'
 import support from '../../../img/customer-service.png'
 
+interface Local {
+  codigo: number
+  nameLocal: string
+  cep: string
+  street: string
+  complement: string
+  neighborhood: string
+  city: string
+  numberHome: string
+  state: string
+  openingHours: string
+  localAssessment: string
+  description: string
+  typeAcessibility: string
+  zoneCode: number
+  zoneCategorie: number
+  isFavorite: boolean
+  imageUrl: string
+}
+
 export default function Perfil() {
   const router = useRouter()
+  const [lugaresFavoritados, setLugaresFavoritados] = useState<Local[]>([])
+  const [noData, setNoData] = useState(false)
+  const [selectedLocal, setSelectedLocal] = useState<Local | null>(null)
+  const [isOpenModalDetalhes, setIsOpenModalDetalhes] = useState(false)
 
   const [userName, setUserName] = useState('')
   const [bio, setBio] = useState('')
@@ -51,11 +77,11 @@ export default function Perfil() {
       return `${day}/${month}/${year}`
     }
 
-    async function fetchUserData(){
+    async function fetchUserData() {
       if (userJourney && !isNaN(Number(userJourney))) {
         try {
           const response = await api.get(`person/${userJourney}`)
-  
+
           const data = response.data
           setUserName(data.username || '')
           setEmail(data.email || '')
@@ -72,10 +98,28 @@ export default function Perfil() {
           setUf(data.state || '')
           setBio(data.userDescription || '')
           setPessoaTipo(data.role || '')
-  
+
         } catch (error) {
           toast.error('Erro ao carregar dados do perfil.')
-  
+
+        } finally {
+          setLoading(false)
+        }
+      }
+    }
+
+    async function fetchFavoritados() {
+      if (userJourney && !isNaN(Number(userJourney))) {
+        try {
+          const responseFavoritados = await api.post('place/GetFavoritePlaceOfUser', {
+            personCode: userJourney
+          })
+
+          setLugaresFavoritados(responseFavoritados.data)
+
+        } catch (error) {
+          setNoData(true)
+
         } finally {
           setLoading(false)
         }
@@ -83,6 +127,7 @@ export default function Perfil() {
     }
 
     fetchUserData()
+    fetchFavoritados()
   }, [])
 
   useEffect(() => {
@@ -132,6 +177,10 @@ export default function Perfil() {
     } finally {
       setLoadingButton(false)
     }
+  }
+
+  const handleCloseModalDetalhes = () => {
+    setIsOpenModalDetalhes(false)
   }
 
   return (
@@ -193,6 +242,52 @@ export default function Perfil() {
           )}
         </div>
       </section>
+
+      <section className='favoritos'>
+        <div className='container-card'>
+          <h1>Lugares favoritados</h1>
+
+          {loading ? (
+            <div className='container-loading'>
+              <Image className='loading' src={load} alt='Imagem' />
+            </div>
+          ) : (
+            <div className='cards'>
+              {noData ? (
+                <p>Não há lugares favoritados.</p>
+              ) : (
+                lugaresFavoritados.map((l) => (
+                  <CardBoxLugar
+                    key={l.codigo}
+                    imageSrc={l.imageUrl}
+                    title={l.nameLocal}
+                    subtitle={l.localAssessment}
+                    endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}`}
+                    onButtonClick={() => { setSelectedLocal(l); setIsOpenModalDetalhes(true) }}
+                    isfavorite={l.isFavorite}
+                  />
+                ))
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <ModalDetalhesLugar isOpen={isOpenModalDetalhes} closeModal={handleCloseModalDetalhes}
+        nameLocal={selectedLocal?.nameLocal}
+        imageUrl={selectedLocal?.imageUrl}
+        isFavorite={selectedLocal?.isFavorite}
+        description={selectedLocal?.description}
+        street={selectedLocal?.street}
+        numberHome={selectedLocal?.numberHome}
+        neighborhood={selectedLocal?.neighborhood}
+        city={selectedLocal?.city}
+        state={selectedLocal?.state}
+        cep={selectedLocal?.cep}
+        localAssessment={selectedLocal?.localAssessment}
+        typeAcessibility={selectedLocal?.typeAcessibility}
+        openingHours={selectedLocal?.openingHours}
+      />
 
       <ToastContainer autoClose={3000} />
 

@@ -31,7 +31,7 @@ export function NavBar() {
 
   return (
     <div className='navbar'>
-      <Image src={logo} className='navbar-logo' alt="Imagem" />
+      <Image src={logo} className='navbar-logo' alt="Imagem"/>
       <div>
         <Link href={'../pages/Home'} className={isActiveLink('Home')}>Home</Link>
         <Link href={'../pages/Sobre'} className={isActiveLink('Sobre')}>Sobre</Link>

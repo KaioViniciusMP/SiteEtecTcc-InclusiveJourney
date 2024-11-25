@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Footer from "@/src/components/Footer"
 import { NavBar } from "@/src/components/NavBar"
 import CardBox from "@/src/components/CardBox"
+import { motion } from 'framer-motion'
 
 import parques from '../../../img/parques.svg'
 import escolas from '../../../img/escolas.svg'
@@ -48,8 +49,8 @@ export default function Lugares() {
       <NavBar />
 
       <section className='highlight'>
-        <h1>Lugares recomendados</h1>
-        <p>Nesta página você pode encontrar lugares mais acessíveis de São Paulo para a sua necessidade recomendados pelo nosso site!</p>
+        <motion.h1 initial={{ opacity: 0, y: -100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.9 }}>Lugares recomendados</motion.h1>
+        <motion.p initial={{ opacity: 0, y: -100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.8 }}>Nesta página você pode encontrar lugares mais acessíveis de São Paulo para a sua necessidade recomendados pelo nosso site!</motion.p>
       </section>
 
       <section className='section1'>
@@ -57,12 +58,13 @@ export default function Lugares() {
         <p>Explore os melhores lugares acessíveis separados por categorias</p>
 
         <div className='cards'>
-          {lugaresPrincipais.map((lugar) => (
+          {lugaresPrincipais.map((lugar, index) => (
             <CardBox
+              index={index}
               key={lugar.codigo}
               imageSrc={lugar.imagem}
               title={lugar.nome}
-              onButtonClick={() => {router.push(`../pages/Lugar?codigo=${lugar.codigo}`)}}
+              onButtonClick={() => { router.push(`../pages/Lugar?codigo=${lugar.codigo}`) }}
             />
           ))}
         </div>
@@ -73,12 +75,13 @@ export default function Lugares() {
         <p>Explore os melhores lugares acessíveis em cada região de São Paulo</p>
 
         <div className='cards'>
-          {lugaresPorRegiao.map((lugar) => (
+          {lugaresPorRegiao.map((lugar, index) => (
             <CardBox
+              index={index}
               key={lugar.codigo}
               imageSrc={lugar.imagem}
               title={lugar.nome}
-              onButtonClick={() => {router.push(`../pages/LugarZona?codigo=${lugar.codigo}`)}}
+              onButtonClick={() => { router.push(`../pages/LugarZona?codigo=${lugar.codigo}`) }}
             />
           ))}
         </div>
