@@ -16,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" style={{height: '100%', width: '100%', overflow: 'hidden'}}>
+      <head>
+        <script src="https://cdn.userway.org/widget.js" data-account="3pxn3QVuJj"></script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
