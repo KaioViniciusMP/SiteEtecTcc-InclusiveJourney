@@ -92,7 +92,7 @@ export default function Suporte() {
 
               {assuntoSelected === "dificuldades_login" && (
                 <div className="assunto-text">
-                  <p>Para problemas ao criar uma conta ou fazer login, primeiro verifique se você está inserindo suas informações corretamente. Caso tenha esquecido sua senha, utilize a opção 'Esqueci minha senha' para redefini-la. Se o problema continuar, entre em contato conosco com detalhes do erro ou dificuldade encontrada. Vamos ajudá-lo a acessar sua conta o mais rápido possível.</p>
+                  <p>Para problemas ao criar uma conta ou fazer login, primeiro verifique se você está inserindo suas informações corretamente. Caso tenha esquecido sua senha, utilize a opção &apos;Esqueci minha senha&apos; para redefini-la. Se o problema continuar, entre em contato conosco com detalhes do erro ou dificuldade encontrada. Vamos ajudá-lo a acessar sua conta o mais rápido possível.</p>
                 </div>
               )}
 
@@ -131,7 +131,7 @@ export default function Suporte() {
               <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
               <input type="text" placeholder="Assunto" value={assunto} onChange={(e) => setAssunto(e.target.value)} />
               <textarea placeholder="Mensagem" value={mensagem} onChange={(e) => setMensagem(e.target.value)} />
-              <p>Ao clicar em "Enviar", você confirma que leu e aceita a nossa <span onClick={() => { router.push('../pages/PoliticaDePrivacidade') }}>política de privacidade</span>.</p>
+              <p>Ao clicar em &quot;Enviar&quot;, você confirma que leu e aceita a nossa <span onClick={() => { router.push('../pages/PoliticaDePrivacidade') }}>política de privacidade</span>.</p>
               <button className='btn-enviar' type="button" onClick={handleSubmit} disabled={loadingButton}>{loadingButton ? 'Carregando...' : 'Enviar'}</button>
             </div>
           </div>
