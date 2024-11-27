@@ -97,7 +97,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
       reader.onloadend = () => {
         const base64String = reader.result as string
 
-        const cleanedBase64String = base64String.replace(/^data:image\/\w+base64,/, '')
+        const cleanedBase64String = base64String.replace(/^data:image\/\w+;base64,/, '');
 
         setImageBase64(cleanedBase64String)
       }
@@ -164,6 +164,25 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
     }
 
     try {
+      console.log("Dados enviados para a API:", {
+        NameLocal: nomeLocal,
+        Cep: cep,
+        Street: rua,
+        Complement: complemento,
+        Neighborhood: bairro,
+        City: cidade,
+        NumberHome: numero,
+        State: uf,
+        OpeningHours: horarioFuncionamento,
+        LocalAssessment: String(rating),
+        Description: descricao,
+        TypeAcessibility: selectedAccessibility,
+        ZoneCode: selectedZone,
+        ZoneCategorie: selectedPlace,
+        ImageName: fotoNome,
+        ImageStream: imageBase64,
+      }); 
+      
       const response = await api.post('place/registerPlace', {
         NameLocal: nomeLocal,
         Cep: cep,
@@ -181,7 +200,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
         ZoneCategorie: selectedPlace,
         ImageName: fotoNome,
         ImageStream: imageBase64
-      })
+      })     
 
       if (response.status === 200) {
         toast.success("Lugar adicionado com sucesso!")
