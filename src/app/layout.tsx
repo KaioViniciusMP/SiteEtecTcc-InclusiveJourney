@@ -1,14 +1,18 @@
+"use client"
+
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Script from 'next/script';
+import VLibras from "vlibras-nextjs";
+
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "Inclusive Journey",
-  description: "Inclusive Journey",
-}
+// export const metadata: Metadata = {
+//   title: "Inclusive Journey",
+//   description: "Inclusive Journey",
+// }
 
 export default function RootLayout({
   children,
@@ -24,7 +28,9 @@ export default function RootLayout({
           strategy="afterInteractive" // Carrega o script após a interação inicial do usuário
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <VLibras forceOnload/>
+        {children}</body>
     </html>
   )
 }
