@@ -22,7 +22,7 @@ export default function CardBoxLugar({ title, subtitle, endereco, imageSrc, onBu
 
   return (
     <div className="cardBoxLugar">
-      <Image className='cardBoxImg' src={imageSrc} alt='Imagem' width={500} height={300} />
+      <img className='cardBoxImg' src={imageSrc} alt='Foto do lugar' width={500} height={300}/>
       <Image className='heart' src={isfavorite ? redHeart : whiteHeart} alt='Imagem' onClick={handleFavorite} />
       <h3>{title}</h3>
       <h6 className="stars">
