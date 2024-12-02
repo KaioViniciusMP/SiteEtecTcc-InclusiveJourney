@@ -1,6 +1,6 @@
 .modal-adicionar-lugar {
   color: var(--white);
-  background-color: #fefdff;
+  background-color: #E7E6ED;
   border-radius: 10px;
   padding: 3vh 4vw;
   height: 78vh;
@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 10vh;
-  border: 1px solid rgb(204, 204, 204);
+  border: 1px solid rgb(177, 177, 177);
 
   .close{
     width: 18px;
@@ -47,13 +47,19 @@
         margin-bottom: 4vh;
         gap: 2vh;
 
-        input {
+        input, textarea {
           border: 1.5px solid #ecedec;
           border-radius: 10px;
           height: 50px;
           padding-left: 10px;
           outline: none;
           font-size: 1rem;
+        }
+
+        textarea {
+          resize: none;
+          height: 20vh;
+          padding: 2vh 1%;
         }
       }
 

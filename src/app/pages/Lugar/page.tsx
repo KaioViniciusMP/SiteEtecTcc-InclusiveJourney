@@ -129,6 +129,7 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
                   endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}, ${l.cep}`}
                   onButtonClick={() => { setSelectedLocal(l); setIsOpenModalDetalhes(true) }}
                   isfavorite={l.isFavorite}
+                  codigo={l.codigo}
                 />
               ))
             )}

@@ -13,7 +13,6 @@ import instagram from '../../../img/instagram.png'
 import siganos from '../../../img/sina-nos.png'
 import email from '../../../img/email.png'
 import location from '../../../img/maps-and-flags.png'
-// import top from '../../../img/back-to-top.png'
 
 export default function PaginaInicial() {
   const router = useRouter()
@@ -22,17 +21,8 @@ export default function PaginaInicial() {
     document.title = 'Inclusive Journey | Sua Plataforma de Acessibilidade e Inclusão'
   }, [])
 
-  // const scrollToTop = () => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: 'smooth',
-  //   })
-  // }
-
   return (
     <main className='main-pagina-principal' style={{ overflowY: 'auto', height: '100vh', overflowX: 'hidden' }}>
-      {/* <Image className='back-to-top' src={top} alt="Icon" onClick={scrollToTop}/> */}
-
       <header>
         <Image className='logo' src={logo} alt="Imagem" />
         <div className='buttons'>

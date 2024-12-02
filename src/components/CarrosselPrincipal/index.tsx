@@ -21,7 +21,7 @@ export default function CarrosselPrincipal() {
     },
     {
       id: 2,
-      title: "Acessibilidade Para Todos",
+      title: "Um site colaborativo de acessibilidade",
       subtitle: "Veja como o Inclusive Journey está facilitando a vida das pessoas com deficiência. Descubra os melhores lugares acesspiveis e faça parte dessa transformação.",
       src: fundo2
     }

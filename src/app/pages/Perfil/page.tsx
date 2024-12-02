@@ -11,6 +11,7 @@ import { api } from '@/src/services/api'
 
 import logout from '../../../img/logout.png'
 import iconEdit from '../../../img/edit.png'
+import iconClose from '../../../img/close.png'
 import user from '../../../img/user.png'
 import { toast } from 'react-toastify'
 import { ToastContainer } from "react-toastify"
@@ -61,6 +62,8 @@ export default function Perfil() {
   const [numero, setNumero] = useState('')
   const [bairro, setBairro] = useState('')
   const [uf, setUf] = useState('')
+  const [relacaoTutelado, setRelacaoTutelado] = useState('')
+  const [avatar, setAvatar] = useState('')
 
   const [editable, setEditable] = useState(false)
   const [loadingButton, setLoadingButton] = useState(false)
@@ -69,13 +72,13 @@ export default function Perfil() {
   useEffect(() => {
     const userJourney = localStorage.getItem('u-inclusive-journey')
 
-    const formatDate = (dateString: any) => {
-      const date = new Date(dateString)
-      const day = String(date.getDate()).padStart(2, '0')
-      const month = String(date.getMonth() + 1).padStart(2, '0')
-      const year = date.getFullYear()
-      return `${day}/${month}/${year}`
-    }
+    // const formatDate = (dateString: any) => {
+    //   const date = new Date(dateString)
+    //   const day = String(date.getDate()).padStart(2, '0')
+    //   const month = String(date.getMonth() + 1).padStart(2, '0')
+    //   const year = date.getFullYear()
+    //   return `${day}/${month}/${year}`
+    // }
 
     async function fetchUserData() {
       if (userJourney && !isNaN(Number(userJourney))) {
@@ -86,7 +89,7 @@ export default function Perfil() {
           setUserName(data.username || '')
           setEmail(data.email || '')
           setNomeCompleto(data.fullName || '')
-          setDataNascimento(data.dateOfBirth ? formatDate(data.dateOfBirth) : '')
+          setDataNascimento(data.dateOfBirth || '')
           setGenero(data.gender || '')
           setTipoDeficiencia(data.disabilityType || '')
           setCep(data.postalCode || '')
@@ -98,6 +101,8 @@ export default function Perfil() {
           setUf(data.state || '')
           setBio(data.userDescription || '')
           setPessoaTipo(data.role || '')
+          setRelacaoTutelado(data.relacaoTutelado || '')
+          setAvatar(data.avatar || '')
 
         } catch (error) {
           toast.error('Erro ao carregar dados do perfil.')
@@ -115,7 +120,17 @@ export default function Perfil() {
             personCode: userJourney
           })
 
-          setLugaresFavoritados(responseFavoritados.data)
+          const lugaresFavoritados = responseFavoritados.data.filter(
+            (lugar: any) => lugar.isFavorite === true
+          )
+
+          if (lugaresFavoritados.length === 0) {
+            setNoData(true)
+          } else {
+            setLugaresFavoritados(lugaresFavoritados)
+          }
+
+          console.log('lugaresFavoritados:', lugaresFavoritados)
 
         } catch (error) {
           setNoData(true)
@@ -139,9 +154,6 @@ export default function Perfil() {
     const userJourney = localStorage.getItem('u-inclusive-journey')
     const pJourney = localStorage.getItem('p-inclusive-journey')
 
-    const [day, month, year] = dataNascimento.split('/')
-    const isoDate = `${year}-${month}-${day}T00:00:00`
-
     try {
       const response = await api.put(`person/updateperson/${userJourney}`, {
         name: nomeCompleto,
@@ -149,7 +161,7 @@ export default function Perfil() {
         password: pJourney,
         role: pessoaTipo,
         fullName: nomeCompleto,
-        dateOfBirth: isoDate,
+        dateOfBirth: dataNascimento,
         gender: genero,
         disabilityType: tipoDeficiencia,
         postalCode: cep,
@@ -161,7 +173,8 @@ export default function Perfil() {
         state: uf,
         username: userName,
         userDescription: bio,
-        avatar: ""
+        avatar: avatar,
+        relacaoTutelado: relacaoTutelado
       })
 
       if (response.status === 200) {
@@ -198,9 +211,13 @@ export default function Perfil() {
           <div className='header'>
             <div>
               <h3>Informações pessoais</h3>
-              {!loading && (<Image className='edit' src={iconEdit} onClick={() => { setEditable(true) }} alt='Icon' />)}
+              {!loading && (
+                <>
+                  {editable ? <Image className='close' src={iconClose} onClick={() => { setEditable(false) }} alt='Icon' /> : <Image className='edit' src={iconEdit} onClick={() => { setEditable(true) }} alt='Icon' />}
+                </>
+              )}
             </div>
-            {!loading && (<p>{pessoaTipo || ''}</p>)}
+            {!loading && (<p>{relacaoTutelado ? `Relação tutelado: ${relacaoTutelado}` : pessoaTipo}</p>)}
           </div>
 
           {loading ? (
@@ -218,9 +235,9 @@ export default function Perfil() {
               <div className="inputForm">
                 <input disabled={!editable} style={{ width: '47%' }} type="text" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
                 <input disabled style={{ width: '47%' }} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <input disabled={!editable} style={{ width: '29%' }} type="text" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+                <input disabled style={{ width: '29%' }} type="text" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
                 <input disabled={!editable} style={{ width: '30%' }} type="text" placeholder="Gênero" value={genero} onChange={(e) => setGenero(e.target.value)} />
-                <input disabled={!editable} style={{ width: '32%' }} type="text" placeholder="Tipo de Deficiência" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />
+                {tipoDeficiencia && (<input disabled={!editable} style={{ width: '32%' }} type="text" placeholder="Tipo de Deficiência" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} />)}
               </div>
 
               <h4>Endereço</h4>
@@ -265,6 +282,7 @@ export default function Perfil() {
                     endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}`}
                     onButtonClick={() => { setSelectedLocal(l); setIsOpenModalDetalhes(true) }}
                     isfavorite={l.isFavorite}
+                    codigo={l.codigo}
                   />
                 ))
               )}

@@ -100,11 +100,11 @@ export default function Cadastro() {
       return
     }
 
-    // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    // if (!emailRegex.test(email)) {
-    //   toast.warning('Por favor, insira um e-mail válido.')
-    //   return
-    // }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      toast.warning('Por favor, insira um e-mail válido.')
+      return
+    }
 
     if (password !== passwordConfirmation) {
       toast.warning("As senhas não coincidem. Verifique e tente novamente.")
@@ -204,7 +204,7 @@ export default function Cadastro() {
         password: password,
         role: pessoaTipo,
         fullName: nomeCompleto,
-        birthDate: dataNascimento,
+        birthDate: `${dataNascimento}T00:00:00`,
         gender: genero,
         disabilityType: tipoDeficiencia,
         postalCode: cep,
@@ -216,7 +216,8 @@ export default function Cadastro() {
         state: uf,
         username: userName,
         userDescription: bio,
-        avatar: ""
+        avatar: "",
+        relacaoTutelado: relacaoTutelado
       })
 
       if (response.status === 200) {
@@ -304,13 +305,13 @@ export default function Cadastro() {
             </div>
 
             <section className='inputs'>
-              <div className="inputForm" style={{ width: '100%' }}>
+              <div className="inputForm" style={{ width: '97%' }}>
                 <input type="text" className="input" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '43%' }}>
+              <div className="inputForm" style={{ width: '46%' }}>
                 <input type="date" className="input" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '53%' }}>
+              <div className="inputForm" style={{ width: '46%' }}>
                 <select className="input" value={genero} onChange={(e) => setGenero(e.target.value)}>
                   <option value="" disabled>Selecione um gênero</option>
                   {generos.map((genero) => (
@@ -320,32 +321,27 @@ export default function Cadastro() {
                   ))}
                 </select>
               </div>
-              <div className="inputForm" style={{ width: '100%' }}>
-                {pessoaTipo === 'Tutor' ? (
-                  <input type="text" className="input" placeholder="Relação com o tutelado (ex: pai, mãe)" value={relacaoTutelado} onChange={(e) => setRelacaoTutelado(e.target.value)}/>
-                ) : (
-                  <input type="text" className="input" placeholder="Deficiência (se houver)" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)}/>
-                )}
-              </div>
-              <div className="inputForm" style={{ width: '43%' }}>
+              {pessoaTipo === 'Tutor' && (<div className="inputForm" style={{ width: '100%' }}><input type="text" className="input" placeholder="Relação com o tutelado (ex: pai, mãe)" value={relacaoTutelado} onChange={(e) => setRelacaoTutelado(e.target.value)} /></div>)}
+              {pessoaTipo === 'PcD' && (<div className="inputForm" style={{ width: '100%' }}><input type="text" className="input" placeholder="Deficiência" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} /></div>)}
+              <div className="inputForm" style={{ width: '40%' }}>
                 <input type="text" className="input" placeholder="CEP" value={cep} onChange={handleCepChange} />
               </div>
-              <div className="inputForm" style={{ width: '53%' }}>
+              <div className="inputForm" style={{ width: '52%' }}>
                 <input type="text" className="input" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '35%' }}>
+              <div className="inputForm" style={{ width: '26%' }}>
                 <input type="number" className="input" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '61%' }}>
+              <div className="inputForm" style={{ width: '66%' }}>
                 <input type="text" className="input" placeholder="Complemento (se houver)" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '46%' }}>
+              <div className="inputForm" style={{ width: '35%' }}>
                 <input type="text" className="input" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '50%' }}>
+              <div className="inputForm" style={{ width: '40%' }}>
                 <input type="text" className="input" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '30%' }}>
+              <div className="inputForm" style={{ width: '12%' }}>
                 <input type="text" className="input" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
               </div>
             </section>

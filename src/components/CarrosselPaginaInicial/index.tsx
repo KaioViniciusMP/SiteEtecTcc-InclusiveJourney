@@ -13,7 +13,7 @@ export default function CarrosselPaginaInicial() {
   const data = [
     {id: 1 , title: 'Seja Bem vindo(a) ao Inclusive journey!' , subtitle: 'Bem-vindo ao Inclusive Journey! Aqui, nós valorizamos a acessibilidade e a inclusão. Explore conosco lugares adaptados para todos.', buttonName: 'Login', src: '../pages/Login'},
     {id: 2 , title: 'Conecte-se com a Acessibilidade' , subtitle: 'Junte-se a uma comunidade engajada! No Inclusive Journey, compartilhamos, recomendações e experiências sobre lugares acessíveis. Faça parte!', buttonName: 'Cadastrar', src: '../pages/Cadastro'},
-    {id: 3 , title: 'Inclusão para Todos' , subtitle: 'O Inclusive Journey é para todos. Mesmo sem deficiência, você pode colaborar compartilhando informações sobre locais acessíveis que conhece. Juntos, construímos um ambiente mais inclusivo.', buttonName: 'Login', src: '../pages/Login'}
+    {id: 3 , title: 'Um site colaborativo de acessibilidade' , subtitle: 'O Inclusive Journey é para todos. Mesmo sem deficiência, você pode colaborar compartilhando informações sobre locais acessíveis que conhece. Juntos, construímos um ambiente mais inclusivo.', buttonName: 'Login', src: '../pages/Login'}
   ]
 
   return (

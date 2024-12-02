@@ -164,25 +164,6 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
     }
 
     try {
-      console.log("Dados enviados para a API:", {
-        NameLocal: nomeLocal,
-        Cep: cep,
-        Street: rua,
-        Complement: complemento,
-        Neighborhood: bairro,
-        City: cidade,
-        NumberHome: numero,
-        State: uf,
-        OpeningHours: horarioFuncionamento,
-        LocalAssessment: String(rating),
-        Description: descricao,
-        TypeAcessibility: selectedAccessibility,
-        ZoneCode: selectedZone,
-        ZoneCategorie: selectedPlace,
-        ImageName: fotoNome,
-        ImageStream: imageBase64,
-      }); 
-      
       const response = await api.post('place/registerPlace', {
         NameLocal: nomeLocal,
         Cep: cep,
@@ -236,7 +217,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
               <input style={{ width: '20%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
               <input style={{ width: '20%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
               <input style={{ width: '47%' }} type="text" placeholder="Horario de funcionamento" value={horarioFuncionamento} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
-              <input style={{ width: '95%' }} type="text" placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+              <textarea style={{ width: '93%' }} placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
             </div>
             <div className="selects">
               <div className="select-group" style={{ width: '30%' }}>

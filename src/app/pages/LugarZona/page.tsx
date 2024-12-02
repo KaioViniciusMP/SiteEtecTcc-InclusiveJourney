@@ -129,6 +129,7 @@ export default function LugarZona({ searchParams }: { searchParams: { [key: stri
                   endereco={`${l.street}, ${l.numberHome} - ${l.neighborhood}, ${l.city} - ${l.state}`}
                   onButtonClick={() => { setSelectedLocal(l); setIsOpenModalDetalhes(true) }}
                   isfavorite={l.isFavorite}
+                  codigo={l.codigo}
                 />
               ))
             )}

@@ -1,5 +1,6 @@
 .perfil {
   height: 100vh;
+  overflow-x: hidden;
 
   .container {
     background-color: #E7E6ED;
@@ -112,6 +113,12 @@
 
           h3 {
             font-size: 1.4rem;
+          }
+
+          .close {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
           }
 
           .edit {
