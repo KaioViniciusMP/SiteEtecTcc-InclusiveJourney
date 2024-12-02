@@ -12,7 +12,7 @@
   margin-top: 10vh;
   border: 1px solid rgb(177, 177, 177);
 
-  .close{
+  .close {
     width: 18px;
     height: auto;
     object-fit: cover;
@@ -21,20 +21,20 @@
     right: 1.5vw;
   }
 
-  .main{
+  .main {
     width: 100%;
     height: 100%;
     display: flex;
     gap: 2%;
     margin-top: 4vh;
 
-    .imagem{
+    .imagem {
       width: 38%;
       height: 100%;
       display: flex;
       align-items: flex-start;
 
-      .url{
+      .url {
         width: 100%;
         height: auto;
         object-fit: contain;
@@ -43,38 +43,41 @@
       }
     }
 
-    .content{
+    .content {
       width: 60%;
       height: 67vh;
       overflow-y: auto;
       padding-right: 2vw;
 
-      .title{
+      .title {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 2vh;
 
-        h3{
+        h3 {
           font-size: 1.6rem;
         }
 
-        .heart{
-          width: 30px;
+        .heart {
+          width: 34px;
           height: auto;
           cursor: pointer;
-          background-color: rgb(205, 205, 205);
-          padding: 2px;
           border-radius: 15%;
+          transition: 0.2s ease-in;
+
+          &:hover {
+            transform: scale(1.2);
+          }
         }
       }
 
-      p{
+      p {
         margin-bottom: 1%;
       }
 
-      .stars{
-        .star{
+      .stars {
+        .star {
           width: 18px;
           height: auto;
           object-fit: cover;
@@ -83,46 +86,124 @@
         }
       }
 
-      .address{
+      .address {
         text-decoration: underline;
 
-        .location{
+        .location {
           width: 18px;
           height: auto;
           object-fit: cover;
         }
       }
 
-      .acessibilidade{
+      .acessibilidade {
         margin: 3vh 0;
 
-        h4{
+        h4 {
           margin-bottom: 1vh;
         }
 
-        .acessibilidade-item{
+        .acessibilidade-item {
           display: flex;
           align-items: center;
           gap: 0.5vw;
           margin-bottom: 1%;
 
-          p{
+          p {
             margin-bottom: 0;
           }
         }
       }
 
-      .descricao{
+      .descricao {
         margin: 3vh 0;
 
-        h4{
+        h4 {
           margin-bottom: 1vh;
         }
 
-        p{
+        p {
           padding: 1.5%;
           border: 1px solid black;
           border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-detalhes-lugar {
+    padding: 2vh 4vw;
+    height: 75vh;
+    width: 85vw;
+    margin-top: 8vh;
+
+    .close {
+      width: 20px;
+      right: 4vw;
+    }
+
+    .main {
+      gap: 4vh;
+      margin-top: 4vh;
+      flex-direction: column;
+
+      .imagem {
+        width: 100%;
+        height: max-content;
+        justify-content: center;
+
+        .url {
+          width: 85%;
+        }
+      }
+
+      .content {
+        width: 100%;
+        height: max-content;
+        padding-right: 0;
+        margin-bottom: 4vh;
+
+        .title {
+          margin-bottom: 1vh;
+
+          h3 {
+            font-size: 1.4rem;
+          }
+
+          .heart {
+            width: 32px;
+          }
+        }
+
+        p {
+          margin-bottom: 1vh;
+        }
+
+        .stars {
+          .star {
+            width: 20px;
+            margin-left: 1.5vw;
+          }
+        }
+
+        .acessibilidade {
+          margin: 2vh 0;
+
+          .acessibilidade-item {
+            gap: 1.5vw;
+            margin-bottom: 1vh;
+          }
+        }
+
+        .descricao {
+          margin: 2vh 0;
+
+          p {
+            padding: 2%;
+            width: 90%;
+          }
         }
       }
     }

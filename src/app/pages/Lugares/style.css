@@ -45,3 +45,42 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .lugares {
+    .highlight {
+      margin-top: 12vh;
+      height: 35vh;
+  
+      h1{
+        font-size: 1.6rem;
+        margin-bottom: 1vh;
+        text-align: center;
+        width: 90%;
+      }
+
+      p{
+        text-align: center;
+        width: 90%;
+      }
+    }
+  
+    .section1 {
+      padding: 5vh 4vw 0 4vw;
+  
+      h1 {
+        font-size: 2rem;
+        width: 100%;
+        text-align: start;
+      }
+  
+      p {
+        margin-bottom: 4vh;
+      }
+  
+      .cards {
+        width: 100%;
+      }
+    }
+  }
+}
