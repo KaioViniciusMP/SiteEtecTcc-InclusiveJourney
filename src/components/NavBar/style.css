@@ -43,3 +43,26 @@
     margin-top: -1vh;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1vh 0 2vh 0;
+
+    .navbar-logo {
+      height: 5vh;
+      margin-bottom: 2vh;
+      margin-left: 0;
+    }
+  
+    div {
+      margin-right: 0;
+      gap: 3vw;
+    }
+  
+    .navbar-select {
+      width: 18vw;
+    }
+  }
+}

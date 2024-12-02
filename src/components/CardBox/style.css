@@ -46,3 +46,23 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .cardBoxHome {
+        margin: 0vh 1vw 3vh 1vw;
+        max-height: 58vw;
+        max-width: 40vw;
+        
+        .cardBoxImg {
+            max-height: 60%;
+            margin-bottom: 1vh;
+        }
+    
+        .cardBoxButton {
+            padding: 7px 30px;
+            font-size: 0.8rem;
+            margin-top: 1vh;
+            margin-bottom: 0vh;
+        }
+    }
+}

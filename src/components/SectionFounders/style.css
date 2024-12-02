@@ -58,3 +58,34 @@
     font-size: 0.9rem;
     color: #808080;
 }
+
+@media screen and (max-width: 768px) {
+    .section-founders {
+        padding: 5vh 5vw;
+        text-align: start;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3vh;
+    }
+    
+    .founders-container {
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+        gap: 2vh;
+    }
+    
+    .founder-card {
+        padding: 3vh 4vw;
+        width: 70vw;
+    }
+    
+    .ig{
+        width: 22px;
+    }
+    
+    .founder-description {
+        font-size: 1rem;
+    }
+}

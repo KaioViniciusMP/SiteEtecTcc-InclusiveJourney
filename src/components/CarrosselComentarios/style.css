@@ -31,3 +31,24 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .container-comentarios{
+    max-height: 53vh;
+  
+    .comentarios{
+      .item{
+        height: 51vh;
+  
+        .user{
+          width: 80px;
+          margin: 2vh 0;
+        }
+  
+        p{
+          width: 80%;
+        }
+      }
+    }
+  }
+}
