@@ -163,3 +163,38 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .main-login {
+    .container {
+      align-items: center;
+
+      .imagem {
+        display: none;
+      }
+
+      .header {
+        p {
+          margin-bottom: 2vh;
+        }
+      }
+  
+      .footer {
+        flex-direction: column;
+        gap: 2vh;
+      }
+  
+      .form {
+        width: 70vw;
+        border-radius: 10px;
+        height: max-content;
+      }
+  
+      .button-submit {
+        margin: 1vh 0;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+    }
+  }
+}

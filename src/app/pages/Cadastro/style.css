@@ -1,4 +1,4 @@
-.main-cadastro{
+.main-cadastro {
   font-family: 'inter', sans-serif;
   background-color: #E7E6ED;
   display: flex;
@@ -199,6 +199,49 @@
       padding:  10px;
       display: flex;
       flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-cadastro {
+    .container {
+      align-items: center;
+
+      .imagem {
+        display: none;
+      }
+
+      .header {
+        h1 {
+          font-size: 32px;
+        }
+
+        p {
+          margin-bottom: 2vh;
+        }
+      }
+  
+      .footer {
+        flex-direction: column;
+        gap: 2vh;
+      }
+  
+      .form {
+        width: 70vw;
+        border-radius: 10px;
+        height: max-content;
+      }
+
+      .input {
+        margin-left: 1px;
+      }
+  
+      .button-submit {
+        margin: 1vh 0;
+        font-size: 1rem;
+        font-weight: 600;
+      }
     }
   }
 }

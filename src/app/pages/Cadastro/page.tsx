@@ -46,9 +46,21 @@ export default function Cadastro() {
   const [lembrar, setLembrar] = useState(true)
   const [loadingButton, setLoadingButton] = useState(false)
   const [openIndex, setOpenIndex] = useState(null)
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     document.title = 'Junte-se a Nós | Inclusive Journey'
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   // const avataresCadeirantes = [
@@ -277,7 +289,7 @@ export default function Cadastro() {
             <button className="button-submit" onClick={handleFirstStepSubmit}>Avançar</button>
             <a href='../pages/Login'>Já possui uma conta? Faça login</a>
 
-            <p style={{ marginTop: '5vh', textAlign: 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
+            <p style={{ marginTop: isSmallScreen ? '2vh' : '5vh', textAlign: isSmallScreen ? 'left' : 'center' }}>Ao continuar, você declara que leu e concorda com os <a href='../pages/TermosDeUso'>Termos e Condições</a>.</p>
           </div>
         ) : !isSecondStepComplete ? (
           <div className="form">
@@ -308,10 +320,10 @@ export default function Cadastro() {
               <div className="inputForm" style={{ width: '97%' }}>
                 <input type="text" className="input" placeholder="Nome Completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '46%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '42%' : '46%' }}>
                 <input type="date" className="input" placeholder="Data de Nascimento" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '46%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '43%' : '46%' }}>
                 <select className="input" value={genero} onChange={(e) => setGenero(e.target.value)}>
                   <option value="" disabled>Selecione um gênero</option>
                   {generos.map((genero) => (
@@ -323,25 +335,25 @@ export default function Cadastro() {
               </div>
               {pessoaTipo === 'Tutor' && (<div className="inputForm" style={{ width: '100%' }}><input type="text" className="input" placeholder="Relação com o tutelado (ex: pai, mãe)" value={relacaoTutelado} onChange={(e) => setRelacaoTutelado(e.target.value)} /></div>)}
               {pessoaTipo === 'PcD' && (<div className="inputForm" style={{ width: '100%' }}><input type="text" className="input" placeholder="Deficiência" value={tipoDeficiencia} onChange={(e) => setTipoDeficiencia(e.target.value)} /></div>)}
-              <div className="inputForm" style={{ width: '40%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '36%' : '40%' }}>
                 <input type="text" className="input" placeholder="CEP" value={cep} onChange={handleCepChange} />
               </div>
-              <div className="inputForm" style={{ width: '52%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '48%' : '52%' }}>
                 <input type="text" className="input" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '26%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '28%' : '26%' }}>
                 <input type="number" className="input" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '66%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '55%' : '66%' }}>
                 <input type="text" className="input" placeholder="Complemento (se houver)" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '35%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '50%' : '35%' }}>
                 <input type="text" className="input" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '40%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '33%' : '40%' }}>
                 <input type="text" className="input" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
               </div>
-              <div className="inputForm" style={{ width: '12%' }}>
+              <div className="inputForm" style={{ width: isSmallScreen ? '20%' : '12%' }}>
                 <input type="text" className="input" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
               </div>
             </section>
