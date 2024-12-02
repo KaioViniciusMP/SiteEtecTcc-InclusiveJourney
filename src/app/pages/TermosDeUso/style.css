@@ -152,3 +152,64 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .main-termos-uso{
+    section{
+      padding: 6vh 5vw 4vh 5vw;
+  
+      h1{
+        text-align: start;
+        font-size: 2rem;
+        margin-bottom: 4vh;
+      }
+  
+      h5{
+        margin-bottom: 3vh;
+      }
+  
+      h4{
+        margin-bottom: 1vh;
+      }
+  
+      p{
+        margin-bottom: 3vh;
+      }
+    }
+  
+    footer {
+      height: auto;
+      padding: 5vh 5vw;
+
+      section {
+        flex-direction: column;
+        padding: 0;
+
+        .div-1 {
+          p {
+            .icon {
+              margin-right: 1vw;
+            }
+          }
+        }
+
+        .div-2 {
+          .logo {
+            height: 80px;
+            margin-top: 0;
+            margin: 1vh 0;
+          }
+
+          p {
+            width: 90%;
+            margin-bottom: 3vh;
+          }
+        }
+      }
+
+      .div-footer {
+        margin-top: 5vh;
+      }
+    }
+  }
+}

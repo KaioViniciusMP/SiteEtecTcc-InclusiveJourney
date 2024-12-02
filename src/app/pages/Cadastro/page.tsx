@@ -46,7 +46,7 @@ export default function Cadastro() {
   const [lembrar, setLembrar] = useState(true)
   const [loadingButton, setLoadingButton] = useState(false)
   const [openIndex, setOpenIndex] = useState(null)
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
 
   useEffect(() => {
     document.title = 'Junte-se a Nós | Inclusive Journey'

@@ -170,3 +170,109 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .modal-adicionar-lugar {
+    padding: 2vh 4vw;
+    height: 75vh;
+    margin-top: 12vh;
+  
+    .close{
+      width: 20px;
+      right: 5vw;
+    }
+  
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 2vh;
+    }
+  
+    .form {
+      flex-direction: column;
+      gap: 3vh;
+  
+      .mapa {
+        width: 100%;
+      }
+  
+      .content {
+        width: 100%;
+  
+        .inputs {
+          margin-bottom: 3vh;
+          gap: 1vh;
+  
+          input, textarea {
+            padding-left: 8px;
+          }
+  
+          textarea {
+            padding: 2vh 2vw;
+          }
+        }
+  
+        .selects{
+          flex-direction: column;
+          
+          select{
+            padding-left: 8px;
+          }
+        }
+  
+        h4 {
+          margin-bottom: 1vh;
+        }
+  
+        .checkboxs {
+          flex-direction: column;
+          gap: 1vh;
+          width: 95%;
+  
+          label {
+            gap: 1.5vw;
+          }
+        }
+  
+        .stars {
+          gap: 0.3vw;
+          margin-top: 2vh;
+          flex-wrap: wrap;
+  
+          h4 {
+            margin-right: 0;
+            width: 100%;
+            margin-bottom: 1vh;
+          }
+  
+          .star {
+            width: 30px;
+            margin-right: 2vw;
+          }
+        }
+  
+        .buttons{
+          flex-direction: column;
+          align-items: start;
+          margin: 3vh 0;
+          padding-right: 0;
+        }
+  
+        .button-foto {
+          gap: 2vw;
+          padding: 1.4vh 4vw;
+  
+          .camera {
+            width: 20px;
+            height: auto;
+            object-fit: cover;
+          }
+        }
+  
+        .button-submit{
+          padding: 1.4vh 5vw;
+          margin: 2vh 0 0 0;
+        }
+      }
+    }
+  }
+}

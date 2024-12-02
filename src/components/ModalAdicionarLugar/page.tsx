@@ -32,6 +32,8 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
   const [imageBase64, setImageBase64] = useState<string | null>(null)
   const [fotoNome, setFotoNome] = useState<string | null>(null)
 
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+
   const zonas = [
     { codigo: 1, nome: 'Zona Sul' },
     { codigo: 2, nome: 'Zona Oeste' },
@@ -71,6 +73,17 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
     "Sinalização de Acessibilidade",
     "Acessibilidade para Surdos"
   ]
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target
@@ -208,19 +221,19 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
           </div>
           <div className="content">
             <div className="inputs">
-              <input style={{ width: '58%' }} type="text" placeholder="Nome do local" value={nomeLocal} onChange={(e) => setNomeLocal(e.target.value)} />
-              <input style={{ width: '33%' }} type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
-              <input style={{ width: '48%' }} type="text" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
-              <input style={{ width: '43%' }} type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
-              <input style={{ width: '48%' }} type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
-              <input style={{ width: '43%' }} type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
-              <input style={{ width: '20%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
-              <input style={{ width: '20%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
-              <input style={{ width: '47%' }} type="text" placeholder="Horario de funcionamento" value={horarioFuncionamento} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
-              <textarea style={{ width: '93%' }} placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '58%' }} type="text" placeholder="Nome do local" value={nomeLocal} onChange={(e) => setNomeLocal(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '33%' }} type="text" placeholder="CEP" value={cep} onChange={(e) => setCep(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '48%' }} type="text" placeholder="Rua" value={rua} onChange={(e) => setRua(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '43%' }} type="text" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '48%' }} type="text" placeholder="Bairro" value={bairro} onChange={(e) => setBairro(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '43%' }} type="text" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '44%' : '20%' }} type="text" placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '44%' : '20%' }} type="text" placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value)} />
+              <input style={{ width: isSmallScreen ? '94%' : '47%' }} type="text" placeholder="Horario de funcionamento" value={horarioFuncionamento} onChange={(e) => setHorarioFuncionamento(e.target.value)} />
+              <textarea style={{ width: isSmallScreen ? '92%' : '93%' }} placeholder="Descrição do local" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
             </div>
             <div className="selects">
-              <div className="select-group" style={{ width: '30%' }}>
+              <div className="select-group" style={{ width: isSmallScreen ? '97%' : '30%' }}>
                 <select style={{ width: '100%' }} value={selectedZone ?? ''} onChange={(e) => setSelectedZone(Number(e.target.value))}>
                   <option value="" disabled>Escolha uma zona</option>
                   {zonas.map((zona) => (
@@ -231,7 +244,7 @@ export default function ModalAdicionarLugar({ isOpen, closeModal }: any) {
                 </select>
               </div>
 
-              <div className="select-group" style={{ width: '35%' }}>
+              <div className="select-group" style={{ width: isSmallScreen ? '97%' : '35%' }}>
                 <select style={{ width: '100%' }} value={selectedPlace ?? ''} onChange={(e) => setSelectedPlace(Number(e.target.value))}>
                   <option value="" disabled>Escolha um lugar principal</option>
                   {lugaresPrincipais.map((lugar) => (
