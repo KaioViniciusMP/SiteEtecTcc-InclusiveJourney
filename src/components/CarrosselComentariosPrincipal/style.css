@@ -3,7 +3,6 @@
   max-height: 60vh;
 
   .comentarios{
-
     .item{
       height: 60vh;
       display: flex;
@@ -33,6 +32,30 @@
         width: 110px;
         height: auto;
         margin-top: -8vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-comentarios-principal{
+    max-height: 50vh;
+  
+    .comentarios{
+      .item{
+        height: auto;
+        margin-top: 3vh;
+  
+        div{
+          padding: 4vh 5vw;
+          border-radius: 10px;
+          height: 32vh;
+        }
+  
+        .user{
+          width: 90px;
+          margin-top: -4vh;
+        }
       }
     }
   }

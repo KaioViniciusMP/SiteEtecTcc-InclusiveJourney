@@ -22,6 +22,7 @@ interface Comentario {
 
 export default function CarrosselComentariosPrincipal() {
   const [comentarios, setComentarios] = useState<Comentario[]>([])
+  const [slidesPerView, setSlidesPerView] = useState(2)
 
   useEffect(() => {
     const fetchComentarios = async () => {
@@ -35,11 +36,25 @@ export default function CarrosselComentariosPrincipal() {
     }
 
     fetchComentarios()
+
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        setSlidesPerView(1)
+      } else {
+        setSlidesPerView(2)
+      }
+    };
+
+    window.addEventListener('resize', handleResize)
+
+    handleResize()
+
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
     <div className="container-comentarios-principal">
-      <Swiper className="comentarios" modules={[Pagination]} slidesPerView={2} pagination={{ clickable: true }} grabCursor spaceBetween={35}>
+      <Swiper className="comentarios" modules={[Pagination]} slidesPerView={slidesPerView} pagination={{ clickable: true }} grabCursor spaceBetween={35}>
         {comentarios.map((item) => (
           <SwiperSlide className="item" key={item.codigo}>
             <div>

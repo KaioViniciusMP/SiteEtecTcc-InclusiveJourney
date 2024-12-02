@@ -1,4 +1,4 @@
-.main-pagina-principal{
+.main-pagina-principal {
   header {
     background-color: #002234;
     height: 10vh;
@@ -9,19 +9,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
+
     .logo {
       width: auto;
       height: 95%;
       margin-left: 5vw;
     }
-  
+
     .buttons {
       margin-right: 10vw;
       width: auto;
       display: flex;
       gap: 1vw;
-  
+
       button {
         background-color: #FE4045;
         border: none;
@@ -31,53 +31,53 @@
         cursor: pointer;
         transition: 0.3s ease-in-out;
         font-size: 1rem;
-  
-        &:hover{
+
+        &:hover {
           filter: brightness(1.6);
         }
       }
     }
   }
-  
+
   .section-1 {
     background-image: url(../../../img/Group928.svg);
-    background-position: center; 
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     width: 101vw;
     height: 100vh;
     padding-top: 10vh;
   }
-  
-  .section-2{
+
+  .section-2 {
     background-color: #fff;
     height: 70vh;
     display: flex;
     justify-content: space-between;
     padding: 15vh 5vw 5vh 5vw;
-  
-    .cachorroAcenando{
+
+    .cachorroAcenando {
       width: auto;
       margin-left: 10%;
       height: 100%;
     }
-  
-    div{
+
+    div {
       width: 48%;
       padding: 5% 0;
-      
-      h2{
+
+      h2 {
         color: #002234;
         font-size: 2.6rem;
         width: 80%;
       }
-  
-      p{
+
+      p {
         margin: 2vh 0;
         width: 95%;
         color: #000;
       }
-  
+
       button {
         background-color: #FE4045;
         border: none;
@@ -90,47 +90,47 @@
         margin-top: 3vh;
         transition: 0.3s ease-in-out;
 
-        &:hover{
+        &:hover {
           filter: brightness(1.6);
         }
       }
     }
   }
-  
-  .section-3{
+
+  .section-3 {
     background-color: #fff;
     height: 50vh;
     padding: 10vh 10vw;
-  
-    .div-background{
+
+    .div-background {
       background-color: #002234;
       height: 100%;
       display: flex;
       justify-content: space-between;
       border-radius: 20px;
-  
-      div{
+
+      div {
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin-left: 4vw;
-  
-        h2{
+
+        h2 {
           color: #fff;
           font-size: 2.4rem;
           width: 85%;
         }
-  
-        p{
+
+        p {
           color: #fff;
           margin: 2vh 0;
         }
 
-        a{
+        a {
           color: #fff;
           text-decoration: none;
         }
-  
+
         button {
           background-color: #FE4045;
           border: none;
@@ -148,39 +148,39 @@
           gap: 1vw;
           transition: 0.3s ease-in-out;
 
-          &:hover{
+          &:hover {
             filter: brightness(1.6);
           }
-  
-          .instagram{
+
+          .instagram {
             width: auto;
             height: 3vh;
           }
         }
       }
     }
-  
-    .siganos{
+
+    .siganos {
       width: auto;
       height: auto;
       margin-right: 2vw;
     }
   }
-  
-  .section-4{
+
+  .section-4 {
     background-color: #fff;
     height: 70vh;
     padding: 5vh 5vw 10vh 5vw;
     display: flex;
     flex-direction: column;
     text-align: center;
-  
-    h2{
+
+    h2 {
       font-size: 2.4rem;
     }
   }
 
-  footer{
+  footer {
     background-color: #002234;
     height: 60vh;
     display: flex;
@@ -189,42 +189,42 @@
     padding: 5vh 0;
     color: #fff;
 
-    section{
+    section {
       display: flex;
       justify-content: space-between;
       padding: 10vh 13vw 0 10vw;
 
-      div{
+      div {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
 
-        h3{
+        h3 {
           font-size: 1.5rem;
           margin-bottom: 2vh;
         }
 
-        p{
+        p {
           margin-bottom: 1vh;
 
-          a{
+          a {
             text-decoration: none;
             color: #fff;
 
-            &:hover{
+            &:hover {
               text-decoration: underline;
             }
           }
         }
       }
 
-      .div-1{
-        p{
+      .div-1 {
+        p {
           display: flex;
           align-items: center;
 
-          .icon{
+          .icon {
             margin-right: 0.5vw;
             width: auto;
             height: 1.2rem;
@@ -232,44 +232,193 @@
         }
       }
 
-      .div-2{
-        .logo{
+      .div-2 {
+        .logo {
           width: auto;
           height: 100px;
           margin-top: -4vh;
           margin-bottom: 2vh;
         }
 
-        p{
+        p {
           width: 55%;
           text-align: center;
         }
       }
 
-      .div-3{
-        p{
+      .div-3 {
+        p {
           text-wrap: nowrap;
         }
       }
     }
 
-    .div-footer{
+    .div-footer {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 1vh;
 
-      p{
-        &:hover{
+      p {
+        &:hover {
           text-decoration: underline;
           cursor: pointer;
         }
 
-        &:hover:last-child{
+        &:hover:last-child {
           text-decoration: none;
           cursor: auto;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-pagina-principal {
+    header {
+      .logo {
+        height: 70%;
+        margin-left: 2vw;
+      }
+
+      .buttons {
+        margin-right: 2vw;
+        gap: 2vw;
+
+        button {
+          padding: 1vh 6vw;
+        }
+      }
+    }
+
+    .section-1 {
+      background-image: none;
+      background-color: #002234;
+      width: 100vw;
+      height: 50vh;
+    }
+
+    .section-2 {
+      height: max-content;
+      flex-direction: column-reverse;
+      justify-content: start;
+      gap: 5vh;
+      align-items: center;
+      padding: 6vh 5vw;
+
+      .cachorroAcenando {
+        width: 70%;
+        margin-left: 0;
+        height: auto;
+        object-fit: cover;
+      }
+
+      div {
+        width: 100%;
+        padding: 0;
+
+        h2 {
+          font-size: 2.5rem;
+          width: 100%;
+        }
+
+        p {
+          margin: 2vh 0;
+          width: 90%;
+        }
+
+        button {
+          padding: 1.5vh 9vw;
+          border-radius: 30px;
+          margin-top: 0;
+        }
+      }
+    }
+
+    .section-3 {
+      height: max-content;
+      padding: 5vh 5vw;
+
+      .div-background {
+        flex-direction: column;
+        border-radius: 16px;
+
+        div {
+          padding-left: 5vw;
+          padding-top: 4vh;
+
+          h2 {
+            font-size: 2.3rem;
+            width: 90%;
+          }
+
+          p {
+            width: 90%;
+          }
+
+          a {
+            width: 90%;
+          }
+
+          button {
+            padding: 1.7vh 8vw;
+            border-radius: 30px;
+            margin-top: 1vh;
+
+            .instagram {
+              height: 2.5vh;
+              margin-left: 2vw;
+            }
+          }
+        }
+      }
+    }
+
+    .section-4 {
+      height: auto;
+      padding: 5vh 5vw;
+      padding-bottom: 10vh;
+
+      h2 {
+        font-size: 2.3rem;
+        text-align: start;
+      }
+    }
+
+    footer {
+      height: auto;
+      padding: 5vh 5vw;
+
+      section {
+        flex-direction: column;
+        padding: 0;
+
+        .div-1 {
+          p {
+            .icon {
+              margin-right: 1vw;
+            }
+          }
+        }
+
+        .div-2 {
+          .logo {
+            height: 80px;
+            margin-top: 0;
+            margin: 1vh 0;
+          }
+
+          p {
+            width: 90%;
+            margin-bottom: 3vh;
+          }
+        }
+      }
+
+      .div-footer {
+        margin-top: 5vh;
       }
     }
   }
