@@ -278,4 +278,18 @@
       }
     }
   }
+
+  .accordion-avatar {
+    .accordion-header {
+      padding: 1.5vh 2vw;
+    }
+  
+    .accordion-content {
+      height: 23vh;
+
+      .img-avatar{
+        width: 24%;
+      }
+    }
+  }
 }

@@ -153,6 +153,7 @@ export default function Lugar({ searchParams }: { searchParams: { [key: string]:
         localAssessment={selectedLocal?.localAssessment}
         typeAcessibility={selectedLocal?.typeAcessibility}
         openingHours={selectedLocal?.openingHours}
+        codigo={selectedLocal?.codigo}
       />
 
       <ModalAdicionarLugar isOpen={isOpenModal} closeModal={handleCloseModal} />

@@ -523,6 +523,7 @@ export default function Perfil() {
         localAssessment={selectedLocal?.localAssessment}
         typeAcessibility={selectedLocal?.typeAcessibility}
         openingHours={selectedLocal?.openingHours}
+        codigo={selectedLocal?.codigo}
       />
 
       <ToastContainer autoClose={3000} />

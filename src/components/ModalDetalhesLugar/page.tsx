@@ -1,7 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import './style.css'
 import Modal from 'react-modal'
 import Image from 'next/image'
+import { api } from "@/src/services/api"
+import { toast } from 'react-toastify'
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 import close from '../../img/close.png'
 import star from '../../img/star.png'
@@ -16,7 +20,7 @@ import elevator from '../../img/elevator.png'
 import disability from '../../img/disability.png'
 import signLanguage from '../../img/sign-language.png'
 
-export default function ModalDetalhesLugar({ isOpen, closeModal, nameLocal, imageUrl, isFavorite, description, street, numberHome, neighborhood, city, state, cep, localAssessment, typeAcessibility, openingHours }: any) {
+export default function ModalDetalhesLugar({ isOpen, closeModal, nameLocal, imageUrl, isFavorite, description, street, numberHome, neighborhood, city, state, cep, localAssessment, typeAcessibility, openingHours, codigo }: any) {
   const customStyles = {
     content: {
       top: '50%',
@@ -31,7 +35,28 @@ export default function ModalDetalhesLugar({ isOpen, closeModal, nameLocal, imag
   }
 
   async function handleFavorite() {
+    const userJourney = localStorage.getItem('u-inclusive-journey')
 
+    try {
+      const response = await api.post(`place/FavoriteAndRemovedPlaceFavorited`, {
+        PlacesCode: codigo,
+        PersonCode: userJourney
+      })
+
+      if (response.data === 'insert favorite place successfully!') {
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
+
+      } else if (response.data === 'place favorite successfully removed!') {
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
+      }
+
+    } catch (error) {
+      toast.error("Ocorreu um erro. Atualize a página e tente novamente.")
+    }
   }
 
   return (
@@ -110,6 +135,8 @@ export default function ModalDetalhesLugar({ isOpen, closeModal, nameLocal, imag
           </div>
         </div>
       </div>
+
+      <ToastContainer autoClose={3000} />
     </Modal>
   )
 }
