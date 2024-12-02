@@ -14,7 +14,78 @@ import iconCoracao from '../../../img/imgCoracaozin.png'
 import iconTutor from '../../../img/imgEscritaLousa.png'
 import iconDone from '../../../img/Done.png'
 
-// import aaaa from '../../../../public/Avatares/Feminino/Feminino-cadeirantes/IMG_3277.png'
+// feminino cadeirantes
+import IMG_3247 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3247.png'
+import IMG_3257 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3257.png'
+import IMG_3259 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3259.png'
+import IMG_3457 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3457.png'
+import IMG_3395 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3395.png'
+import IMG_3397 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3397.png'
+import IMG_3420 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3420.png'
+import IMG_3428 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3428.png'
+import IMG_3471 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3471.png'
+import IMG_3473 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3473.png'
+import IMG_3293 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3293.png'
+import IMG_3285 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3285.png'
+import IMG_3281 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3281.png'
+import IMG_3277 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3277.png'
+import IMG_3273 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3273.png'
+// masculino cadeirantes
+import IMG_3517 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3517.png'
+import IMG_3524 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3524.png'
+import IMG_3532 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3532.png'
+import IMG_3600 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3600.png'
+import IMG_3552 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3552.png'
+import IMG_3561 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3561.png'
+import IMG_3567 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3567.png'
+import IMG_3632 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3632.png'
+import IMG_3648 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3648.png'
+import IMG_3575 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3575.png'
+import IMG_3640 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3640.png'
+import IMG_3634 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3634.png'
+import IMG_3745 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3745.png'
+// feminino pcd auditivos
+import IMG_3265 from '../../../img/Avatares/Feminino-auditivos/IMG_3265.png'
+import IMG_3266 from '../../../img/Avatares/Feminino-auditivos/IMG_3266.png'
+import IMG_3270 from '../../../img/Avatares/Feminino-auditivos/IMG_3270.png'
+import IMG_3392 from '../../../img/Avatares/Feminino-auditivos/IMG_3392.png'
+import IMG_3399 from '../../../img/Avatares/Feminino-auditivos/IMG_3399.png'
+import IMG_3466 from '../../../img/Avatares/Feminino-auditivos/IMG_3466.png'
+import IMG_3469 from '../../../img/Avatares/Feminino-auditivos/IMG_3469.png'
+import IMG_3474 from '../../../img/Avatares/Feminino-auditivos/IMG_3474.png'
+import IMG_3477 from '../../../img/Avatares/Feminino-auditivos/IMG_3477.png'
+import IMG_3246 from '../../../img/Avatares/Feminino-auditivos/IMG_3246.png'
+import IMG_3255 from '../../../img/Avatares/Feminino-auditivos/IMG_3255.png'
+import IMG_3260 from '../../../img/Avatares/Feminino-auditivos/IMG_3260.png'
+// masculinos pcd auditivos
+import IMG_3519 from '../../../img/Avatares/Masculinos-auditivos/IMG_3519.png'
+import IMG_3522 from '../../../img/Avatares/Masculinos-auditivos/IMG_3522.png'
+import IMG_3527 from '../../../img/Avatares/Masculinos-auditivos/IMG_3527.png'
+import IMG_3705 from '../../../img/Avatares/Masculinos-auditivos/IMG_3705.png'
+import IMG_3710 from '../../../img/Avatares/Masculinos-auditivos/IMG_3710.png'
+import IMG_3553 from '../../../img/Avatares/Masculinos-auditivos/IMG_3553.png'
+import IMG_3562 from '../../../img/Avatares/Masculinos-auditivos/IMG_3562.png'
+import IMG_3565 from '../../../img/Avatares/Masculinos-auditivos/IMG_3565.png'
+import IMG_3622 from '../../../img/Avatares/Masculinos-auditivos/IMG_3622.png'
+import IMG_3630 from '../../../img/Avatares/Masculinos-auditivos/IMG_3630.png'
+import IMG_3638 from '../../../img/Avatares/Masculinos-auditivos/IMG_3638.png'
+import IMG_3635 from '../../../img/Avatares/Masculinos-auditivos/IMG_3635.png'
+import IMG_3746 from '../../../img/Avatares/Masculinos-auditivos/IMG_3746.png'
+// femininos pcd visual
+import IMG_3242 from '../../../img/Avatares/Feminino-cegas/IMG_3242.png'
+import IMG_3253 from '../../../img/Avatares/Feminino-cegas/IMG_3253.png'
+import IMG_3254 from '../../../img/Avatares/Feminino-cegas/IMG_3254.png'
+import IMG_3261 from '../../../img/Avatares/Feminino-cegas/IMG_3261.png'
+import IMG_3369 from '../../../img/Avatares/Feminino-cegas/IMG_3369.png'
+import IMG_3294 from '../../../img/Avatares/Feminino-cegas/IMG_3294.png'
+import IMG_3295 from '../../../img/Avatares/Feminino-cegas/IMG_3295.png'
+import IMG_3274 from '../../../img/Avatares/Feminino-cegas/IMG_3274.png'
+import IMG_3278 from '../../../img/Avatares/Feminino-cegas/IMG_3278.png'
+import IMG_3279 from '../../../img/Avatares/Feminino-cegas/IMG_3279.png'
+import IMG_3286 from '../../../img/Avatares/Feminino-cegas/IMG_3286.png'
+import IMG_3398 from '../../../img/Avatares/Feminino-cegas/IMG_3398.png'
+import IMG_3393 from '../../../img/Avatares/Feminino-cegas/IMG_3393.png'
+// masculinos pcd visual
 
 export default function Cadastro() {
   const router = useRouter()
@@ -37,6 +108,7 @@ export default function Cadastro() {
   const [uf, setUf] = useState('')
   const [bio, setBio] = useState('')
   const [relacaoTutelado, setRelacaoTutelado] = useState('')
+  const [avatarSelected, setAvatarSelected] = useState('')
 
   const [isFirstStepComplete, setIsFirstStepComplete] = useState(false)
   const [isSecondStepComplete, setIsSecondStepComplete] = useState(false)
@@ -63,17 +135,88 @@ export default function Cadastro() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // const avataresCadeirantes = [
-  //   { id: 1, src: aaaa }
-  // ]
+  const avataresCadeirantes = [
+    { id: 1, src: IMG_3247, nome: 'IMG_3247' },
+    { id: 2, src: IMG_3257, nome: 'IMG_3257' },
+    { id: 3, src: IMG_3259, nome: 'IMG_3259' },
+    { id: 4, src: IMG_3457, nome: 'IMG_3457' },
+    { id: 5, src: IMG_3395, nome: 'IMG_3395' },
+    { id: 6, src: IMG_3397, nome: 'IMG_3397' },
+    { id: 7, src: IMG_3420, nome: 'IMG_3420' },
+    { id: 8, src: IMG_3428, nome: 'IMG_3428' },
+    { id: 9, src: IMG_3471, nome: 'IMG_3471' },
+    { id: 10, src: IMG_3473, nome: 'IMG_3473' },
+    { id: 11, src: IMG_3293, nome: 'IMG_3293' },
+    { id: 12, src: IMG_3285, nome: 'IMG_3285' },
+    { id: 13, src: IMG_3281, nome: 'IMG_3281' },
+    { id: 14, src: IMG_3277, nome: 'IMG_3277' },
+    { id: 15, src: IMG_3273, nome: 'IMG_3273' },
+    { id: 16, src: IMG_3517, nome: 'IMG_3517' },
+    { id: 17, src: IMG_3524, nome: 'IMG_3524' },
+    { id: 18, src: IMG_3532, nome: 'IMG_3532' },
+    { id: 19, src: IMG_3600, nome: 'IMG_3600' },
+    { id: 20, src: IMG_3552, nome: 'IMG_3552' },
+    { id: 21, src: IMG_3561, nome: 'IMG_3561' },
+    { id: 22, src: IMG_3567, nome: 'IMG_3567' },
+    { id: 23, src: IMG_3632, nome: 'IMG_3632' },
+    { id: 24, src: IMG_3648, nome: 'IMG_3648' },
+    { id: 25, src: IMG_3575, nome: 'IMG_3575' },
+    { id: 26, src: IMG_3640, nome: 'IMG_3640' },
+    { id: 27, src: IMG_3634, nome: 'IMG_3634' },
+    { id: 28, src: IMG_3745, nome: 'IMG_3745' },
+  ]
 
-  // const toggleAccordion = (index: any) => {
-  //   if (openIndex === index) {
-  //     setOpenIndex(null);
-  //   } else {
-  //     setOpenIndex(index)
-  //   }
-  // }
+  const avataresPcdAuditivo = [
+    { id: 1, src: IMG_3265, nome: 'IMG_3265' },
+    { id: 2, src: IMG_3266, nome: 'IMG_3266' },
+    { id: 3, src: IMG_3270, nome: 'IMG_3270' },
+    { id: 4, src: IMG_3392, nome: 'IMG_3392' },
+    { id: 5, src: IMG_3399, nome: 'IMG_3399' },
+    { id: 6, src: IMG_3466, nome: 'IMG_3466' },
+    { id: 7, src: IMG_3469, nome: 'IMG_3469' },
+    { id: 8, src: IMG_3474, nome: 'IMG_3474' },
+    { id: 9, src: IMG_3477, nome: 'IMG_3477' },
+    { id: 10, src: IMG_3246, nome: 'IMG_3246' },
+    { id: 11, src: IMG_3255, nome: 'IMG_3255' },
+    { id: 12, src: IMG_3260, nome: 'IMG_3260' },
+    { id: 13, src: IMG_3519, nome: 'IMG_3519' },
+    { id: 14, src: IMG_3522, nome: 'IMG_3522' },
+    { id: 15, src: IMG_3527, nome: 'IMG_3527' },
+    { id: 16, src: IMG_3705, nome: 'IMG_3705' },
+    { id: 17, src: IMG_3710, nome: 'IMG_3710' },
+    { id: 18, src: IMG_3553, nome: 'IMG_3553' },
+    { id: 19, src: IMG_3562, nome: 'IMG_3562' },
+    { id: 20, src: IMG_3565, nome: 'IMG_3565' },
+    { id: 21, src: IMG_3622, nome: 'IMG_3622' },
+    { id: 22, src: IMG_3630, nome: 'IMG_3630' },
+    { id: 23, src: IMG_3638, nome: 'IMG_3638' },
+    { id: 24, src: IMG_3635, nome: 'IMG_3635' },
+    { id: 25, src: IMG_3746, nome: 'IMG_3746' },
+  ]
+
+  const avataresPcdVisual = [
+    { id: 1, src: IMG_3242, nome: 'IMG_3242' },
+    { id: 2, src: IMG_3253, nome: 'IMG_3253' },
+    { id: 3, src: IMG_3254, nome: 'IMG_3254' },
+    { id: 4, src: IMG_3261, nome: 'IMG_3261' },
+    { id: 5, src: IMG_3369, nome: 'IMG_3369' },
+    { id: 6, src: IMG_3294, nome: 'IMG_3294' },
+    { id: 7, src: IMG_3295, nome: 'IMG_3295' },
+    { id: 8, src: IMG_3274, nome: 'IMG_3274' },
+    { id: 9, src: IMG_3278, nome: 'IMG_3278' },
+    { id: 10, src: IMG_3279, nome: 'IMG_3279' },
+    { id: 11, src: IMG_3286, nome: 'IMG_3286' },
+    { id: 12, src: IMG_3398, nome: 'IMG_3398' },
+    { id: 13, src: IMG_3393, nome: 'IMG_3393' },
+  ]  
+
+  const toggleAccordion = (index: any) => {
+    if (openIndex === index) {
+      setOpenIndex(null)
+    } else {
+      setOpenIndex(index)
+    }
+  }
 
   async function fetchCep(cep: any) {
     try {
@@ -107,21 +250,21 @@ export default function Cadastro() {
   }
 
   const handleFirstStepSubmit = () => {
-    if (email === '' && password === '' && passwordConfirmation === '') {
-      toast.warning('Por favor, preencha todos os campos.')
-      return
-    }
+    // if (email === '' && password === '' && passwordConfirmation === '') {
+    //   toast.warning('Por favor, preencha todos os campos.')
+    //   return
+    // }
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
-      toast.warning('Por favor, insira um e-mail válido.')
-      return
-    }
+    // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // if (!emailRegex.test(email)) {
+    //   toast.warning('Por favor, insira um e-mail válido.')
+    //   return
+    // }
 
-    if (password !== passwordConfirmation) {
-      toast.warning("As senhas não coincidem. Verifique e tente novamente.")
-      return
-    }
+    // if (password !== passwordConfirmation) {
+    //   toast.warning("As senhas não coincidem. Verifique e tente novamente.")
+    //   return
+    // }
 
     setIsFirstStepComplete(true)
   }
@@ -139,41 +282,41 @@ export default function Cadastro() {
   }
 
   const handleThirdStepSubmit = () => {
-    const allFieldsFilled =
-      nomeCompleto !== '' &&
-      dataNascimento !== '' &&
-      genero !== '' &&
-      cep !== '' &&
-      rua !== '' &&
-      numero !== '' &&
-      bairro !== '' &&
-      cidade !== '' &&
-      uf !== '' &&
-      (pessoaTipo === 'Tutor' ? relacaoTutelado !== '' : pessoaTipo !== '')
+    // const allFieldsFilled =
+    //   nomeCompleto !== '' &&
+    //   dataNascimento !== '' &&
+    //   genero !== '' &&
+    //   cep !== '' &&
+    //   rua !== '' &&
+    //   numero !== '' &&
+    //   bairro !== '' &&
+    //   cidade !== '' &&
+    //   uf !== '' &&
+    //   (pessoaTipo === 'Tutor' ? relacaoTutelado !== '' : pessoaTipo !== '')
 
-    const calculateAge = (birthDate: any) => {
-      const birthDateObj = new Date(birthDate)
-      const today = new Date()
-      let age = today.getFullYear() - birthDateObj.getFullYear()
-      const month = today.getMonth()
-      if (month < birthDateObj.getMonth() || (month === birthDateObj.getMonth() && today.getDate() < birthDateObj.getDate())) {
-        age--
-      }
-      return age
-    }
+    // const calculateAge = (birthDate: any) => {
+    //   const birthDateObj = new Date(birthDate)
+    //   const today = new Date()
+    //   let age = today.getFullYear() - birthDateObj.getFullYear()
+    //   const month = today.getMonth()
+    //   if (month < birthDateObj.getMonth() || (month === birthDateObj.getMonth() && today.getDate() < birthDateObj.getDate())) {
+    //     age--
+    //   }
+    //   return age
+    // }
 
-    const age = calculateAge(dataNascimento)
+    // const age = calculateAge(dataNascimento)
 
-    if (allFieldsFilled && age > 13) {
-      setIsThirdStepComplete(true)
+    // if (allFieldsFilled && age > 13) {
+    setIsThirdStepComplete(true)
 
-    } else {
-      if (!allFieldsFilled) {
-        toast.warning('Por favor, preencha todos os campos obrigatórios.')
-      } else {
-        toast.warning('Você deve ser maior de 13 anos para continuar.')
-      }
-    }
+    // } else {
+    //   if (!allFieldsFilled) {
+    //     toast.warning('Por favor, preencha todos os campos obrigatórios.')
+    //   } else {
+    //     toast.warning('Você deve ser maior de 13 anos para continuar.')
+    //   }
+    // }
   }
 
   const handleFourthStepSubmit = () => {
@@ -228,7 +371,7 @@ export default function Cadastro() {
         state: uf,
         username: userName,
         userDescription: bio,
-        avatar: "",
+        avatar: avatarSelected,
         relacaoTutelado: relacaoTutelado
       })
 
@@ -378,29 +521,65 @@ export default function Cadastro() {
                 <h2>Escolha seu avatar</h2>
               </div>
 
-              {/* {avataresCadeirantes.map((avatar, index) => (
-                <div key={avatar.id} className="accordion-item">
-                  <div className="accordion-header" onClick={() => toggleAccordion(index)}>
-                    <h3>Avatares - Cadeirantes</h3>
-                  </div>
-                  {openIndex === index && (
-                    <div className="accordion-content">
-                      <Image style={{width: '100px', height: '100px', backgroundColor: 'red'}} className='imagem' src={avatar.src} alt="Imagem" />
-                    </div>
-                  )}
+              <div className="accordion">
+                <div className="accordion-header" onClick={() => toggleAccordion(0)}>
+                  <h3>Avatares - Cadeirantes</h3>
                 </div>
-              ))} */}
+                {openIndex === 0 && (
+                  <div className="accordion-content" style={{ height: '35vh', overflowY: 'auto' }}>
+                    {avataresCadeirantes.map((avatar) => (
+                      <Image
+                        key={avatar.id}
+                        style={{ width: '90px', height: '90px', backgroundColor: avatarSelected === avatar.nome ? "blue" : "red", }}
+                        className="img-avatar"
+                        src={avatar.src}
+                        alt="Avatar"
+                        onClick={() => setAvatarSelected(avatar.nome)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="accordion">
+                <div className="accordion-header" onClick={() => toggleAccordion(0)}>
+                  <h3>Avatares - Pcd auditivo</h3>
+                </div>
+                {openIndex === 0 && (
+                  <div className="accordion-content" style={{ height: '35vh', overflowY: 'auto' }}>
+                    {avataresPcdAuditivo.map((avatar) => (
+                      <Image
+                        key={avatar.id}
+                        style={{ width: '90px', height: '90px', backgroundColor: avatarSelected === avatar.nome ? "blue" : "red", }}
+                        className="img-avatar"
+                        src={avatar.src}
+                        alt="Avatar"
+                        onClick={() => setAvatarSelected(avatar.nome)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="accordion">
+                <div className="accordion-header" onClick={() => toggleAccordion(0)}>
+                  <h3>Avatares - Pcd visual</h3>
+                </div>
+                {openIndex === 0 && (
+                  <div className="accordion-content" style={{ height: '35vh', overflowY: 'auto' }}>
+                    {avataresPcdVisual.map((avatar) => (
+                      <Image
+                        key={avatar.id}
+                        style={{ width: '90px', height: '90px', backgroundColor: avatarSelected === avatar.nome ? "blue" : "red", }}
+                        className="img-avatar"
+                        src={avatar.src}
+                        alt="Avatar"
+                        onClick={() => setAvatarSelected(avatar.nome)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
 
-              <div className="inputForm" style={{ marginBottom: '10px' }}>
-                <select name="gender" className="input" id="gender">
-                  <option value="">Avatares - Cadeirantes</option>
-                </select>
-              </div>
-              <div className="inputForm" style={{ marginBottom: '10px' }}>
-                <select name="gender" className="input" id="gender">
-                  <option value="">Avatares - Pcd auditivo</option>
-                </select>
-              </div>
+              {/* 
               <div className="inputForm" style={{ marginBottom: '10px' }}>
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pcd Visual</option>
@@ -410,7 +589,7 @@ export default function Cadastro() {
                 <select name="gender" className="input" id="gender">
                   <option value="">Avatares - Pessoa não deficiente</option>
                 </select>
-              </div>
+              </div> */}
             </section>
 
             <button className="button-submit" onClick={handleFourthStepSubmit}>Avançar</button>

@@ -31,13 +31,11 @@ export default function CardBoxLugar({ title, subtitle, endereco, imageSrc, onBu
       })
 
       if (response.data === 'insert favorite place successfully!') {
-        toast.success("Lugar favoritado com sucesso!")
         setTimeout(() => {
           window.location.reload()
         }, 1000)
 
       } else if (response.data === 'place favorite successfully removed!') {
-        toast.success("Lugar removido dos favoritos!")
         setTimeout(() => {
           window.location.reload()
         }, 1000)
