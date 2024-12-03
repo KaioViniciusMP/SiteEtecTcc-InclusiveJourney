@@ -130,8 +130,7 @@ const Accordion = ({ title, avatars, index, openIndex, toggleAccordion, avatarSe
     {openIndex === index && (
       <div className="accordion-content">
         {avatars.map((avatar: any) => (
-          <Image
-            key={avatar.id}
+          <img
             style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
             className="img-avatar"
             src={avatar.src}
@@ -343,21 +342,21 @@ export default function Cadastro() {
   }
 
   const handleFirstStepSubmit = () => {
-    if (email === '' && password === '' && passwordConfirmation === '') {
-      toast.warning('Por favor, preencha todos os campos.')
-      return
-    }
+    // if (email === '' && password === '' && passwordConfirmation === '') {
+    //   toast.warning('Por favor, preencha todos os campos.')
+    //   return
+    // }
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
-      toast.warning('Por favor, insira um e-mail válido.')
-      return
-    }
+    // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // if (!emailRegex.test(email)) {
+    //   toast.warning('Por favor, insira um e-mail válido.')
+    //   return
+    // }
 
-    if (password !== passwordConfirmation) {
-      toast.warning("As senhas não coincidem. Verifique e tente novamente.")
-      return
-    }
+    // if (password !== passwordConfirmation) {
+    //   toast.warning("As senhas não coincidem. Verifique e tente novamente.")
+    //   return
+    // }
 
     setIsFirstStepComplete(true)
   }
