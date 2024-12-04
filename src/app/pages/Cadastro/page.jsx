@@ -134,7 +134,7 @@ const Accordion = ({ title, avatars, index, openIndex, toggleAccordion, avatarSe
     {openIndex === index && (
       <div className="accordion-content">
         {avatars.map((avatar) => (
-          <Image
+          <img
             key={avatar.id}
             style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
             className="img-avatar"
