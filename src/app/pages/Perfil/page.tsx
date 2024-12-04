@@ -420,7 +420,7 @@ export default function Perfil() {
 
       <section className='container'>
         <div className='left'>
-          <Image className='avatar' src={avatarImages[avatar as keyof typeof avatarImages] || avatarImages.default} alt='Imagem' />
+          <img className='avatar' src={(avatarImages[avatar as keyof typeof avatarImages] || avatarImages.default).src} alt='Imagem' />
           <button className='btn-suporte' type='button' onClick={() => { router.push('../pages/Suporte') }}><Image className='support' src={support} alt='Imagem' /> Ajuda e suporte</button>
           <button className='btn-logout' type='button' onClick={() => { router.push('../') }}>Sair <Image className='logout' src={logout} alt='Imagem' /></button>
         </div>
