@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { api } from '@/src/services/api'
 
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import imageCadastro from '../../../img/imgInclusiveJourneyCadastro.png'
 import iconPcd from '../../../img/imgCadeirante.png'
 import iconOlho from '../../../img/imgOlhinhos.png'
@@ -14,7 +14,7 @@ import iconCoracao from '../../../img/imgCoracaozin.png'
 import iconTutor from '../../../img/imgEscritaLousa.png'
 import iconDone from '../../../img/Done.png'
 
-// feminino cadeirantes
+//#region
 import IMG_3247 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3247.png'
 import IMG_3257 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3257.png'
 import IMG_3259 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3259.png'
@@ -30,7 +30,7 @@ import IMG_3285 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3285.png'
 import IMG_3281 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3281.png'
 import IMG_3277 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3277.png'
 import IMG_3273 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3273.png'
-// masculino cadeirantes
+
 import IMG_3517 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3517.png'
 import IMG_3524 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3524.png'
 import IMG_3532 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3532.png'
@@ -44,7 +44,8 @@ import IMG_3575 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3575.png'
 import IMG_3640 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3640.png'
 import IMG_3634 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3634.png'
 import IMG_3745 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3745.png'
-// feminino pcd auditivos
+//#endregion
+//#region 
 import IMG_3265 from '../../../img/Avatares/Feminino-auditivos/IMG_3265.png'
 import IMG_3266 from '../../../img/Avatares/Feminino-auditivos/IMG_3266.png'
 import IMG_3270 from '../../../img/Avatares/Feminino-auditivos/IMG_3270.png'
@@ -57,7 +58,7 @@ import IMG_3477 from '../../../img/Avatares/Feminino-auditivos/IMG_3477.png'
 import IMG_3246 from '../../../img/Avatares/Feminino-auditivos/IMG_3246.png'
 import IMG_3255 from '../../../img/Avatares/Feminino-auditivos/IMG_3255.png'
 import IMG_3260 from '../../../img/Avatares/Feminino-auditivos/IMG_3260.png'
-// masculino pcd auditivos
+
 import IMG_3519 from '../../../img/Avatares/Masculinos-auditivos/IMG_3519.png'
 import IMG_3522 from '../../../img/Avatares/Masculinos-auditivos/IMG_3522.png'
 import IMG_3527 from '../../../img/Avatares/Masculinos-auditivos/IMG_3527.png'
@@ -71,7 +72,8 @@ import IMG_3630 from '../../../img/Avatares/Masculinos-auditivos/IMG_3630.png'
 import IMG_3638 from '../../../img/Avatares/Masculinos-auditivos/IMG_3638.png'
 import IMG_3635 from '../../../img/Avatares/Masculinos-auditivos/IMG_3635.png'
 import IMG_3746 from '../../../img/Avatares/Masculinos-auditivos/IMG_3746.png'
-// feminino pcd visual
+//#endregion
+//#region 
 import IMG_3242 from '../../../img/Avatares/Feminino-cegas/IMG_3242.png'
 import IMG_3253 from '../../../img/Avatares/Feminino-cegas/IMG_3253.png'
 import IMG_3254 from '../../../img/Avatares/Feminino-cegas/IMG_3254.png'
@@ -85,7 +87,7 @@ import IMG_3279 from '../../../img/Avatares/Feminino-cegas/IMG_3279.png'
 import IMG_3286 from '../../../img/Avatares/Feminino-cegas/IMG_3286.png'
 import IMG_3398 from '../../../img/Avatares/Feminino-cegas/IMG_3398.png'
 import IMG_3393 from '../../../img/Avatares/Feminino-cegas/IMG_3393.png'
-// masculino pcd visual
+
 import IMG_3748 from '../../../img/Avatares/Masculinos-cegos/IMG_3748.png'
 import IMG_3520 from '../../../img/Avatares/Masculinos-cegos/IMG_3520.png'
 import IMG_3521 from '../../../img/Avatares/Masculinos-cegos/IMG_3521.png'
@@ -97,7 +99,8 @@ import IMG_3571 from '../../../img/Avatares/Masculinos-cegos/IMG_3571.png'
 import IMG_3579 from '../../../img/Avatares/Masculinos-cegos/IMG_3579.png'
 import IMG_3637 from '../../../img/Avatares/Masculinos-cegos/IMG_3637.png'
 import IMG_3636 from '../../../img/Avatares/Masculinos-cegos/IMG_3636.png'
-// feminino não deficiente
+//#endregion
+//#region 
 import IMG_3249 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3249.png'
 import IMG_3256 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3256.png'
 import IMG_3258 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3258.png'
@@ -109,7 +112,8 @@ import IMG_3280 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3280.png'
 import IMG_3272 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3272.png'
 import IMG_3396 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3396.png'
 import IMG_3394 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3394.png'
-// masculino não deficiente
+//#endregion
+
 import IMG_3516 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3516.png'
 import IMG_3523 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3523.png'
 import IMG_3525 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3525.png'
@@ -122,30 +126,33 @@ import IMG_3631 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3631.pn
 import IMG_3760 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3760.png'
 import IMG_3633 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3633.png'
 
-const Accordion = ({ title, avatars, index, openIndex, toggleAccordion, avatarSelected, setAvatarSelected }: any) => (
-  <div className="accordion-avatar">
-    <div className="accordion-header" onClick={() => toggleAccordion(index)}>
-      <h3>{title}</h3>
-    </div>
-    {openIndex === index && (
-      <div className="accordion-content">
-        {avatars.map((avatar: any) => (
-          <img
-            style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
-            className="img-avatar"
-            src={avatar.src}
-            alt="Avatar"
-            onClick={() => setAvatarSelected(avatar.nome)}
-          />
-        ))}
+export function Accordion({ title, avatars, index, openIndex, toggleAccordion, avatarSelected, setAvatarSelected }: any) {
+  return (
+    <div className="accordion-avatar">
+      <div className="accordion-header" onClick={() => toggleAccordion(index)}>
+        <h3>{title}</h3>
       </div>
-    )}
-  </div>
-)
+      {openIndex === index && (
+        <div className="accordion-content">
+          {avatars.map((avatar: any) => (
+            <img
+              key={avatar.id}
+              style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
+              className="img-avatar"
+              src={avatar.src}
+              alt="Avatar"
+              onClick={() => setAvatarSelected(avatar.nome)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function Cadastro() {
   const router = useRouter()
-
+  //#region 
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -175,6 +182,7 @@ export default function Cadastro() {
   const [loadingButton, setLoadingButton] = useState(false)
   const [openIndex, setOpenIndex] = useState(null)
   const [isSmallScreen, setIsSmallScreen] = useState(false)
+  //#endregion
 
   useEffect(() => {
     document.title = 'Junte-se a Nós | Inclusive Journey'
@@ -342,21 +350,21 @@ export default function Cadastro() {
   }
 
   const handleFirstStepSubmit = () => {
-    // if (email === '' && password === '' && passwordConfirmation === '') {
-    //   toast.warning('Por favor, preencha todos os campos.')
-    //   return
-    // }
+    if (email === '' && password === '' && passwordConfirmation === '') {
+      toast.warning('Por favor, preencha todos os campos.')
+      return
+    }
 
-    // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    // if (!emailRegex.test(email)) {
-    //   toast.warning('Por favor, insira um e-mail válido.')
-    //   return
-    // }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      toast.warning('Por favor, insira um e-mail válido.')
+      return
+    }
 
-    // if (password !== passwordConfirmation) {
-    //   toast.warning("As senhas não coincidem. Verifique e tente novamente.")
-    //   return
-    // }
+    if (password !== passwordConfirmation) {
+      toast.warning("As senhas não coincidem. Verifique e tente novamente.")
+      return
+    }
 
     setIsFirstStepComplete(true)
   }
