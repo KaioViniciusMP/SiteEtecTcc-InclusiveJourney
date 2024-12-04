@@ -306,10 +306,19 @@ export default function Perfil() {
           const response = await api.get(`person/${userJourney}`)
 
           const data = response.data
+
+          const formatDate = (dateString: string) => {
+            const date = new Date(dateString)
+            const day = String(date.getDate()).padStart(2, '0')
+            const month = String(date.getMonth() + 1).padStart(2, '0')
+            const year = date.getFullYear()
+            return `${day}/${month}/${year}`
+          }
+
           setUserName(data.username || '')
           setEmail(data.email || '')
           setNomeCompleto(data.fullName || '')
-          setDataNascimento(data.dateOfBirth || '')
+          setDataNascimento(data.dateOfBirth ? formatDate(data.dateOfBirth) : '')
           setGenero(data.gender || '')
           setTipoDeficiencia(data.disabilityType || '')
           setCep(data.postalCode || '')
