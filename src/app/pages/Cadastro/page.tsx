@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { api } from '@/src/services/api'
 
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import imageCadastro from '../../../img/imgInclusiveJourneyCadastro.png'
 import iconPcd from '../../../img/imgCadeirante.png'
 import iconOlho from '../../../img/imgOlhinhos.png'
@@ -15,140 +15,138 @@ import iconTutor from '../../../img/imgEscritaLousa.png'
 import iconDone from '../../../img/Done.png'
 
 //#region
-import IMG_3247 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3247.png'
-import IMG_3257 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3257.png'
-import IMG_3259 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3259.png'
-import IMG_3457 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3457.png'
-import IMG_3395 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3395.png'
-import IMG_3397 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3397.png'
-import IMG_3420 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3420.png'
-import IMG_3428 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3428.png'
-import IMG_3471 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3471.png'
-import IMG_3473 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3473.png'
-import IMG_3293 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3293.png'
-import IMG_3285 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3285.png'
-import IMG_3281 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3281.png'
-import IMG_3277 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3277.png'
-import IMG_3273 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3273.png'
+import IMG_3247 from '@/public/Avatares/Feminino-cadeirantes/IMG_3247.png'
+import IMG_3257 from '@/public/Avatares/Feminino-cadeirantes/IMG_3257.png'
+import IMG_3259 from '@/public/Avatares/Feminino-cadeirantes/IMG_3259.png'
+import IMG_3457 from '@/public/Avatares/Feminino-cadeirantes/IMG_3457.png'
+import IMG_3395 from '@/public/Avatares/Feminino-cadeirantes/IMG_3395.png'
+import IMG_3397 from '@/public/Avatares/Feminino-cadeirantes/IMG_3397.png'
+import IMG_3420 from '@/public/Avatares/Feminino-cadeirantes/IMG_3420.png'
+import IMG_3428 from '@/public/Avatares/Feminino-cadeirantes/IMG_3428.png'
+import IMG_3471 from '@/public/Avatares/Feminino-cadeirantes/IMG_3471.png'
+import IMG_3473 from '@/public/Avatares/Feminino-cadeirantes/IMG_3473.png'
+import IMG_3293 from '@/public/Avatares/Feminino-cadeirantes/IMG_3293.png'
+import IMG_3285 from '@/public/Avatares/Feminino-cadeirantes/IMG_3285.png'
+import IMG_3281 from '@/public/Avatares/Feminino-cadeirantes/IMG_3281.png'
+import IMG_3277 from '@/public/Avatares/Feminino-cadeirantes/IMG_3277.png'
+import IMG_3273 from '@/public/Avatares/Feminino-cadeirantes/IMG_3273.png'
 
-import IMG_3517 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3517.png'
-import IMG_3524 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3524.png'
-import IMG_3532 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3532.png'
-import IMG_3600 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3600.png'
-import IMG_3552 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3552.png'
-import IMG_3561 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3561.png'
-import IMG_3567 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3567.png'
-import IMG_3632 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3632.png'
-import IMG_3648 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3648.png'
-import IMG_3575 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3575.png'
-import IMG_3640 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3640.png'
-import IMG_3634 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3634.png'
-import IMG_3745 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3745.png'
+import IMG_3517 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3517.png'
+import IMG_3524 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3524.png'
+import IMG_3532 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3532.png'
+import IMG_3600 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3600.png'
+import IMG_3552 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3552.png'
+import IMG_3561 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3561.png'
+import IMG_3567 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3567.png'
+import IMG_3632 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3632.png'
+import IMG_3648 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3648.png'
+import IMG_3575 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3575.png'
+import IMG_3640 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3640.png'
+import IMG_3634 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3634.png'
+import IMG_3745 from '@/public/Avatares/Masculinos-cadeirantes/IMG_3745.png'
 //#endregion
 //#region 
-import IMG_3265 from '../../../img/Avatares/Feminino-auditivos/IMG_3265.png'
-import IMG_3266 from '../../../img/Avatares/Feminino-auditivos/IMG_3266.png'
-import IMG_3270 from '../../../img/Avatares/Feminino-auditivos/IMG_3270.png'
-import IMG_3392 from '../../../img/Avatares/Feminino-auditivos/IMG_3392.png'
-import IMG_3399 from '../../../img/Avatares/Feminino-auditivos/IMG_3399.png'
-import IMG_3466 from '../../../img/Avatares/Feminino-auditivos/IMG_3466.png'
-import IMG_3469 from '../../../img/Avatares/Feminino-auditivos/IMG_3469.png'
-import IMG_3474 from '../../../img/Avatares/Feminino-auditivos/IMG_3474.png'
-import IMG_3477 from '../../../img/Avatares/Feminino-auditivos/IMG_3477.png'
-import IMG_3246 from '../../../img/Avatares/Feminino-auditivos/IMG_3246.png'
-import IMG_3255 from '../../../img/Avatares/Feminino-auditivos/IMG_3255.png'
-import IMG_3260 from '../../../img/Avatares/Feminino-auditivos/IMG_3260.png'
+import IMG_3265 from '@/public/Avatares/Feminino-auditivos/IMG_3265.png'
+import IMG_3266 from '@/public/Avatares/Feminino-auditivos/IMG_3266.png'
+import IMG_3270 from '@/public/Avatares/Feminino-auditivos/IMG_3270.png'
+import IMG_3392 from '@/public/Avatares/Feminino-auditivos/IMG_3392.png'
+import IMG_3399 from '@/public/Avatares/Feminino-auditivos/IMG_3399.png'
+import IMG_3466 from '@/public/Avatares/Feminino-auditivos/IMG_3466.png'
+import IMG_3469 from '@/public/Avatares/Feminino-auditivos/IMG_3469.png'
+import IMG_3474 from '@/public/Avatares/Feminino-auditivos/IMG_3474.png'
+import IMG_3477 from '@/public/Avatares/Feminino-auditivos/IMG_3477.png'
+import IMG_3246 from '@/public/Avatares/Feminino-auditivos/IMG_3246.png'
+import IMG_3255 from '@/public/Avatares/Feminino-auditivos/IMG_3255.png'
+import IMG_3260 from '@/public/Avatares/Feminino-auditivos/IMG_3260.png'
 
-import IMG_3519 from '../../../img/Avatares/Masculinos-auditivos/IMG_3519.png'
-import IMG_3522 from '../../../img/Avatares/Masculinos-auditivos/IMG_3522.png'
-import IMG_3527 from '../../../img/Avatares/Masculinos-auditivos/IMG_3527.png'
-import IMG_3705 from '../../../img/Avatares/Masculinos-auditivos/IMG_3705.png'
-import IMG_3710 from '../../../img/Avatares/Masculinos-auditivos/IMG_3710.png'
-import IMG_3553 from '../../../img/Avatares/Masculinos-auditivos/IMG_3553.png'
-import IMG_3562 from '../../../img/Avatares/Masculinos-auditivos/IMG_3562.png'
-import IMG_3565 from '../../../img/Avatares/Masculinos-auditivos/IMG_3565.png'
-import IMG_3622 from '../../../img/Avatares/Masculinos-auditivos/IMG_3622.png'
-import IMG_3630 from '../../../img/Avatares/Masculinos-auditivos/IMG_3630.png'
-import IMG_3638 from '../../../img/Avatares/Masculinos-auditivos/IMG_3638.png'
-import IMG_3635 from '../../../img/Avatares/Masculinos-auditivos/IMG_3635.png'
-import IMG_3746 from '../../../img/Avatares/Masculinos-auditivos/IMG_3746.png'
+import IMG_3519 from '@/public/Avatares/Masculinos-auditivos/IMG_3519.png'
+import IMG_3522 from '@/public/Avatares/Masculinos-auditivos/IMG_3522.png'
+import IMG_3527 from '@/public/Avatares/Masculinos-auditivos/IMG_3527.png'
+import IMG_3705 from '@/public/Avatares/Masculinos-auditivos/IMG_3705.png'
+import IMG_3710 from '@/public/Avatares/Masculinos-auditivos/IMG_3710.png'
+import IMG_3553 from '@/public/Avatares/Masculinos-auditivos/IMG_3553.png'
+import IMG_3562 from '@/public/Avatares/Masculinos-auditivos/IMG_3562.png'
+import IMG_3565 from '@/public/Avatares/Masculinos-auditivos/IMG_3565.png'
+import IMG_3622 from '@/public/Avatares/Masculinos-auditivos/IMG_3622.png'
+import IMG_3630 from '@/public/Avatares/Masculinos-auditivos/IMG_3630.png'
+import IMG_3638 from '@/public/Avatares/Masculinos-auditivos/IMG_3638.png'
+import IMG_3635 from '@/public/Avatares/Masculinos-auditivos/IMG_3635.png'
+import IMG_3746 from '@/public/Avatares/Masculinos-auditivos/IMG_3746.png'
 //#endregion
 //#region 
-import IMG_3242 from '../../../img/Avatares/Feminino-cegas/IMG_3242.png'
-import IMG_3253 from '../../../img/Avatares/Feminino-cegas/IMG_3253.png'
-import IMG_3254 from '../../../img/Avatares/Feminino-cegas/IMG_3254.png'
-import IMG_3261 from '../../../img/Avatares/Feminino-cegas/IMG_3261.png'
-import IMG_3369 from '../../../img/Avatares/Feminino-cegas/IMG_3369.png'
-import IMG_3294 from '../../../img/Avatares/Feminino-cegas/IMG_3294.png'
-import IMG_3295 from '../../../img/Avatares/Feminino-cegas/IMG_3295.png'
-import IMG_3274 from '../../../img/Avatares/Feminino-cegas/IMG_3274.png'
-import IMG_3278 from '../../../img/Avatares/Feminino-cegas/IMG_3278.png'
-import IMG_3279 from '../../../img/Avatares/Feminino-cegas/IMG_3279.png'
-import IMG_3286 from '../../../img/Avatares/Feminino-cegas/IMG_3286.png'
-import IMG_3398 from '../../../img/Avatares/Feminino-cegas/IMG_3398.png'
-import IMG_3393 from '../../../img/Avatares/Feminino-cegas/IMG_3393.png'
+import IMG_3242 from '@/public/Avatares/Feminino-cegas/IMG_3242.png'
+import IMG_3253 from '@/public/Avatares/Feminino-cegas/IMG_3253.png'
+import IMG_3254 from '@/public/Avatares/Feminino-cegas/IMG_3254.png'
+import IMG_3261 from '@/public/Avatares/Feminino-cegas/IMG_3261.png'
+import IMG_3369 from '@/public/Avatares/Feminino-cegas/IMG_3369.png'
+import IMG_3294 from '@/public/Avatares/Feminino-cegas/IMG_3294.png'
+import IMG_3295 from '@/public/Avatares/Feminino-cegas/IMG_3295.png'
+import IMG_3274 from '@/public/Avatares/Feminino-cegas/IMG_3274.png'
+import IMG_3278 from '@/public/Avatares/Feminino-cegas/IMG_3278.png'
+import IMG_3279 from '@/public/Avatares/Feminino-cegas/IMG_3279.png'
+import IMG_3286 from '@/public/Avatares/Feminino-cegas/IMG_3286.png'
+import IMG_3398 from '@/public/Avatares/Feminino-cegas/IMG_3398.png'
+import IMG_3393 from '@/public/Avatares/Feminino-cegas/IMG_3393.png'
 
-import IMG_3748 from '../../../img/Avatares/Masculinos-cegos/IMG_3748.png'
-import IMG_3520 from '../../../img/Avatares/Masculinos-cegos/IMG_3520.png'
-import IMG_3521 from '../../../img/Avatares/Masculinos-cegos/IMG_3521.png'
-import IMG_3528 from '../../../img/Avatares/Masculinos-cegos/IMG_3528.png'
-import IMG_3563 from '../../../img/Avatares/Masculinos-cegos/IMG_3563.png'
-import IMG_3628 from '../../../img/Avatares/Masculinos-cegos/IMG_3628.png'
-import IMG_3629 from '../../../img/Avatares/Masculinos-cegos/IMG_3629.png'
-import IMG_3571 from '../../../img/Avatares/Masculinos-cegos/IMG_3571.png'
-import IMG_3579 from '../../../img/Avatares/Masculinos-cegos/IMG_3579.png'
-import IMG_3637 from '../../../img/Avatares/Masculinos-cegos/IMG_3637.png'
-import IMG_3636 from '../../../img/Avatares/Masculinos-cegos/IMG_3636.png'
+import IMG_3748 from '@/public/Avatares/Masculinos-cegos/IMG_3748.png'
+import IMG_3520 from '@/public/Avatares/Masculinos-cegos/IMG_3520.png'
+import IMG_3521 from '@/public/Avatares/Masculinos-cegos/IMG_3521.png'
+import IMG_3528 from '@/public/Avatares/Masculinos-cegos/IMG_3528.png'
+import IMG_3563 from '@/public/Avatares/Masculinos-cegos/IMG_3563.png'
+import IMG_3628 from '@/public/Avatares/Masculinos-cegos/IMG_3628.png'
+import IMG_3629 from '@/public/Avatares/Masculinos-cegos/IMG_3629.png'
+import IMG_3571 from '@/public/Avatares/Masculinos-cegos/IMG_3571.png'
+import IMG_3579 from '@/public/Avatares/Masculinos-cegos/IMG_3579.png'
+import IMG_3637 from '@/public/Avatares/Masculinos-cegos/IMG_3637.png'
+import IMG_3636 from '@/public/Avatares/Masculinos-cegos/IMG_3636.png'
 //#endregion
 //#region 
-import IMG_3249 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3249.png'
-import IMG_3256 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3256.png'
-import IMG_3258 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3258.png'
-import IMG_3370 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3370.png'
-import IMG_3470 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3470.png'
-import IMG_3292 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3292.png'
-import IMG_3284 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3284.png'
-import IMG_3280 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3280.png'
-import IMG_3272 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3272.png'
-import IMG_3396 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3396.png'
-import IMG_3394 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3394.png'
+import IMG_3249 from '@/public/Avatares/Feminino-naodeficiente/IMG_3249.png'
+import IMG_3256 from '@/public/Avatares/Feminino-naodeficiente/IMG_3256.png'
+import IMG_3258 from '@/public/Avatares/Feminino-naodeficiente/IMG_3258.png'
+import IMG_3370 from '@/public/Avatares/Feminino-naodeficiente/IMG_3370.png'
+import IMG_3470 from '@/public/Avatares/Feminino-naodeficiente/IMG_3470.png'
+import IMG_3292 from '@/public/Avatares/Feminino-naodeficiente/IMG_3292.png'
+import IMG_3284 from '@/public/Avatares/Feminino-naodeficiente/IMG_3284.png'
+import IMG_3280 from '@/public/Avatares/Feminino-naodeficiente/IMG_3280.png'
+import IMG_3272 from '@/public/Avatares/Feminino-naodeficiente/IMG_3272.png'
+import IMG_3396 from '@/public/Avatares/Feminino-naodeficiente/IMG_3396.png'
+import IMG_3394 from '@/public/Avatares/Feminino-naodeficiente/IMG_3394.png'
 //#endregion
 
-import IMG_3516 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3516.png'
-import IMG_3523 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3523.png'
-import IMG_3525 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3525.png'
-import IMG_3531 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3531.png'
-import IMG_3601 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3601.png'
-import IMG_3609 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3609.png'
-import IMG_3551 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3551.png'
-import IMG_3560 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3560.png'
-import IMG_3631 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3631.png'
-import IMG_3760 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3760.png'
-import IMG_3633 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3633.png'
+import IMG_3516 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3516.png'
+import IMG_3523 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3523.png'
+import IMG_3525 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3525.png'
+import IMG_3531 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3531.png'
+import IMG_3601 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3601.png'
+import IMG_3609 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3609.png'
+import IMG_3551 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3551.png'
+import IMG_3560 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3560.png'
+import IMG_3631 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3631.png'
+import IMG_3760 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3760.png'
+import IMG_3633 from '@/public/Avatares/Masculino-nãodeficiente/IMG_3633.png'
 
-export function Accordion({ title, avatars, index, openIndex, toggleAccordion, avatarSelected, setAvatarSelected }: any) {
-  return (
-    <div className="accordion-avatar">
-      <div className="accordion-header" onClick={() => toggleAccordion(index)}>
-        <h3>{title}</h3>
-      </div>
-      {openIndex === index && (
-        <div className="accordion-content">
-          {avatars.map((avatar: any) => (
-            <img
-              key={avatar.id}
-              style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
-              className="img-avatar"
-              src={avatar.src}
-              alt="Avatar"
-              onClick={() => setAvatarSelected(avatar.nome)}
-            />
-          ))}
-        </div>
-      )}
+const Accordion = ({ title, avatars, index, openIndex, toggleAccordion, avatarSelected, setAvatarSelected }: any) => (
+  <div className="accordion-avatar">
+    <div className="accordion-header" onClick={() => toggleAccordion(index)}>
+      <h3>{title}</h3>
     </div>
-  )
-}
+    {openIndex === index && (
+      <div className="accordion-content">
+        {avatars.map((avatar: any) => (
+          <Image
+            key={avatar.id}
+            style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
+            className="img-avatar"
+            src={avatar.src}
+            alt="Avatar"
+            onClick={() => setAvatarSelected(avatar.nome)}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+)
 
 export default function Cadastro() {
   const router = useRouter()
