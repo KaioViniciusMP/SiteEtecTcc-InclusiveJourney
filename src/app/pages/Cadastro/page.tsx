@@ -14,7 +14,6 @@ import iconCoracao from '../../../img/imgCoracaozin.png'
 import iconTutor from '../../../img/imgEscritaLousa.png'
 import iconDone from '../../../img/Done.png'
 
-//#region
 import IMG_3247 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3247.png'
 import IMG_3257 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3257.png'
 import IMG_3259 from '../../../img/Avatares/Feminino-cadeirantes/IMG_3259.png'
@@ -44,8 +43,7 @@ import IMG_3575 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3575.png'
 import IMG_3640 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3640.png'
 import IMG_3634 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3634.png'
 import IMG_3745 from '../../../img/Avatares/Masculinos-cadeirantes/IMG_3745.png'
-//#endregion
-//#region 
+
 import IMG_3265 from '../../../img/Avatares/Feminino-auditivos/IMG_3265.png'
 import IMG_3266 from '../../../img/Avatares/Feminino-auditivos/IMG_3266.png'
 import IMG_3270 from '../../../img/Avatares/Feminino-auditivos/IMG_3270.png'
@@ -72,8 +70,7 @@ import IMG_3630 from '../../../img/Avatares/Masculinos-auditivos/IMG_3630.png'
 import IMG_3638 from '../../../img/Avatares/Masculinos-auditivos/IMG_3638.png'
 import IMG_3635 from '../../../img/Avatares/Masculinos-auditivos/IMG_3635.png'
 import IMG_3746 from '../../../img/Avatares/Masculinos-auditivos/IMG_3746.png'
-//#endregion
-//#region 
+
 import IMG_3242 from '../../../img/Avatares/Feminino-cegas/IMG_3242.png'
 import IMG_3253 from '../../../img/Avatares/Feminino-cegas/IMG_3253.png'
 import IMG_3254 from '../../../img/Avatares/Feminino-cegas/IMG_3254.png'
@@ -99,8 +96,7 @@ import IMG_3571 from '../../../img/Avatares/Masculinos-cegos/IMG_3571.png'
 import IMG_3579 from '../../../img/Avatares/Masculinos-cegos/IMG_3579.png'
 import IMG_3637 from '../../../img/Avatares/Masculinos-cegos/IMG_3637.png'
 import IMG_3636 from '../../../img/Avatares/Masculinos-cegos/IMG_3636.png'
-//#endregion
-//#region 
+
 import IMG_3249 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3249.png'
 import IMG_3256 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3256.png'
 import IMG_3258 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3258.png'
@@ -112,7 +108,7 @@ import IMG_3280 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3280.png'
 import IMG_3272 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3272.png'
 import IMG_3396 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3396.png'
 import IMG_3394 from '../../../img/Avatares/Feminino-naodeficiente/IMG_3394.png'
-//#endregion
+
 
 import IMG_3516 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3516.png'
 import IMG_3523 from '../../../img/Avatares/Masculino-nãodeficiente/IMG_3523.png'
