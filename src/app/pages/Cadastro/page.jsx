@@ -133,16 +133,17 @@ const Accordion = ({ title, avatars, index, openIndex, toggleAccordion, avatarSe
     </div>
     {openIndex === index && (
       <div className="accordion-content">
-        {avatars.map((avatar) => (
+        {avatars.map((avatar) =>
           <img
             key={avatar.id}
             style={{ borderColor: avatarSelected === avatar.nome ? "#000000" : "#ecedec", backgroundColor: avatarSelected === avatar.nome ? "#FE4045" : "" }}
             className="img-avatar"
-            src={avatar.src}
+            src={avatar.src.src}
             alt="Avatar"
             onClick={() => setAvatarSelected(avatar.nome)}
           />
-        ))}
+        )
+        }
       </div>
     )}
   </div>
