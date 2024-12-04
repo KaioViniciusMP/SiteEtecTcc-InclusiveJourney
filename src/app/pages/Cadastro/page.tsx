@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { api } from '@/src/services/api'
 
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import imageCadastro from '../../../img/imgInclusiveJourneyCadastro.png'
 import iconPcd from '../../../img/imgCadeirante.png'
 import iconOlho from '../../../img/imgOlhinhos.png'
@@ -141,10 +141,8 @@ export function Accordion({ title, avatars, index, openIndex, toggleAccordion, a
             />
           ))}
         </div>
-      )}
-    </div>
-  )
-}
+      )
+)
 
 export default function Cadastro() {
   const router = useRouter()
